@@ -134,12 +134,13 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnClickL
 
     @OnClick((R.id.getStarted))
     public void loadHome() {
+        final var activity = requireActivity();
         Fragment fragment = new HomeFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content, fragment).commit();
         mActivity.setTitle(appName);
-        if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).setNavigationViewSelection(R.id.nav_home);
+        if (activity instanceof MainActivity mainActivity) {
+            mainActivity.setNavigationViewSelection(R.id.nav_home);
         }
     }
 

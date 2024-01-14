@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.danielnilsson9.colorpickerview.view.ColorPickerView;

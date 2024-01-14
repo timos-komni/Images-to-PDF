@@ -107,7 +107,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pdf_to_image, container, false);
         ButterKnife.bind(this, rootView);
-        mOperation = getArguments().getString(BUNDLE_DATA);
+        mOperation = requireArguments().getString(BUNDLE_DATA);
         mSheetBehavior = BottomSheetBehavior.from(mLayoutBottomSheet);
         mSheetBehavior.setBottomSheetCallback(new BottomSheetCallback(mUpArrow, isAdded()));
         mLottieProgress.setVisibility(View.VISIBLE);

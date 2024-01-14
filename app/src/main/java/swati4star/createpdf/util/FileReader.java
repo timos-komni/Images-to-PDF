@@ -9,7 +9,7 @@ import com.itextpdf.text.Font;
 import java.io.InputStream;
 
 public abstract class FileReader {
-    Context mContext;
+    final Context mContext;
 
     public FileReader(Context context) {
         mContext = context;

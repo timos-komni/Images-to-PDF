@@ -90,7 +90,7 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
         ButterKnife.bind(this, rootView);
         mSheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
         mSheetBehavior.setBottomSheetCallback(new BottomSheetCallback(mUpArrow, isAdded()));
-        mOperation = getArguments().getString(BUNDLE_DATA);
+        mOperation = requireArguments().getString(BUNDLE_DATA);
         mLottieProgress.setVisibility(View.VISIBLE);
         mBottomSheetUtils.populateBottomSheetWithPDFs(this);
 

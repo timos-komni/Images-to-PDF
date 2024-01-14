@@ -111,7 +111,7 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
         ButterKnife.bind(this, rootview);
         mSheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
         mSheetBehavior.setBottomSheetCallback(new BottomSheetCallback(mUpArrow, isAdded()));
-        mOperation = getArguments().getString(BUNDLE_DATA);
+        mOperation = requireArguments().getString(BUNDLE_DATA);
         mLottieProgress.setVisibility(View.VISIBLE);
         mBottomSheetUtils.populateBottomSheetWithPDFs(this);
         getRuntimePermissions();

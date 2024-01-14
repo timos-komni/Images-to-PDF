@@ -70,55 +70,55 @@ import swati4star.createpdf.util.CommonCodeUtils;
 public class FavouritesFragment extends Fragment
         implements SharedPreferences.OnSharedPreferenceChangeListener,
         View.OnClickListener {
-    @BindView(R.id.images_to_pdf_fav)
+    @BindView((R.id.images_to_pdf_fav))
     MyCardView pref_img_to_pdf;
-    @BindView(R.id.text_to_pdf_fav)
+    @BindView((R.id.text_to_pdf_fav))
     MyCardView pref_text_to_pdf;
-    @BindView(R.id.qr_barcode_to_pdf_fav)
+    @BindView((R.id.qr_barcode_to_pdf_fav))
     MyCardView pref_qr_barcode;
-    @BindView(R.id.view_files_fav)
+    @BindView((R.id.view_files_fav))
     MyCardView pref_view_files;
-    @BindView(R.id.view_history_fav)
+    @BindView((R.id.view_history_fav))
     MyCardView pref_history;
-    @BindView(R.id.add_password_fav)
+    @BindView((R.id.add_password_fav))
     MyCardView pref_add_password;
-    @BindView(R.id.remove_password_fav)
+    @BindView((R.id.remove_password_fav))
     MyCardView pref_rem_pass;
-    @BindView(R.id.rotate_pages_fav)
+    @BindView((R.id.rotate_pages_fav))
     MyCardView pref_rot_pages;
-    @BindView(R.id.add_watermark_fav)
+    @BindView((R.id.add_watermark_fav))
     MyCardView pref_add_watermark;
-    @BindView(R.id.add_images_fav)
+    @BindView((R.id.add_images_fav))
     MyCardView pref_add_images;
-    @BindView(R.id.merge_pdf_fav)
+    @BindView((R.id.merge_pdf_fav))
     MyCardView pref_merge_pdf;
-    @BindView(R.id.split_pdf_fav)
+    @BindView((R.id.split_pdf_fav))
     MyCardView pref_split_pdf;
-    @BindView(R.id.invert_pdf_fav)
+    @BindView((R.id.invert_pdf_fav))
     MyCardView pref_invert_pdf;
-    @BindView(R.id.compress_pdf_fav)
+    @BindView((R.id.compress_pdf_fav))
     MyCardView pref_compress;
-    @BindView(R.id.remove_duplicates_pages_pdf_fav)
+    @BindView((R.id.remove_duplicates_pages_pdf_fav))
     MyCardView pref_rem_dup_pages;
-    @BindView(R.id.remove_pages_fav)
+    @BindView((R.id.remove_pages_fav))
     MyCardView pref_remove_pages;
-    @BindView(R.id.rearrange_pages_fav)
+    @BindView((R.id.rearrange_pages_fav))
     MyCardView pref_reorder_pages;
-    @BindView(R.id.extract_images_fav)
+    @BindView((R.id.extract_images_fav))
     MyCardView pref_extract_img;
-    @BindView(R.id.pdf_to_images_fav)
+    @BindView((R.id.pdf_to_images_fav))
     MyCardView pref_pdf_to_img;
-    @BindView(R.id.extract_text_fav)
+    @BindView((R.id.extract_text_fav))
     MyCardView pref_extract_txt;
-    @BindView(R.id.excel_to_pdf_fav)
+    @BindView((R.id.excel_to_pdf_fav))
     MyCardView pref_excel_to_pdf;
-    @BindView(R.id.add_text_fav)
+    @BindView((R.id.add_text_fav))
     MyCardView pref_add_text;
-    @BindView(R.id.favourites)
+    @BindView((R.id.favourites))
     LottieAnimationView favouritesAnimation;
-    @BindView(R.id.favourites_text)
+    @BindView((R.id.favourites_text))
     TextView favouritesText;
-    @BindView(R.id.zip_to_pdf_fav)
+    @BindView((R.id.zip_to_pdf_fav))
     MyCardView pref_zip_to_pdf;
     private SharedPreferences mSharedpreferences;
     private boolean mDoesFavouritesExist;
@@ -177,7 +177,7 @@ public class FavouritesFragment extends Fragment
 
     }
 
-    @OnClick(R.id.fav_add_fab)
+    @OnClick((R.id.fav_add_fab))
     public void onAddFavouriteButtonClicked() {
         startActivity(new Intent(this.getContext(), FavouritesActivity.class));
     }
@@ -267,70 +267,70 @@ public class FavouritesFragment extends Fragment
         setTitleFragment(mFragmentPositionMap.get(v.getId()).getTitleString());
 
         switch (v.getId()) {
-            case R.id.images_to_pdf_fav -> fragment = new ImageToPdfFragment();
-            case R.id.qr_barcode_to_pdf_fav -> fragment = new QrBarcodeScanFragment();
-            case R.id.text_to_pdf_fav -> fragment = new TextToPdfFragment();
-            case R.id.view_files_fav -> fragment = new ViewFilesFragment();
-            case R.id.view_history_fav -> fragment = new HistoryFragment();
-            case R.id.add_text_fav -> fragment = new AddTextFragment();
-            case R.id.merge_pdf_fav -> fragment = new MergeFilesFragment();
-            case R.id.split_pdf_fav -> fragment = new SplitFilesFragment();
-            case R.id.compress_pdf_fav -> {
+            case (R.id.images_to_pdf_fav) -> fragment = new ImageToPdfFragment();
+            case (R.id.qr_barcode_to_pdf_fav) -> fragment = new QrBarcodeScanFragment();
+            case (R.id.text_to_pdf_fav) -> fragment = new TextToPdfFragment();
+            case (R.id.view_files_fav) -> fragment = new ViewFilesFragment();
+            case (R.id.view_history_fav) -> fragment = new HistoryFragment();
+            case (R.id.add_text_fav) -> fragment = new AddTextFragment();
+            case (R.id.merge_pdf_fav) -> fragment = new MergeFilesFragment();
+            case (R.id.split_pdf_fav) -> fragment = new SplitFilesFragment();
+            case (R.id.compress_pdf_fav) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, COMPRESS_PDF);
                 fragment.setArguments(bundle);
             }
-            case R.id.extract_images_fav -> {
+            case (R.id.extract_images_fav) -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, EXTRACT_IMAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.pdf_to_images_fav -> {
+            case (R.id.pdf_to_images_fav) -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, PDF_TO_IMAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.remove_pages_fav -> {
+            case (R.id.remove_pages_fav) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.rearrange_pages_fav -> {
+            case (R.id.rearrange_pages_fav) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REORDER_PAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.add_password_fav -> {
+            case (R.id.add_password_fav) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_PWD);
                 fragment.setArguments(bundle);
             }
-            case R.id.remove_password_fav -> {
+            case (R.id.remove_password_fav) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PWd);
                 fragment.setArguments(bundle);
             }
-            case R.id.rotate_pages_fav -> {
+            case (R.id.rotate_pages_fav) -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ROTATE_PAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.add_watermark_fav -> {
+            case (R.id.add_watermark_fav) -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ADD_WATERMARK);
                 fragment.setArguments(bundle);
             }
-            case R.id.add_images_fav -> {
+            case (R.id.add_images_fav) -> {
                 fragment = new AddImagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_IMAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.remove_duplicates_pages_pdf_fav ->
+            case (R.id.remove_duplicates_pages_pdf_fav) ->
                     fragment = new RemoveDuplicatePagesFragment();
-            case R.id.invert_pdf_fav -> fragment = new InvertPdfFragment();
-            case R.id.extract_text_fav -> fragment = new ExtractTextFragment();
-            case R.id.excel_to_pdf_fav -> fragment = new ExceltoPdfFragment();
-            case R.id.zip_to_pdf_fav -> fragment = new ZipToPdfFragment();
+            case (R.id.invert_pdf_fav) -> fragment = new InvertPdfFragment();
+            case (R.id.extract_text_fav) -> fragment = new ExtractTextFragment();
+            case (R.id.excel_to_pdf_fav) -> fragment = new ExceltoPdfFragment();
+            case (R.id.zip_to_pdf_fav) -> fragment = new ZipToPdfFragment();
         }
         try {
             if (fragment != null && fragmentManager != null) {

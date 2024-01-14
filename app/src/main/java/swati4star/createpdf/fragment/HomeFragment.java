@@ -15,7 +15,6 @@ import static swati4star.createpdf.util.Constants.ROTATE_PAGES;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
@@ -47,57 +47,57 @@ import swati4star.createpdf.util.RecentUtil;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    @BindView(R.id.images_to_pdf)
+    @BindView((R.id.images_to_pdf))
     MyCardView imagesToPdf;
-    @BindView(R.id.qr_barcode_to_pdf)
+    @BindView((R.id.qr_barcode_to_pdf))
     MyCardView qrbarcodeToPdf;
-    @BindView(R.id.text_to_pdf)
+    @BindView((R.id.text_to_pdf))
     MyCardView textToPdf;
-    @BindView(R.id.view_files)
+    @BindView((R.id.view_files))
     MyCardView viewFiles;
-    @BindView(R.id.view_history)
+    @BindView((R.id.view_history))
     MyCardView viewHistory;
-    @BindView(R.id.split_pdf)
+    @BindView((R.id.split_pdf))
     MyCardView splitPdf;
-    @BindView(R.id.merge_pdf)
+    @BindView((R.id.merge_pdf))
     MyCardView mergePdf;
-    @BindView(R.id.compress_pdf)
+    @BindView((R.id.compress_pdf))
     MyCardView compressPdf;
-    @BindView(R.id.remove_pages)
+    @BindView((R.id.remove_pages))
     MyCardView removePages;
-    @BindView(R.id.rearrange_pages)
+    @BindView((R.id.rearrange_pages))
     MyCardView rearrangePages;
-    @BindView(R.id.extract_images)
+    @BindView((R.id.extract_images))
     MyCardView extractImages;
-    @BindView(R.id.pdf_to_images)
+    @BindView((R.id.pdf_to_images))
     MyCardView mPdfToImages;
-    @BindView(R.id.add_password)
+    @BindView((R.id.add_password))
     MyCardView addPassword;
-    @BindView(R.id.remove_password)
+    @BindView((R.id.remove_password))
     MyCardView removePassword;
-    @BindView(R.id.rotate_pages)
+    @BindView((R.id.rotate_pages))
     MyCardView rotatePdf;
-    @BindView(R.id.add_watermark)
+    @BindView((R.id.add_watermark))
     MyCardView addWatermark;
-    @BindView(R.id.add_images)
+    @BindView((R.id.add_images))
     MyCardView addImages;
-    @BindView(R.id.remove_duplicates_pages_pdf)
+    @BindView((R.id.remove_duplicates_pages_pdf))
     MyCardView removeDuplicatePages;
-    @BindView(R.id.invert_pdf)
+    @BindView((R.id.invert_pdf))
     MyCardView invertPdf;
-    @BindView(R.id.zip_to_pdf)
+    @BindView((R.id.zip_to_pdf))
     MyCardView zipToPdf;
-    @BindView(R.id.excel_to_pdf)
+    @BindView((R.id.excel_to_pdf))
     MyCardView excelToPdf;
-    @BindView(R.id.extract_text)
+    @BindView((R.id.extract_text))
     MyCardView extractText;
-    @BindView(R.id.add_text)
+    @BindView((R.id.add_text))
     MyCardView addText;
-    @BindView(R.id.recent_list)
+    @BindView((R.id.recent_list))
     RecyclerView recentList;
-    @BindView(R.id.recent_lbl)
+    @BindView((R.id.recent_lbl))
     View recentLabel;
-    @BindView(R.id.recent_list_lay)
+    @BindView((R.id.recent_list_lay))
     ViewGroup recentLayout;
     private Activity mActivity;
     private Map<Integer, HomePageItem> mFragmentPositionMap;
@@ -193,69 +193,69 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
 
         switch (v.getId()) {
-            case R.id.images_to_pdf -> fragment = new ImageToPdfFragment();
-            case R.id.qr_barcode_to_pdf -> fragment = new QrBarcodeScanFragment();
-            case R.id.text_to_pdf -> fragment = new TextToPdfFragment();
-            case R.id.view_files -> fragment = new ViewFilesFragment();
-            case R.id.view_history -> fragment = new HistoryFragment();
-            case R.id.merge_pdf -> fragment = new MergeFilesFragment();
-            case R.id.split_pdf -> fragment = new SplitFilesFragment();
-            case R.id.compress_pdf -> {
+            case (R.id.images_to_pdf) -> fragment = new ImageToPdfFragment();
+            case (R.id.qr_barcode_to_pdf) -> fragment = new QrBarcodeScanFragment();
+            case (R.id.text_to_pdf) -> fragment = new TextToPdfFragment();
+            case (R.id.view_files) -> fragment = new ViewFilesFragment();
+            case (R.id.view_history) -> fragment = new HistoryFragment();
+            case (R.id.merge_pdf) -> fragment = new MergeFilesFragment();
+            case (R.id.split_pdf) -> fragment = new SplitFilesFragment();
+            case (R.id.compress_pdf) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, COMPRESS_PDF);
                 fragment.setArguments(bundle);
             }
-            case R.id.extract_images -> {
+            case (R.id.extract_images) -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, EXTRACT_IMAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.pdf_to_images -> {
+            case (R.id.pdf_to_images) -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, PDF_TO_IMAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.remove_pages -> {
+            case (R.id.remove_pages) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.rearrange_pages -> {
+            case (R.id.rearrange_pages) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REORDER_PAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.add_password -> {
+            case (R.id.add_password) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_PWD);
                 fragment.setArguments(bundle);
             }
-            case R.id.remove_password -> {
+            case (R.id.remove_password) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PWd);
                 fragment.setArguments(bundle);
             }
-            case R.id.rotate_pages -> {
+            case (R.id.rotate_pages) -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ROTATE_PAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.add_watermark -> {
+            case (R.id.add_watermark) -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ADD_WATERMARK);
                 fragment.setArguments(bundle);
             }
-            case R.id.add_images -> {
+            case (R.id.add_images) -> {
                 fragment = new AddImagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_IMAGES);
                 fragment.setArguments(bundle);
             }
-            case R.id.remove_duplicates_pages_pdf -> fragment = new RemoveDuplicatePagesFragment();
-            case R.id.invert_pdf -> fragment = new InvertPdfFragment();
-            case R.id.zip_to_pdf -> fragment = new ZipToPdfFragment();
-            case R.id.excel_to_pdf -> fragment = new ExceltoPdfFragment();
-            case R.id.extract_text -> fragment = new ExtractTextFragment();
-            case R.id.add_text -> fragment = new AddTextFragment();
+            case (R.id.remove_duplicates_pages_pdf) -> fragment = new RemoveDuplicatePagesFragment();
+            case (R.id.invert_pdf) -> fragment = new InvertPdfFragment();
+            case (R.id.zip_to_pdf) -> fragment = new ZipToPdfFragment();
+            case (R.id.excel_to_pdf) -> fragment = new ExceltoPdfFragment();
+            case (R.id.extract_text) -> fragment = new ExtractTextFragment();
+            case (R.id.add_text) -> fragment = new AddTextFragment();
         }
 
         try {
