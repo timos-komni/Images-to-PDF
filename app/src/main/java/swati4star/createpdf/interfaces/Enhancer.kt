@@ -1,18 +1,18 @@
-package swati4star.createpdf.interfaces;
+package swati4star.createpdf.interfaces
 
-import swati4star.createpdf.model.EnhancementOptionsEntity;
+import swati4star.createpdf.model.EnhancementOptionsEntity
 
 /**
- * The {@link Enhancer} is a functional interface for all enhancements.
+ * The [Enhancer] is a functional interface for all enhancements.
  */
-public interface Enhancer {
+interface Enhancer {
     /**
      * To apply an enhancement.
      */
-    void enhance();
+    fun enhance()
 
     /**
-     * @return The {@link EnhancementOptionsEntity} for this {@link Enhancer}.
+     * @return The [EnhancementOptionsEntity] for this [Enhancer].
      */
-    EnhancementOptionsEntity getEnhancementOptionsEntity();
+    val enhancementOptionsEntity: EnhancementOptionsEntity
 }

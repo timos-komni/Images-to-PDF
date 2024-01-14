@@ -25,7 +25,7 @@ public class FontSizeEnhancer implements Enhancer {
     private final TextToPdfContract.View mView;
     private final TextToPdfPreferences mPreferences;
     private final TextToPDFOptions.Builder mBuilder;
-    private final EnhancementOptionsEntity mEnhancementOptionsEntity;
+    @NonNull private final EnhancementOptionsEntity mEnhancementOptionsEntity;
 
     FontSizeEnhancer(@NonNull final Activity activity,
                      @NonNull final TextToPdfContract.View view,
@@ -76,6 +76,7 @@ public class FontSizeEnhancer implements Enhancer {
                 .show();
     }
 
+    @NonNull
     @Override
     public EnhancementOptionsEntity getEnhancementOptionsEntity() {
         return mEnhancementOptionsEntity;

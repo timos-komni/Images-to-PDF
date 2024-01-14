@@ -25,7 +25,7 @@ public class FontFamilyEnhancer implements Enhancer {
     private final Activity mActivity;
     private final TextToPdfPreferences mPreferences;
     private final TextToPDFOptions.Builder mBuilder;
-    private final EnhancementOptionsEntity mEnhancementOptionsEntity;
+    @NonNull private final EnhancementOptionsEntity mEnhancementOptionsEntity;
     private final TextToPdfContract.View mView;
 
     FontFamilyEnhancer(@NonNull final Activity activity,
@@ -73,6 +73,7 @@ public class FontFamilyEnhancer implements Enhancer {
         materialDialog.show();
     }
 
+    @NonNull
     @Override
     public EnhancementOptionsEntity getEnhancementOptionsEntity() {
         return mEnhancementOptionsEntity;

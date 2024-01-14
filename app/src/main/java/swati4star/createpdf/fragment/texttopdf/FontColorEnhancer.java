@@ -23,7 +23,7 @@ import swati4star.createpdf.util.StringUtils;
 public class FontColorEnhancer implements Enhancer {
 
     private final Activity mActivity;
-    private final EnhancementOptionsEntity mEnhancementOptionsEntity;
+    @NonNull private final EnhancementOptionsEntity mEnhancementOptionsEntity;
     private final TextToPdfPreferences mPreferences;
     private final TextToPDFOptions.Builder mBuilder;
 
@@ -63,6 +63,7 @@ public class FontColorEnhancer implements Enhancer {
         materialDialog.show();
     }
 
+    @NonNull
     @Override
     public EnhancementOptionsEntity getEnhancementOptionsEntity() {
         return mEnhancementOptionsEntity;

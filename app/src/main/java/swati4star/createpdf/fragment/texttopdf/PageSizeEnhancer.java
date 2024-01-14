@@ -16,7 +16,7 @@ import swati4star.createpdf.util.PageSizeUtils;
 public class PageSizeEnhancer implements Enhancer {
 
     private final PageSizeUtils mPageSizeUtils;
-    private final EnhancementOptionsEntity mEnhancementOptionsEntity;
+    @NonNull private final EnhancementOptionsEntity mEnhancementOptionsEntity;
 
     PageSizeEnhancer(@NonNull final Context context) {
         mPageSizeUtils = new PageSizeUtils(context);
@@ -31,6 +31,7 @@ public class PageSizeEnhancer implements Enhancer {
         mPageSizeUtils.showPageSizeDialog(false);
     }
 
+    @NonNull
     @Override
     public EnhancementOptionsEntity getEnhancementOptionsEntity() {
         return mEnhancementOptionsEntity;

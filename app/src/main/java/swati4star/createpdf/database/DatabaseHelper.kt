@@ -1,39 +1,29 @@
-package swati4star.createpdf.database;
+@file:Suppress("DEPRECATION")
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.AsyncTask;
+package swati4star.createpdf.database
 
-import androidx.annotation.Nullable;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.AsyncTask
+import java.util.Date
 
-import java.util.Date;
-
-public class DatabaseHelper {
-    private final Context mContext;
-
-    public DatabaseHelper(Context mContext) {
-        this.mContext = mContext;
-    }
-
+class DatabaseHelper(private val context: Context) {
     /**
      * To insert record in the database
      *
      * @param filePath      path of the file
      * @param operationType operation performed on file
      */
-    public void insertRecord(String filePath, String operationType) {
-        new Insert().execute(new History(filePath, new Date().toString(), operationType));
+    fun insertRecord(filePath: String?, operationType: String?) {
+        Insert().execute(History(filePath, Date().toString(), operationType))
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     @SuppressLint("StaticFieldLeak")
-    private class Insert extends AsyncTask<History, Void, Void> {
-
-        @Nullable
-        @Override
-        protected Void doInBackground(History... histories) {
-            AppDatabase db = AppDatabase.getDatabase(mContext.getApplicationContext());
-            db.historyDao().insertAll(histories);
-            return null;
+    private inner class Insert : AsyncTask<History, Unit, Unit>() {
+        override fun doInBackground(vararg histories: History) {
+            val db = AppDatabase.getDatabase(context.applicationContext)
+            db.historyDao().insertAll(*histories)
         }
     }
 }

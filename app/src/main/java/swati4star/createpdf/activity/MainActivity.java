@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         initializeValues();
 
         setXMLParsers();
-        Fragment fragment = mFragmentManagement.checkForAppShortcutClicked();
+        @NonNull Fragment fragment = mFragmentManagement.checkForAppShortcutClicked();
 
         handleReceivedImagesIntent(fragment);
 

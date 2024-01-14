@@ -239,7 +239,7 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
      * @param position - position of item clicked
      */
     @Override
-    public void onItemClick(View view, int position) {
+    public void onItemClick(@NonNull View view, int position) {
         //setting mClicked true when none filter is selected otherwise false
         mClicked = position == 0;
         // Brush effect is in second position

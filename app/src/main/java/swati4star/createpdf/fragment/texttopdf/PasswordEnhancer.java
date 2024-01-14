@@ -24,7 +24,7 @@ import swati4star.createpdf.util.StringUtils;
 public class PasswordEnhancer implements Enhancer {
 
     private final Activity mActivity;
-    private final EnhancementOptionsEntity mEnhancementOptionsEntity;
+    @NonNull private final EnhancementOptionsEntity mEnhancementOptionsEntity;
     private final TextToPDFOptions.Builder mBuilder;
     private final TextToPdfContract.View mView;
 
@@ -84,6 +84,7 @@ public class PasswordEnhancer implements Enhancer {
         positiveAction.setEnabled(false);
     }
 
+    @NonNull
     @Override
     public EnhancementOptionsEntity getEnhancementOptionsEntity() {
         return mEnhancementOptionsEntity;

@@ -1,19 +1,19 @@
-package swati4star.createpdf.providers.fragmentmanagement;
+package swati4star.createpdf.providers.fragmentmanagement
 
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment
 
-interface IFragmentManagement {
+internal interface IFragmentManagement {
     /**
      * Begins a fragment transaction for the favourite fragment.
      */
-    void favouritesFragmentOption();
+    fun favouritesFragmentOption()
 
     /**
      * Sets a fragment based on app shortcut selected, otherwise default
      *
      * @return - instance of current fragment
      */
-    Fragment checkForAppShortcutClicked();
+    fun checkForAppShortcutClicked(): Fragment
 
     /**
      * Handles all back button actions.
@@ -22,7 +22,7 @@ interface IFragmentManagement {
      *
      * @return A should exit flag.
      */
-    boolean handleBackPressed();
+    fun handleBackPressed(): Boolean
 
     /**
      * Handles the fragment transaction for the selected
@@ -31,5 +31,5 @@ interface IFragmentManagement {
      * @param itemId The selected item id.
      * @return true when handled
      */
-    boolean handleNavigationItemSelected(int itemId);
+    fun handleNavigationItemSelected(itemId: Int): Boolean
 }

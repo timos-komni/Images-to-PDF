@@ -1,7 +1,7 @@
-package swati4star.createpdf.interfaces;
+package swati4star.createpdf.interfaces
 
-import android.view.View;
+import android.view.View
 
-public interface OnFilterItemClickedListener {
-    void onItemClick(View v, int position);
+interface OnFilterItemClickedListener {
+    fun onItemClick(v: View, position: Int)
 }
