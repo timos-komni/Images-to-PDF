@@ -47,7 +47,7 @@
             android:gravity="center"
             app:srcCompat="@drawable/ic_navigate_before_white_24dp"
             app:tint="?attr/bottomSheetColor"
-            tools:targetApi="lollipop" />
+             />
 
         <TextView
             android:id="@+id/imagecount"
@@ -64,7 +64,7 @@
             android:gravity="center"
             app:srcCompat="@drawable/ic_navigate_next_black_24dp"
             app:tint="?attr/bottomSheetColor"
-            tools:targetApi="lollipop" />
+             />
 
     </LinearLayout>
 
@@ -75,7 +75,7 @@
         android:layout_above="@id/filters"
         android:layout_below="@id/controls"
         android:layout_marginTop="10dp"
-        android:visibility="visible"></ja.burhanrashid52.photoeditor.PhotoEditorView>
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/filters"

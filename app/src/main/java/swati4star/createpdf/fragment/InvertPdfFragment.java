@@ -52,23 +52,23 @@ public class InvertPdfFragment extends Fragment implements MergeFilesAdapter.OnC
         FilesListAdapter.OnFileItemClickedListener, BottomSheetPopulate, OnPDFCreatedInterface, OnBackPressedInterface {
 
     private static final int INTENT_REQUEST_PICK_FILE_CODE = 10;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton selectFileButton;
-    @BindView(R.id.invert)
+    @BindView((R.id.invert))
     MorphingButton invertPdfButton;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.view_pdf)
+    @BindView((R.id.view_pdf))
     Button mViewPdf;
     private Activity mActivity;
     private String mPath;
@@ -93,7 +93,8 @@ public class InvertPdfFragment extends Fragment implements MergeFilesAdapter.OnC
         return rootView;
     }
 
-    @OnClick(R.id.viewFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick(View view) {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
@@ -101,7 +102,7 @@ public class InvertPdfFragment extends Fragment implements MergeFilesAdapter.OnC
     /**
      * Displays file chooser intent
      */
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void showFileChooser() {
         startActivityForResult(mFileUtils.getFileChooser(),
                 INTENT_REQUEST_PICK_FILE_CODE);
@@ -118,7 +119,7 @@ public class InvertPdfFragment extends Fragment implements MergeFilesAdapter.OnC
     }
 
     //Inverts colors in PDF
-    @OnClick(R.id.invert)
+    @OnClick((R.id.invert))
     public void parse() {
         new InvertPdf(mPath, this).execute();
     }
@@ -144,7 +145,7 @@ public class InvertPdfFragment extends Fragment implements MergeFilesAdapter.OnC
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mMorphButtonUtility = new MorphButtonUtility(mActivity);

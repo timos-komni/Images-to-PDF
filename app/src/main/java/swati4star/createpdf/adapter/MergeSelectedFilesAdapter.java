@@ -21,6 +21,7 @@ public class MergeSelectedFilesAdapter extends
         RecyclerView.Adapter<MergeSelectedFilesAdapter.MergeSelectedFilesHolder> {
 
     private final ArrayList<String> mFilePaths;
+    /** @noinspection FieldCanBeLocal, unused */
     private final Activity mContext;
     private final OnFileItemClickListener mOnClickListener;
 
@@ -60,15 +61,15 @@ public class MergeSelectedFilesAdapter extends
     }
 
     public class MergeSelectedFilesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.fileName)
+        @BindView((R.id.fileName))
         TextView mFileName;
-        @BindView(R.id.view_file)
+        @BindView((R.id.view_file))
         ImageView mViewFile;
-        @BindView(R.id.remove)
+        @BindView((R.id.remove))
         ImageView mRemove;
-        @BindView(R.id.up_file)
+        @BindView((R.id.up_file))
         ImageView mUp;
-        @BindView(R.id.down_file)
+        @BindView((R.id.down_file))
         ImageView mDown;
 
         MergeSelectedFilesHolder(View itemView) {
@@ -81,7 +82,7 @@ public class MergeSelectedFilesAdapter extends
         }
 
         @Override
-        public void onClick(View view) {
+        public void onClick(@NonNull View view) {
             if (view.getId() == R.id.view_file) {
                 mOnClickListener.viewFile(mFilePaths.get(getAdapterPosition()));
             } else if (view.getId() == R.id.up_file) {

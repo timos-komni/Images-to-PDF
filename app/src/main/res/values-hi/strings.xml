@@ -371,7 +371,7 @@
     <string name="favourites_text">अपनी पसंदीदा सुविधाओं को जोड़ने के लिए + आइकन चुनें!</string>
     <string name="no_excel_file">कोई एक्सेल फ़ाइल नहीं चुनी गई</string>
     <string name="split_range_alert">दर्ज की गई स्प्लिट रेंज फिर से चयनित पीडीएफ बनाएगी!</string>
-    <string name="reordering_pages_dialog">आपके पृष्ठों का क्रम बदल रहा है...</string>
+    <string name="reordering_pages_dialog">आपके पृष्ठों का क्रम बदल रहा है…</string>
     <string name="delete_alert_singular">क्या आप चयनित फ़ाइल को हटाना चाहते हैं?</string>
     <string name="snackbar_files_deleted">फ़ाइलें हटाई गईं</string>
     <string name="lbl_recently_used">हाल ही में प्रयुक्त विशेषताएं</string>

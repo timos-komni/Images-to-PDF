@@ -16,17 +16,19 @@ import android.os.ParcelFileDescriptor;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import swati4star.createpdf.interfaces.ExtractImagesListener;
 
+/** @noinspection deprecation*/
 public class PdfToImages extends AsyncTask<Void, Void, Void> {
 
     private final String mPath;
     private final Uri mUri;
     private final ExtractImagesListener mExtractImagesListener;
     private final String[] mPassword;
-    private final Context mContext;
+    private final WeakReference<Context> mContext;
     private int mImagesCount = 0;
     private ArrayList<String> mOutputFilePaths;
     private PDFEncryptionUtility mPDFEncryptionUtility;
@@ -39,13 +41,13 @@ public class PdfToImages extends AsyncTask<Void, Void, Void> {
         this.mExtractImagesListener = mExtractImagesListener;
         mOutputFilePaths = new ArrayList<>();
         this.mPassword = password;
-        this.mContext = context;
+        this.mContext = new WeakReference<>(context);
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mPDFEncryptionUtility = new PDFEncryptionUtility((Activity) mContext);
+        mPDFEncryptionUtility = new PDFEncryptionUtility((Activity) getContext());
         mExtractImagesListener.extractionStarted();
     }
 
@@ -63,9 +65,10 @@ public class PdfToImages extends AsyncTask<Void, Void, Void> {
             if (mDecryptedPath != null)
                 fileDescriptor = ParcelFileDescriptor.open(new File(mDecryptedPath), MODE_READ_ONLY);
             else {
-                if (mUri != null && mContext != null) {
+                final var ctx = getContext();
+                if (mUri != null && ctx != null) {
                     // resolve pdf file path based on uri
-                    fileDescriptor = mContext.getContentResolver().openFileDescriptor(mUri, "r");
+                    fileDescriptor = ctx.getContentResolver().openFileDescriptor(mUri, "r");
                 } else if (mPath != null) {
                     // resolve pdf file path based on relative path
                     fileDescriptor = ParcelFileDescriptor.open(new File(mPath), MODE_READ_ONLY);
@@ -112,6 +115,17 @@ public class PdfToImages extends AsyncTask<Void, Void, Void> {
         super.onPostExecute(aVoid);
         mExtractImagesListener.updateView(mImagesCount, mOutputFilePaths);
         if (mDecryptedPath != null)
+            //noinspection ResultOfMethodCallIgnored
             new File(mDecryptedPath).delete();
     }
+
+    /** @noinspection unused*/
+    protected WeakReference<Context> getContextRef() {
+        return mContext;
+    }
+
+    public Context getContext() {
+        return mContext.get();
+    }
+
 }

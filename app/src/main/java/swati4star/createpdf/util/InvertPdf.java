@@ -6,6 +6,8 @@ import static swati4star.createpdf.util.Constants.pdfExtension;
 import android.os.AsyncTask;
 import android.os.ParcelFileDescriptor;
 
+import androidx.annotation.NonNull;
+
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.GrayColor;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -93,7 +95,7 @@ public class InvertPdf extends AsyncTask<Void, Void, Void> {
      *
      * @param stamper - PDF stamper
      */
-    private void invert(PdfStamper stamper) {
+    private void invert(@NonNull PdfStamper stamper) {
         for (int i = stamper.getReader().getNumberOfPages(); i > 0; i--) {
             invertPage(stamper, i);
         }
@@ -107,7 +109,7 @@ public class InvertPdf extends AsyncTask<Void, Void, Void> {
      * @param stamper - PDF stamper
      * @param page    - PDF page index
      */
-    private void invertPage(PdfStamper stamper, int page) {
+    private void invertPage(@NonNull PdfStamper stamper, int page) {
         Rectangle rect = stamper.getReader().getPageSize(page);
         PdfContentByte cb = stamper.getOverContent(page);
         PdfGState gs = new PdfGState();

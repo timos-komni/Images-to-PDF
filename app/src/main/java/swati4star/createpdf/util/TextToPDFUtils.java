@@ -7,7 +7,9 @@ import static swati4star.createpdf.util.Constants.appName;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.preference.PreferenceManager;
+
+import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -17,6 +19,8 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import org.jetbrains.annotations.Contract;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,8 +42,7 @@ public class TextToPDFUtils {
         mTextFileReader = new TextFileReader(mContext);
         mDocFileReader = new DocFileReader(mContext);
         mDocxFileReader = new DocxFileReader(mContext);
-        mSharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(mContext);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
     /**
@@ -48,7 +51,7 @@ public class TextToPDFUtils {
      * @param mTextToPDFOptions TextToPDFOptions Object
      * @param fileExtension     file extension represented as string
      */
-    public void createPdfFromTextFile(TextToPDFOptions mTextToPDFOptions, String fileExtension)
+    public void createPdfFromTextFile(@NonNull TextToPDFOptions mTextToPDFOptions, String fileExtension)
             throws DocumentException, IOException {
 
         String masterpwd = mSharedPreferences.getString(MASTER_PWD_STRING, appName);
@@ -89,15 +92,11 @@ public class TextToPDFUtils {
             throw new DocumentException();
 
         switch (fileExtension) {
-            case Constants.docExtension:
-                mDocFileReader.read(mTextToPDFOptions.getInFileUri(), document, myfont);
-                break;
-            case Constants.docxExtension:
-                mDocxFileReader.read(mTextToPDFOptions.getInFileUri(), document, myfont);
-                break;
-            default:
-                mTextFileReader.read(mTextToPDFOptions.getInFileUri(), document, myfont);
-                break;
+            case Constants.docExtension ->
+                    mDocFileReader.read(mTextToPDFOptions.getInFileUri(), document, myfont);
+            case Constants.docxExtension ->
+                    mDocxFileReader.read(mTextToPDFOptions.getInFileUri(), document, myfont);
+            default -> mTextFileReader.read(mTextToPDFOptions.getInFileUri(), document, myfont);
         }
     }
 
@@ -106,6 +105,8 @@ public class TextToPDFUtils {
      *
      * @param color value of color in int
      */
+    @NonNull
+    @Contract("_ -> new")
     private BaseColor getBaseColor(int color) {
         return new BaseColor(
                 Color.red(color),

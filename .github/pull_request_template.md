@@ -17,8 +17,7 @@ Just put an x in the [] which are valid.
 
 Please describe the tests that you ran to verify your changes.
 
-- [ ] `./gradlew assembleDebug assembleRelease`
-- [ ] `./gradlew checkstyle`
+- [ ] `./gradlew assembleDebug assembleRelease`\
 
 # Checklist:
 

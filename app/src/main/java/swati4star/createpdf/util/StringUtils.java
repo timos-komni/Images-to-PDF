@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
@@ -46,6 +48,7 @@ public class StringUtils {
                 resID, Snackbar.LENGTH_LONG).show();
     }
 
+    /** @noinspection unused*/
     public Snackbar showIndefiniteSnackbar(Activity context, String resID) {
         return Snackbar.make(Objects.requireNonNull(context).findViewById(android.R.id.content),
                 resID, Snackbar.LENGTH_INDEFINITE);
@@ -56,7 +59,7 @@ public class StringUtils {
                 resID, Snackbar.LENGTH_LONG);
     }
 
-    public void hideKeyboard(Activity activity) {
+    public void hideKeyboard(@NonNull Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         //Find the currently focused view, so we can grab the correct window token from it.
         View view = activity.getCurrentFocus();

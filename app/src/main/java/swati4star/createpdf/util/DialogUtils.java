@@ -124,21 +124,13 @@ public class DialogUtils {
     }
 
     public void showFilesInfoDialog(Activity activity, int dialogId) {
-        int stringId = R.string.viewfiles_rotatepages;
-        switch (dialogId) {
-            case ROTATE_PAGES:
-                stringId = R.string.viewfiles_rotatepages;
-                break;
-            case REMOVE_PASSWORD:
-                stringId = R.string.viewfiles_removepassword;
-                break;
-            case ADD_PASSWORD:
-                stringId = R.string.viewfiles_addpassword;
-                break;
-            case ADD_WATERMARK:
-                stringId = R.string.viewfiles_addwatermark;
-                break;
-        }
+        int stringId = switch (dialogId) {
+            case ROTATE_PAGES -> R.string.viewfiles_rotatepages;
+            case REMOVE_PASSWORD -> R.string.viewfiles_removepassword;
+            case ADD_PASSWORD -> R.string.viewfiles_addpassword;
+            case ADD_WATERMARK -> R.string.viewfiles_addwatermark;
+            default -> R.string.viewfiles_rotatepages;
+        };
         new MaterialDialog.Builder(activity)
                 .title(R.string.app_name)
                 .content(stringId)

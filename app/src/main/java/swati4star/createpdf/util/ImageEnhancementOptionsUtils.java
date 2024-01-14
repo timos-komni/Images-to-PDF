@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 
 import swati4star.createpdf.R;
@@ -20,7 +23,7 @@ public class ImageEnhancementOptionsUtils {
     }
 
     public ArrayList<EnhancementOptionsEntity> getEnhancementOptions(Context context,
-                                                                     ImageToPDFOptions pdfOptions) {
+                                                                     @NonNull ImageToPDFOptions pdfOptions) {
         ArrayList<EnhancementOptionsEntity> options = new ArrayList<>();
         int passwordIcon = R.drawable.baseline_enhanced_encryption_24;
         if (pdfOptions.isPasswordProtected())
@@ -57,7 +60,7 @@ public class ImageEnhancementOptionsUtils {
         options.add(new EnhancementOptionsEntity(
                 context, R.drawable.ic_rearrange, R.string.rearrange_images));
 
-        Drawable iconGrayScale = context.getResources().getDrawable(R.drawable.ic_photo_filter_black_24dp);
+        Drawable iconGrayScale = ContextCompat.getDrawable(context, R.drawable.ic_photo_filter_black_24dp);
         iconGrayScale.setColorFilter(Color.GRAY, android.graphics.PorterDuff.Mode.SRC_IN);
 
         options.add(new EnhancementOptionsEntity(

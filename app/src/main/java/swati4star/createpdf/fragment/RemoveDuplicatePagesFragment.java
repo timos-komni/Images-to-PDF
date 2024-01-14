@@ -54,23 +54,23 @@ public class RemoveDuplicatePagesFragment extends Fragment
 
     private static final int INTENT_REQUEST_PICKFILE_CODE = 10;
     BottomSheetBehavior mSheetBehavior;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton selectFileButton;
-    @BindView(R.id.remove)
+    @BindView((R.id.remove))
     MorphingButton removeDuplicateButton;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.view_pdf)
+    @BindView((R.id.view_pdf))
     Button mViewPdf;
     private Activity mActivity;
     private String mPath;
@@ -92,7 +92,8 @@ public class RemoveDuplicatePagesFragment extends Fragment
         return rootview;
     }
 
-    @OnClick(R.id.viewFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick(View view) {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
@@ -100,7 +101,7 @@ public class RemoveDuplicatePagesFragment extends Fragment
     /**
      * Displays file chooser intent
      */
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void showFileChooser() {
         startActivityForResult(mFileUtils.getFileChooser(), INTENT_REQUEST_PICKFILE_CODE);
     }
@@ -127,7 +128,7 @@ public class RemoveDuplicatePagesFragment extends Fragment
     }
 
     //On click remove duplicate button
-    @OnClick(R.id.remove)
+    @OnClick((R.id.remove))
     public void parse() {
         new RemoveDuplicates(mPath, this).execute();
     }
@@ -148,7 +149,7 @@ public class RemoveDuplicatePagesFragment extends Fragment
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mMorphButtonUtility = new MorphButtonUtility(mActivity);

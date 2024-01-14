@@ -4,7 +4,9 @@ import static swati4star.createpdf.util.Constants.DEFAULT_COMPRESSION;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import com.itextpdf.text.Font;
 
@@ -15,6 +17,7 @@ import swati4star.createpdf.model.EnhancementOptionsEntity;
 
 public class SettingsOptions {
 
+    @NonNull
     public static ArrayList<EnhancementOptionsEntity> getEnhancementOptions(Context context) {
         ArrayList<EnhancementOptionsEntity> options = new ArrayList<>();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

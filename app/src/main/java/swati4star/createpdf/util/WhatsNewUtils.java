@@ -5,6 +5,8 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +33,7 @@ public class WhatsNewUtils {
      * Display dialog with whats new
      *
      * @param context - current context
+     * @noinspection unused
      */
     public void displayDialog(Context context) {
         final Dialog dialog = new Dialog(context);
@@ -61,12 +64,14 @@ public class WhatsNewUtils {
      * @param context - current context
      * @return - json
      */
-    private String loadJSONFromAsset(Context context) {
+    @Nullable
+    private String loadJSONFromAsset(@NonNull Context context) {
         String json;
         try {
             InputStream is = context.getAssets().open("whatsnew.json");
             int size = is.available();
             byte[] buffer = new byte[size];
+            //noinspection ResultOfMethodCallIgnored
             is.read(buffer);
             is.close();
             json = new String(buffer, StandardCharsets.UTF_8);
@@ -84,7 +89,8 @@ public class WhatsNewUtils {
      * @return list of whatsnew items
      * @throws JSONException - invalid JSON
      */
-    private ArrayList<WhatsNew> extractItemsFromJSON(JSONObject object) throws JSONException {
+    @NonNull
+    private ArrayList<WhatsNew> extractItemsFromJSON(@NonNull JSONObject object) throws JSONException {
 
         ArrayList<WhatsNew> whatsNewList;
         JSONArray data = object.getJSONArray("data");

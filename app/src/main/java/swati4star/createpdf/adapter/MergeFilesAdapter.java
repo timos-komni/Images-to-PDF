@@ -23,6 +23,7 @@ import swati4star.createpdf.util.PDFUtils;
 public class MergeFilesAdapter extends RecyclerView.Adapter<MergeFilesAdapter.ViewMergeFilesHolder> {
 
     private final ArrayList<String> mFilePaths;
+    /** @noinspection FieldCanBeLocal, unused */
     private final Activity mContext;
     private final OnClickListener mOnClickListener;
     private final PDFUtils mPDFUtils;
@@ -63,11 +64,11 @@ public class MergeFilesAdapter extends RecyclerView.Adapter<MergeFilesAdapter.Vi
     }
 
     public class ViewMergeFilesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.fileName)
+        @BindView((R.id.fileName))
         TextView mFileName;
-        @BindView(R.id.encryptionImage)
+        @BindView((R.id.encryptionImage))
         ImageView mEncryptionImage;
-        @BindView(R.id.itemMerge_checkbox)
+        @BindView((R.id.itemMerge_checkbox))
         AppCompatCheckBox mCheckbox;
 
         ViewMergeFilesHolder(View itemView) {
@@ -88,7 +89,7 @@ public class MergeFilesAdapter extends RecyclerView.Adapter<MergeFilesAdapter.Vi
             mOnClickListener.onItemClick(mFilePaths.get(getAdapterPosition()));
         }
 
-        @OnClick(R.id.itemMerge_checkbox)
+        @OnClick((R.id.itemMerge_checkbox))
         public void onCheckboxClick() {
             mOnClickListener.onItemClick(mFilePaths.get(getAdapterPosition()));
         }

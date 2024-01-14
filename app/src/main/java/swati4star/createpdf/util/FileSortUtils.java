@@ -23,18 +23,10 @@ public class FileSortUtils {
 
     public void performSortOperation(int option, List<File> pdf) {
         switch (option) {
-            case DATE_INDEX:
-                sortFilesByDateNewestToOldest(pdf);
-                break;
-            case NAME_INDEX:
-                sortByNameAlphabetical(pdf);
-                break;
-            case SIZE_INCREASING_ORDER_INDEX:
-                sortFilesBySizeIncreasingOrder(pdf);
-                break;
-            case SIZE_DECREASING_ORDER_INDEX:
-                sortFilesBySizeDecreasingOrder(pdf);
-                break;
+            case DATE_INDEX -> sortFilesByDateNewestToOldest(pdf);
+            case NAME_INDEX -> sortByNameAlphabetical(pdf);
+            case SIZE_INCREASING_ORDER_INDEX -> sortFilesBySizeIncreasingOrder(pdf);
+            case SIZE_DECREASING_ORDER_INDEX -> sortFilesBySizeDecreasingOrder(pdf);
         }
     }
 

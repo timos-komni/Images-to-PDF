@@ -24,18 +24,10 @@ public class ImageSortUtils {
         if (option < 0 || option > 3) throw new IllegalArgumentException("Invalid sort option. "
                 + "Sort option must be in [0; 3] range!");
         switch (option) {
-            case NAME_ASC:
-                sortByNameAsc(images);
-                break;
-            case NAME_DESC:
-                sortByNameDesc(images);
-                break;
-            case DATE_ASC:
-                sortByDateAsc(images);
-                break;
-            case DATE_DESC:
-                sortByDateDesc(images);
-                break;
+            case NAME_ASC -> sortByNameAsc(images);
+            case NAME_DESC -> sortByNameDesc(images);
+            case DATE_ASC -> sortByDateAsc(images);
+            case DATE_DESC -> sortByDateDesc(images);
         }
     }
 

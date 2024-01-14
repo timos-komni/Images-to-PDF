@@ -188,7 +188,7 @@
     <string name="select_excel_file">Excel ফাইল নির্বাচন করুন</string>
 
     <!-- Share strings -->
-    <string name="share_chooser">বার্তা প্রেরণের জন্য অ্যাপ নির্বাচন করুন...</string>
+    <string name="share_chooser">বার্তা প্রেরণের জন্য অ্যাপ নির্বাচন করুন…</string>
 
     <!-- Rate us strings -->
     <string name="rate_us_text">হাই! আমি এই অ্যাপটি Play Store এ চেক করেছি। এটি বেশ সুস্থভাবে চিত্রগুলি কে PDF তে রূপান্তর করে। প্রয়াস করুন: https://play.google.com/store/apps/details?id=swati4star.createpdf . :)</string>
@@ -201,7 +201,7 @@
     <string name="feedback_subject">Images To PDF Converter জন্য পরামর্শ</string>
     <string name="feedback_text">দয়া করে আপনার মূল্যবান প্রতিক্রিয়া লিখুন, অথবা কেবল একটি হাই দিন! :)</string>
     <string name="snackbar_no_email_clients">কোনো ইমেল ক্লায়েন্ট ইনস্টল করা হয়নি।</string>
-    <string name="feedback_chooser">মেইল পাঠান...</string>
+    <string name="feedback_chooser">মেইল পাঠান…</string>
     <string name="no_pdf">দেখানোর জন্য কোনো PDF নেই</string>
     <string name="get_started">এখন শুরু করুন</string>
     <string name="view_files_text">আপনার সমস্ত রূপান্তরিত ফাইলগুলি এখানে দেখুন!</string>
@@ -210,7 +210,7 @@
     <!-- Add Password -->
     <string name="enter_password_custom">পাসওয়ার্ড লিখুন</string>
     <string name="example_pass_123">pass@123</string>
-    <string name="remove_dialog">সরান...</string>
+    <string name="remove_dialog">সরান…</string>
     <string name="password_remove">পাসওয়ার্ড সরিয়ে ফেলা হয়েছে</string>
 
     <!-- Merge PDF -->
@@ -227,7 +227,7 @@
     <string name="decrypt_message">চালনার জন্য পাসওয়ার্ড লিখুন</string>
 
     <string name="snackbar_txtselected">টেক্সট ফাইল নির্বাচিত হয়েছে!</string>
-    <string name="decrypt_protected_file">নির্বাচিত PDF পাসওয়ার্ড সুরক্ষিত। চালনার জন্য পাসওয়ার্ড লিখুন...</string>
+    <string name="decrypt_protected_file">নির্বাচিত PDF পাসওয়ার্ড সুরক্ষিত। চালনার জন্য পাসওয়ার্ড লিখুন…</string>
     <string name="not_encrypted">PDF এনক্রিপ্ট না</string>
     <string name="save_current">সংরক্ষণ করুন</string>
     <string name="save">সংরক্ষণ করুন</string>
@@ -555,7 +555,7 @@
 
     <!--file name suffix-->
     <string name="pdf_suffix" translatable="false">_pdf</string>
-    <string name="reordering_pages_dialog">আপনার পৃষ্ঠা পুনর্বিন্যাস করা হচ্ছে...</string>
+    <string name="reordering_pages_dialog">আপনার পৃষ্ঠা পুনর্বিন্যাস করা হচ্ছে…</string>
     <string name="delete_alert_singular">আপনি নির্বাচিত ফাইলটি মুছতে চান?</string>
     <string name="snackbar_files_deleted">ফাইলগুলি মুছে গেছে</string>
     <string name="lbl_recently_used">সাম্প্রতিকভাবে ব্যবহৃত বৈশিষ্ট্যগুলি</string>

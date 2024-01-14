@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class PreviewImageOptionsAdapter extends RecyclerView.Adapter<PreviewImag
     @Override
     public void onBindViewHolder(@NonNull PreviewImageOptionsAdapter.ViewHolder holder, int position) {
         int imageId = mOptions.get(position).getOptionImageId();
-        holder.imageView.setImageDrawable(mContext.getDrawable(imageId));
+        holder.imageView.setImageDrawable(ContextCompat.getDrawable(mContext, imageId));
         holder.textView.setText(mOptions.get(position).getOptionName());
     }
 

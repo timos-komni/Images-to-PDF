@@ -5,11 +5,13 @@ import static swati4star.createpdf.util.Constants.appName;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -98,7 +100,7 @@ public class PDFEncryptionUtility {
      * @param password - password to be encrypted with
      * @return string - path of output file
      */
-    private String doEncryption(String path, String password) throws IOException, DocumentException {
+    private String doEncryption(@NonNull String path, @NonNull String password) throws IOException, DocumentException {
 
         String masterpwd = mSharedPrefs.getString(MASTER_PWD_STRING, appName);
         String finalOutputFile = mFileUtils.getUniqueFileName(path.replace(mContext.getString(R.string.pdf_ext),
@@ -191,7 +193,7 @@ public class PDFEncryptionUtility {
      * @return - output file path
      */
     public String removeDefPasswordForImages(final String file,
-                                             final String[] inputPassword) {
+                                             @NonNull final String[] inputPassword) {
         String finalOutputFile;
         try {
             String masterPwd = mSharedPrefs.getString(MASTER_PWD_STRING, appName);
@@ -216,7 +218,7 @@ public class PDFEncryptionUtility {
 
     private boolean removePasswordUsingDefMasterPassword(final String file,
                                                          final DataSetChanged dataSetChanged,
-                                                         final String[] inputPassword) {
+                                                         @NonNull final String[] inputPassword) {
         String finalOutputFile;
         try {
             String masterPwd = mSharedPrefs.getString(MASTER_PWD_STRING, appName);
@@ -250,7 +252,7 @@ public class PDFEncryptionUtility {
 
     private boolean removePasswordUsingInputMasterPassword(final String file,
                                                            final DataSetChanged dataSetChanged,
-                                                           final String[] inputPassword) {
+                                                           @NonNull final String[] inputPassword) {
         String finalOutputFile;
         try {
             PdfReader reader = new PdfReader(file, inputPassword[0].getBytes());

@@ -52,9 +52,9 @@ public class EnhancementOptionsAdapter
 
     public class EnhancementOptionsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.option_image)
+        @BindView((R.id.option_image))
         ImageView optionImage;
-        @BindView(R.id.option_name)
+        @BindView((R.id.option_name))
         TextView optionName;
 
         MaterialCardView cardView;

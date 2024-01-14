@@ -60,21 +60,21 @@ public class ExtractTextFragment extends Fragment implements MergeFilesAdapter.O
         BottomSheetPopulate, OnBackPressedInterface {
 
     private final int mFileSelectCode = 0;
-    @BindView(R.id.tv_extract_text_bottom)
+    @BindView((R.id.tv_extract_text_bottom))
     TextView mTextView;
-    @BindView(R.id.extract_text)
+    @BindView((R.id.extract_text))
     MorphingButton extractText;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
     private Activity mActivity;
     private FileUtils mFileUtils;
@@ -88,7 +88,7 @@ public class ExtractTextFragment extends Fragment implements MergeFilesAdapter.O
     private String mFileName;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_extract_text, container,
                 false);
@@ -105,19 +105,20 @@ public class ExtractTextFragment extends Fragment implements MergeFilesAdapter.O
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mFileUtils = new FileUtils(mActivity);
         mBottomSheetUtils = new BottomSheetUtils(mActivity);
     }
 
-    @OnClick(R.id.viewFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick(View view) {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
 
-    @OnClick(R.id.select_pdf_file)
+    @OnClick((R.id.select_pdf_file))
     public void selectPdfFile() {
         if (!mButtonClicked) {
             Uri uri = Uri.parse(Environment.getRootDirectory() + "/");
@@ -174,7 +175,7 @@ public class ExtractTextFragment extends Fragment implements MergeFilesAdapter.O
      * This function is used to open up the Dialog box to enter the
      * file name.
      */
-    @OnClick(R.id.extract_text)
+    @OnClick((R.id.extract_text))
     public void openExtractText() {
         PermissionsUtils.getInstance().checkStoragePermissionAndProceed(getContext(), this::openText);
     }

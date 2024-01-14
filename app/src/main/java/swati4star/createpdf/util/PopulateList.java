@@ -87,6 +87,7 @@ public class PopulateList extends AsyncTask<Void, Void, Void> {
      * @param files files to get statuses
      * @return new list of {@link PDFFile} with encrypted status set
      */
+    @NonNull
     @WorkerThread
     private List<PDFFile> getPdfFilesWithEncryptionStatus(@NonNull List<File> files) {
         List<PDFFile> pdfFiles = new ArrayList<>(files.size());

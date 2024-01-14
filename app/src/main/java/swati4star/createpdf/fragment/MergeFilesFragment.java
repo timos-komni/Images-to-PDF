@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,9 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,25 +71,25 @@ public class MergeFilesFragment extends Fragment implements MergeFilesAdapter.On
         MergeSelectedFilesAdapter.OnFileItemClickListener, OnItemClickListener,
         BottomSheetPopulate, OnBackPressedInterface {
     private static final int INTENT_REQUEST_PICK_FILE_CODE = 10;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.mergebtn)
+    @BindView((R.id.mergebtn))
     MorphingButton mergeBtn;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.selectFiles)
+    @BindView((R.id.selectFiles))
     Button mSelectFiles;
-    @BindView(R.id.selected_files)
+    @BindView((R.id.selected_files))
     RecyclerView mSelectedFiles;
-    @BindView(R.id.enhancement_options_recycle_view)
+    @BindView((R.id.enhancement_options_recycle_view))
     RecyclerView mEnhancementOptionsRecycleView;
     private Activity mActivity;
     private String mCheckbtClickTag = "";
@@ -205,24 +206,26 @@ public class MergeFilesFragment extends Fragment implements MergeFilesAdapter.On
 
     private void onPasswordStatusChanges(boolean passwordAdded) {
         mEnhancementOptionsEntityArrayList.get(0)
-                .setImage(mActivity.getResources()
-                        .getDrawable(passwordAdded ?
-                                R.drawable.baseline_done_24 : R.drawable.baseline_enhanced_encryption_24));
+                .setImage(ContextCompat.getDrawable(mActivity,
+                        passwordAdded ? R.drawable.baseline_done_24 : R.drawable.baseline_enhanced_encryption_24));
         mEnhancementOptionsAdapter.notifyDataSetChanged();
     }
 
-    @OnClick(R.id.viewFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick(View view) {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
 
-    @OnClick(R.id.selectFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.selectFiles))
     void startAddingPDF(View v) {
         startActivityForResult(mFileUtils.getMultipleFileChooser(),
                 INTENT_REQUEST_PICK_FILE_CODE);
     }
 
-    @OnClick(R.id.mergebtn)
+    /** @noinspection unused*/
+    @OnClick((R.id.mergebtn))
     void mergeFiles(final View view) {
         String[] pdfpaths = mFilePaths.toArray(new String[0]);
         String masterpwd = mSharedPrefs.getString(MASTER_PWD_STRING, appName);
@@ -294,7 +297,7 @@ public class MergeFilesFragment extends Fragment implements MergeFilesAdapter.On
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mFileUtils = new FileUtils(mActivity);

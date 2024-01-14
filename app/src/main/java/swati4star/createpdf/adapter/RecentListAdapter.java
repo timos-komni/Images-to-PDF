@@ -47,7 +47,7 @@ public class RecentListAdapter extends RecyclerView.Adapter<RecentListAdapter.Re
             @NonNull final ViewGroup viewGroup, final int i) {
         View mView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_view_enhancement_option, viewGroup, false);
-        return new RecentListAdapter.RecentItemViewHolder(mView);
+        return new RecentItemViewHolder(mView);
     }
 
     @Override
@@ -69,10 +69,10 @@ public class RecentListAdapter extends RecyclerView.Adapter<RecentListAdapter.Re
         return mValues.size();
     }
 
-    class RecentItemViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.option_image)
+    static class RecentItemViewHolder extends RecyclerView.ViewHolder {
+        @BindView((R.id.option_image))
         ImageView icon;
-        @BindView(R.id.option_name)
+        @BindView((R.id.option_name))
         TextView name;
 
         MaterialCardView cardView;

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,17 +49,17 @@ import swati4star.createpdf.util.ThemeUtils;
 public class ImageEditor extends AppCompatActivity implements OnFilterItemClickedListener, OnItemClickListener {
 
     private final ArrayList<String> mImagePaths = new ArrayList<>();
-    @BindView(R.id.nextimageButton)
+    @BindView((R.id.nextimageButton))
     ImageView nextButton;
-    @BindView(R.id.imagecount)
+    @BindView((R.id.imagecount))
     TextView imageCount;
-    @BindView(R.id.previousImageButton)
+    @BindView((R.id.previousImageButton))
     ImageView previousButton;
-    @BindView(R.id.doodleSeekBar)
+    @BindView((R.id.doodleSeekBar))
     SeekBar doodleSeekBar;
-    @BindView(R.id.photoEditorView)
+    @BindView((R.id.photoEditorView))
     PhotoEditorView photoEditorView;
-    @BindView(R.id.doodle_colors)
+    @BindView((R.id.doodle_colors))
     RecyclerView brushColorsView;
     private ArrayList<String> mFilterUris = new ArrayList<>();
     private ArrayList<FilterItem> mFilterItems;
@@ -71,6 +72,7 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
     private boolean mDoodleSelected = false;
     private PhotoEditor mPhotoEditor;
 
+    @NonNull
     public static Intent getStartIntent(Context context, ArrayList<String> uris) {
         Intent intent = new Intent(context, ImageEditor.class);
         intent.putExtra(IMAGE_EDITOR_KEY, uris);
@@ -124,7 +126,7 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
         mPhotoEditor.setBrushDrawingMode(false);
     }
 
-    @OnClick(R.id.nextimageButton)
+    @OnClick((R.id.nextimageButton))
     void nextImg() {
         //Proceed to next if Save Current has been clicked
         if (mClicked) {
@@ -133,7 +135,7 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
             StringUtils.getInstance().showSnackbar(this, R.string.save_first);
     }
 
-    @OnClick(R.id.previousImageButton)
+    @OnClick((R.id.previousImageButton))
     void previousImg() {
         //move to previous if Save Current has been clicked
         if (mClicked) {
@@ -154,7 +156,7 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
         imageCount.setText(String.format(getString(R.string.showing_image), mCurrentImage + 1, mDisplaySize));
     }
 
-    @OnClick(R.id.savecurrent)
+    @OnClick((R.id.savecurrent))
     void saveC() {
         mClicked = true;
         if (mClickedFilter || mDoodleSelected) {
@@ -165,7 +167,7 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
         }
     }
 
-    @OnClick(R.id.resetCurrent)
+    @OnClick((R.id.resetCurrent))
     void resetCurrent() {
         mClicked = true;
         String originalPath = mFilterUris.get(mCurrentImage);
@@ -184,6 +186,7 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
             File sdCard = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             File dir = new File(sdCard.getAbsolutePath() + "/PDFfilter");
             if (!dir.exists()) {
+                //noinspection ResultOfMethodCallIgnored
                 dir.mkdirs();
             }
             String fileName = String.format(getString(R.string.filter_file_name),
@@ -315,8 +318,8 @@ public class ImageEditor extends AppCompatActivity implements OnFilterItemClicke
             colorPallete.show();
 
         } else {
-            doodleSeekBar.setBackgroundColor(this.getResources().getColor(color));
-            mPhotoEditor.setBrushColor(this.getResources().getColor(color));
+            doodleSeekBar.setBackgroundColor(ContextCompat.getColor(this, color));
+            mPhotoEditor.setBrushColor(ContextCompat.getColor(this, color));
         }
     }
 }

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,12 +31,13 @@ import swati4star.createpdf.util.ThemeUtils;
 public class PreviewActivity extends AppCompatActivity implements PreviewImageOptionsAdapter.OnItemClickListener {
 
     private static final int INTENT_REQUEST_REARRANGE_IMAGE = 1;
-    @BindView(R.id.recyclerView)
+    @BindView((R.id.recyclerView))
     RecyclerView mRecyclerView;
     private ArrayList<String> mImagesArrayList;
     private PreviewAdapter mPreviewAdapter;
     private ViewPager mViewPager;
 
+    @NonNull
     public static Intent getStartIntent(Context context, ArrayList<String> uris) {
         Intent intent = new Intent(context, PreviewActivity.class);
         intent.putExtra(PREVIEW_IMAGES, uris);
@@ -81,6 +83,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewImageOp
      *
      * @return - list
      */
+    @NonNull
     private ArrayList<PreviewImageOptionItem> getOptions() {
         ArrayList<PreviewImageOptionItem> mOptions = new ArrayList<>();
         mOptions.add(new PreviewImageOptionItem(R.drawable.ic_rearrange, getString(R.string.rearrange_text)));
@@ -91,13 +94,9 @@ public class PreviewActivity extends AppCompatActivity implements PreviewImageOp
     @Override
     public void onItemClick(int position) {
         switch (position) {
-            case 0:
-                startActivityForResult(RearrangeImages.getStartIntent(this, mImagesArrayList),
-                        INTENT_REQUEST_REARRANGE_IMAGE);
-                break;
-            case 1:
-                sortImages();
-                break;
+            case 0 -> startActivityForResult(RearrangeImages.getStartIntent(this, mImagesArrayList),
+                    INTENT_REQUEST_REARRANGE_IMAGE);
+            case 1 -> sortImages();
         }
     }
 

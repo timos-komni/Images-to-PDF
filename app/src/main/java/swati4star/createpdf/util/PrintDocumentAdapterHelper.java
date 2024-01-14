@@ -8,6 +8,8 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintDocumentInfo;
 
+import androidx.annotation.NonNull;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,7 +18,7 @@ import java.io.OutputStream;
 
 public class PrintDocumentAdapterHelper extends PrintDocumentAdapter {
 
-    private File mFile;
+    private final File mFile;
 
     PrintDocumentAdapterHelper(File mFile) {
         this.mFile = mFile;
@@ -50,7 +52,7 @@ public class PrintDocumentAdapterHelper extends PrintDocumentAdapter {
     @Override
     public void onLayout(PrintAttributes oldAttributes,
                          PrintAttributes newAttributes,
-                         CancellationSignal cancellationSignal,
+                         @NonNull CancellationSignal cancellationSignal,
                          LayoutResultCallback callback,
                          Bundle extras) {
 

@@ -54,25 +54,25 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
     private static final int INTENT_REQUEST_PICK_FILE_CODE = 10;
     private static final int INTENT_REQUEST_GET_IMAGES = 13;
     private static final ArrayList<String> mImagesUri = new ArrayList<>();
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton selectFileButton;
-    @BindView(R.id.pdfCreate)
+    @BindView((R.id.pdfCreate))
     MorphingButton mCreatePdf;
-    @BindView(R.id.addImages)
+    @BindView((R.id.addImages))
     MorphingButton addImages;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.tvNoOfImages)
+    @BindView((R.id.tvNoOfImages))
     TextView mNoOfImages;
     private Activity mActivity;
     private String mPath;
@@ -98,7 +98,7 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
         return rootView;
     }
 
-    @OnClick(R.id.viewFiles)
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick() {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
@@ -106,7 +106,7 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
     /**
      * Displays file chooser intent
      */
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void showFileChooser() {
         startActivityForResult(mFileUtils.getFileChooser(),
                 INTENT_REQUEST_PICK_FILE_CODE);
@@ -127,11 +127,9 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
             return;
 
         switch (requestCode) {
-
-            case INTENT_REQUEST_GET_IMAGES:
+            case INTENT_REQUEST_GET_IMAGES -> {
                 mImagesUri.clear();
                 mImagesUri.addAll(Matisse.obtainPathResult(data));
-
                 if (mImagesUri.size() > 0) {
                     mNoOfImages.setText(String.format(mActivity.getResources()
                             .getString(R.string.images_selected), mImagesUri.size()));
@@ -141,13 +139,10 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
                 } else {
                     mNoOfImages.setVisibility(View.GONE);
                 }
-
                 mMorphButtonUtility.morphToSquare(mCreatePdf, mMorphButtonUtility.integer());
-                break;
-
-            case INTENT_REQUEST_PICK_FILE_CODE:
-                setTextAndActivateButtons(FileUriUtils.getInstance().getFilePath(data.getData()));
-                break;
+            }
+            case INTENT_REQUEST_PICK_FILE_CODE ->
+                    setTextAndActivateButtons(FileUriUtils.getInstance().getFilePath(data.getData()));
         }
     }
 
@@ -164,7 +159,7 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
                 requestCode, REQUEST_CODE_FOR_WRITE_PERMISSION, this::selectImages);
     }
 
-    @OnClick(R.id.pdfCreate)
+    @OnClick((R.id.pdfCreate))
     public void parse() {
         StringUtils.getInstance().hideKeyboard(mActivity);
         if (mOperation.equals(ADD_IMAGES))
@@ -224,7 +219,7 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
     /**
      * Adding Images to PDF
      */
-    @OnClick(R.id.addImages)
+    @OnClick((R.id.addImages))
     void startAddingImages() {
         PermissionsUtils.getInstance().checkStoragePermissionAndProceed(getContext(), this::selectImages);
     }
@@ -237,7 +232,7 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mMorphButtonUtility = new MorphButtonUtility(mActivity);

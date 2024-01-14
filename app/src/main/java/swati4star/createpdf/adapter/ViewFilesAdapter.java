@@ -5,7 +5,6 @@ import static swati4star.createpdf.util.FileInfoUtils.getFormattedDate;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -135,45 +135,26 @@ public class ViewFilesAdapter extends RecyclerView.Adapter<ViewFilesAdapter.View
      */
     private void performOperation(int index, int position, File file) {
         switch (index) {
-            case 0: //Open
-                mFileUtils.openFile(file.getPath(), FileUtils.FileType.e_PDF);
-                break;
-
-            case 1: //delete
-                deleteFile(position);
-                break;
-
-            case 2: //rename
-                onRenameFileClick(position);
-                break;
-
-            case 3: //Print
-                mFileUtils.printFile(file);
-                break;
-
-            case 4: //Email
-                mFileUtils.shareFile(file);
-                break;
-
-            case 5: //Details
-                mPDFUtils.showDetails(file);
-                break;
-
-            case 6://Password Set
-                mPDFEncryptionUtils.setPassword(file.getPath(), ViewFilesAdapter.this);
-                break;
-
-            case 7://Password Remove
-                mPDFEncryptionUtils.removePassword(file.getPath(), ViewFilesAdapter.this);
-                break;
-
-            case 8://Rotate Pages
-                mPDFRotationUtils.rotatePages(file.getPath(), ViewFilesAdapter.this);
-                break;
-
-            case 9: // Add Watermark
-                mWatermarkUtils.setWatermark(file.getPath(), ViewFilesAdapter.this);
-                break;
+            case 0 -> //Open
+                    mFileUtils.openFile(file.getPath(), FileUtils.FileType.e_PDF);
+            case 1 -> //delete
+                    deleteFile(position);
+            case 2 -> //rename
+                    onRenameFileClick(position);
+            case 3 -> //Print
+                    mFileUtils.printFile(file);
+            case 4 -> //Email
+                    mFileUtils.shareFile(file);
+            case 5 -> //Details
+                    mPDFUtils.showDetails(file);
+            case 6 ->//Password Set
+                    mPDFEncryptionUtils.setPassword(file.getPath(), ViewFilesAdapter.this);
+            case 7 ->//Password Remove
+                    mPDFEncryptionUtils.removePassword(file.getPath(), ViewFilesAdapter.this);
+            case 8 ->//Rotate Pages
+                    mPDFRotationUtils.rotatePages(file.getPath(), ViewFilesAdapter.this);
+            case 9 -> // Add Watermark
+                    mWatermarkUtils.setWatermark(file.getPath(), ViewFilesAdapter.this);
         }
     }
 
@@ -279,7 +260,7 @@ public class ViewFilesAdapter extends RecyclerView.Adapter<ViewFilesAdapter.View
      * iterate through filelist and deletes
      * all files on positive response
      */
-    private void deleteFiles(ArrayList<Integer> files) {
+    private void deleteFiles(@NonNull ArrayList<Integer> files) {
 
         int messageAlert, messageSnackbar;
         if (files.size() > 1) {
@@ -426,17 +407,17 @@ public class ViewFilesAdapter extends RecyclerView.Adapter<ViewFilesAdapter.View
 
     class ViewFilesHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.fileRipple)
+        @BindView((R.id.fileRipple))
         MaterialRippleLayout ripple;
-        @BindView(R.id.fileName)
+        @BindView((R.id.fileName))
         TextView fileName;
-        @BindView(R.id.checkbox)
+        @BindView((R.id.checkbox))
         CheckBox checkBox;
-        @BindView(R.id.fileDate)
+        @BindView((R.id.fileDate))
         TextView fileDate;
-        @BindView(R.id.fileSize)
+        @BindView((R.id.fileSize))
         TextView fileSize;
-        @BindView(R.id.encryptionImage)
+        @BindView((R.id.encryptionImage))
         ImageView encryptionImage;
 
         ViewFilesHolder(View itemView, ItemSelectedListener itemSelectedListener) {

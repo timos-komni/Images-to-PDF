@@ -30,7 +30,7 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:textStyle="bold"
-        tools:targetApi="lollipop" />
+         />
 
     <ImageButton
         android:id="@+id/removeImage"
@@ -45,7 +45,7 @@
         android:padding="4dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_close_black_24dp"
-        tools:targetApi="lollipop" />
+         />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -64,7 +64,7 @@
             android:background="@drawable/circle_white"
             android:contentDescription="@string/arrow_up"
             app:srcCompat="@drawable/ic_arrow_up_black_24dp"
-            tools:targetApi="lollipop" />
+             />
 
         <ImageButton
             android:id="@+id/buttonDown"
@@ -74,7 +74,7 @@
             android:background="@drawable/circle_white"
             android:contentDescription="@string/arrow_down"
             app:srcCompat="@drawable/ic_arrow_down_black_24dp"
-            tools:targetApi="lollipop" />
+             />
 
     </LinearLayout>
 

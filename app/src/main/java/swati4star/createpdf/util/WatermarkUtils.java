@@ -7,6 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.danielnilsson9.colorpickerview.view.ColorPickerView;
@@ -20,6 +22,8 @@ import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
+
+import org.jetbrains.annotations.Contract;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,38 +44,27 @@ public class WatermarkUtils {
         mFileUtils = new FileUtils(context);
     }
 
-    public static int getStyleValueFromName(String name) {
-        switch (name) {
-            case "BOLD":
-                return Font.BOLD;
-            case "ITALIC":
-                return Font.ITALIC;
-            case "UNDERLINE":
-                return Font.UNDERLINE;
-            case "STRIKETHRU":
-                return Font.STRIKETHRU;
-            case "BOLDITALIC":
-                return Font.BOLDITALIC;
-            default:
-                return Font.NORMAL;
-        }
+    @Contract(pure = true)
+    public static int getStyleValueFromName(@NonNull String name) {
+        return switch (name) {
+            case "BOLD" -> Font.BOLD;
+            case "ITALIC" -> Font.ITALIC;
+            case "UNDERLINE" -> Font.UNDERLINE;
+            case "STRIKETHRU" -> Font.STRIKETHRU;
+            case "BOLDITALIC" -> Font.BOLDITALIC;
+            default -> Font.NORMAL;
+        };
     }
 
     public static String getStyleNameFromFont(int font) {
-        switch (font) {
-            case Font.BOLD:
-                return "BOLD";
-            case Font.ITALIC:
-                return "ITALIC";
-            case Font.UNDERLINE:
-                return "UNDERLINE";
-            case Font.STRIKETHRU:
-                return "STRIKETHRU";
-            case Font.BOLDITALIC:
-                return "BOLDITALIC";
-            default:
-                return "NORMAL";
-        }
+        return switch (font) {
+            case Font.BOLD -> "BOLD";
+            case Font.ITALIC -> "ITALIC";
+            case Font.UNDERLINE -> "UNDERLINE";
+            case Font.STRIKETHRU -> "STRIKETHRU";
+            case Font.BOLDITALIC -> "BOLDITALIC";
+            default -> "NORMAL";
+        };
     }
 
     public void setWatermark(String path, final DataSetChanged dataSetChanged) {
@@ -147,7 +140,7 @@ public class WatermarkUtils {
         mDialog.show();
     }
 
-    private String createWatermark(String path) throws IOException, DocumentException {
+    private String createWatermark(@NonNull String path) throws IOException, DocumentException {
         String finalOutputFile = mFileUtils.getUniqueFileName(path.replace(mContext.getString(R.string.pdf_ext),
                 mContext.getString(R.string.watermarked_file)));
 

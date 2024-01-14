@@ -20,13 +20,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.itextpdf.text.Rectangle;
@@ -35,11 +36,14 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.PicassoEngine;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
+import org.jetbrains.annotations.Contract;
+
 import java.io.File;
 import java.io.FileOutputStream;
 
 import swati4star.createpdf.R;
 
+/** @noinspection JavadocLinkAsPlainText*/
 public class ImageUtils {
 
     public String mImageScaleType;
@@ -56,7 +60,8 @@ public class ImageUtils {
      * @param documentSize   a rectangle specifying the width and height that the image must fit within
      * @return a rectangle that provides the scaled width and height of the image
      */
-    static Rectangle calculateFitSize(float originalWidth, float originalHeight, Rectangle documentSize) {
+    @NonNull
+    static Rectangle calculateFitSize(float originalWidth, float originalHeight, @NonNull Rectangle documentSize) {
         float widthChange = (originalWidth - documentSize.getWidth()) / originalWidth;
         float heightChange = (originalHeight - documentSize.getHeight()) / originalHeight;
 
@@ -74,6 +79,8 @@ public class ImageUtils {
      * @return input image size as Rectangle.
      * @see com.itextpdf.text.Rectangle
      */
+    @NonNull
+    @Contract("_ -> new")
     public static Rectangle getImageSize(String imageUri) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -99,6 +106,7 @@ public class ImageUtils {
 
         File file = new File(myDir, fileName);
         if (file.exists())
+            //noinspection ResultOfMethodCallIgnored
             file.delete();
 
         try {
@@ -152,7 +160,7 @@ public class ImageUtils {
      * @param bmp - input bitmap
      * @return - output bitmap
      */
-    public Bitmap getRoundBitmap(Bitmap bmp) {
+    public Bitmap getRoundBitmap(@NonNull Bitmap bmp) {
         int width = bmp.getWidth(), height = bmp.getHeight();
         int radius = Math.min(width, height); // set the smallest edge as radius.
         Bitmap bitmap;
@@ -216,7 +224,8 @@ public class ImageUtils {
      * @return inSampleSize value
      * https://developer.android.com/topic/performance/graphics/load-bitmap.html#java
      */
-    private int calculateInSampleSize(BitmapFactory.Options options) {
+    @Contract(pure = true)
+    private int calculateInSampleSize(@NonNull BitmapFactory.Options options) {
         // Raw height and width of image
         final int height = options.outHeight;
         final int width = options.outWidth;
@@ -238,7 +247,7 @@ public class ImageUtils {
         return inSampleSize;
     }
 
-    public void showImageScaleTypeDialog(Context context, Boolean saveValue) {
+    public void showImageScaleTypeDialog(Context context, @NonNull Boolean saveValue) {
 
         SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         MaterialDialog.Builder builder = DialogUtils.getInstance().createCustomDialogWithoutContent((Activity) context,
@@ -274,7 +283,7 @@ public class ImageUtils {
      * @param bmpOriginal original bitmap which is converted to a new
      *                    grayscale bitmap
      */
-    public Bitmap toGrayscale(Bitmap bmpOriginal) {
+    public Bitmap toGrayscale(@NonNull Bitmap bmpOriginal) {
         int width, height;
         height = bmpOriginal.getHeight();
         width = bmpOriginal.getWidth();

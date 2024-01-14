@@ -51,11 +51,11 @@ public class TextToPdfFragment extends Fragment implements OnItemClickListener,
         OnTextToPdfInterface, TextToPdfContract.View {
 
     private final int mFileSelectCode = 0;
-    @BindView(R.id.enhancement_options_recycle_view_text)
+    @BindView((R.id.enhancement_options_recycle_view_text))
     RecyclerView mTextEnhancementOptionsRecycleView;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton mSelectFile;
-    @BindView(R.id.createtextpdf)
+    @BindView((R.id.createtextpdf))
     MorphingButton mCreateTextPdf;
     private Activity mActivity;
     private FileUtils mFileUtils;
@@ -114,7 +114,7 @@ public class TextToPdfFragment extends Fragment implements OnItemClickListener,
         enhancer.enhance();
     }
 
-    @OnClick(R.id.createtextpdf)
+    @OnClick((R.id.createtextpdf))
     public void openCreateTextPdf() {
         new MaterialDialog.Builder(mActivity)
                 .title(R.string.creating_pdf)
@@ -159,7 +159,7 @@ public class TextToPdfFragment extends Fragment implements OnItemClickListener,
     /**
      * Create a file picker to get text file.
      */
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void selectTextFile() {
         PermissionsUtils.getInstance().checkStoragePermissionAndProceed(getContext(), this::selectFile);
     }
@@ -214,7 +214,7 @@ public class TextToPdfFragment extends Fragment implements OnItemClickListener,
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) {
             mActivity = (Activity) context;
@@ -226,6 +226,7 @@ public class TextToPdfFragment extends Fragment implements OnItemClickListener,
         mDirectoryUtils = new DirectoryUtils(mActivity);
     }
 
+    /** @noinspection unused*/
     private void getRuntimePermissions() {
         if (Build.VERSION.SDK_INT < 29) {
             PermissionsUtils.getInstance().requestRuntimePermissions(this,

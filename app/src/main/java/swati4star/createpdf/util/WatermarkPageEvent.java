@@ -1,5 +1,7 @@
 package swati4star.createpdf.util;
 
+import androidx.annotation.NonNull;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -16,7 +18,7 @@ class WatermarkPageEvent extends PdfPageEventHelper {
     private Phrase mPhrase;
 
     @Override
-    public void onEndPage(PdfWriter writer, Document document) {
+    public void onEndPage(@NonNull PdfWriter writer, @NonNull Document document) {
         PdfContentByte canvas = writer.getDirectContent();
         float x = (document.getPageSize().getLeft() + document.getPageSize().getRight()) / 2;
         float y = (document.getPageSize().getTop() + document.getPageSize().getBottom()) / 2;

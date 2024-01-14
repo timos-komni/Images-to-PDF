@@ -34,7 +34,7 @@ public class WhatsNewAdapter extends RecyclerView.Adapter<WhatsNewAdapter.WhatsN
     public WhatsNewViewHolder onCreateViewHolder(@NonNull ViewGroup mParent, int viewType) {
         View mView = LayoutInflater.from(mParent.getContext())
                 .inflate(R.layout.item_whats_new, mParent, false);
-        return new WhatsNewAdapter.WhatsNewViewHolder(mView);
+        return new WhatsNewViewHolder(mView);
     }
 
     @Override
@@ -54,13 +54,13 @@ public class WhatsNewAdapter extends RecyclerView.Adapter<WhatsNewAdapter.WhatsN
         return mWhatsNewsList.size();
     }
 
-    class WhatsNewViewHolder extends RecyclerView.ViewHolder {
+    static class WhatsNewViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.title)
+        @BindView((R.id.title))
         TextView tvHeading;
-        @BindView(R.id.description)
+        @BindView((R.id.description))
         TextView tvDescription;
-        @BindView(R.id.icon)
+        @BindView((R.id.icon))
         ImageView icon;
 
         WhatsNewViewHolder(View itemView) {

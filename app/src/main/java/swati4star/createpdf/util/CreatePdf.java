@@ -21,6 +21,8 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import org.jetbrains.annotations.Contract;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -55,7 +57,7 @@ public class CreatePdf extends AsyncTask<String, String, String> {
     private boolean mSuccess;
     private String mPath;
 
-    public CreatePdf(ImageToPDFOptions mImageToPDFOptions, String parentPath,
+    public CreatePdf(@NonNull ImageToPDFOptions mImageToPDFOptions, String parentPath,
                      OnPDFCreatedInterface onPDFCreated) {
         this.mImagesUri = mImageToPDFOptions.getImagesUri();
         this.mFileName = mImageToPDFOptions.getOutFileName();
@@ -88,6 +90,7 @@ public class CreatePdf extends AsyncTask<String, String, String> {
     private void setFilePath() {
         File folder = new File(mPath);
         if (!folder.exists())
+            //noinspection ResultOfMethodCallIgnored
             folder.mkdir();
         mPath = mPath + mFileName + pdfExtension;
     }
@@ -146,6 +149,7 @@ public class CreatePdf extends AsyncTask<String, String, String> {
                 Log.v("Stage 5", "Image compressed " + qualityMod);
 
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                //noinspection unused
                 Bitmap bitmap = BitmapFactory.decodeFile(mImagesUri.get(i), bmOptions);
 
                 Log.v("Stage 6", "Image path adding");
@@ -195,20 +199,14 @@ public class CreatePdf extends AsyncTask<String, String, String> {
     }
 
     @NonNull
-    private Phrase getPhrase(PdfWriter writer, String pageNumStyle, int size) {
-        Phrase phrase;
-        switch (pageNumStyle) {
-            case Constants.PG_NUM_STYLE_PAGE_X_OF_N:
-                phrase = new Phrase(String.format("Page %d of %d", writer.getPageNumber(), size));
-                break;
-            case Constants.PG_NUM_STYLE_X_OF_N:
-                phrase = new Phrase(String.format("%d of %d", writer.getPageNumber(), size));
-                break;
-            default:
-                phrase = new Phrase(String.format("%d", writer.getPageNumber()));
-                break;
-        }
-        return phrase;
+    private Phrase getPhrase(PdfWriter writer, @NonNull String pageNumStyle, int size) {
+        return switch (pageNumStyle) {
+            case Constants.PG_NUM_STYLE_PAGE_X_OF_N ->
+                    new Phrase(String.format("Page %d of %d", writer.getPageNumber(), size));
+            case Constants.PG_NUM_STYLE_X_OF_N ->
+                    new Phrase(String.format("%d of %d", writer.getPageNumber(), size));
+            default -> new Phrase(String.format("%d", writer.getPageNumber()));
+        };
     }
 
     @Override
@@ -222,6 +220,8 @@ public class CreatePdf extends AsyncTask<String, String, String> {
      *
      * @param color value of color in int
      */
+    @NonNull
+    @Contract("_ -> new")
     private BaseColor getBaseColor(int color) {
         return new BaseColor(
                 Color.red(color),
@@ -230,6 +230,7 @@ public class CreatePdf extends AsyncTask<String, String, String> {
         );
     }
 
+    @NonNull
     private Rectangle calculatePageSize() {
         if (PageSizeUtils.PAGE_SIZE_FIT_SIZE.equals(mPageSize)) {
             return PageSizeUtils.calculateCommonPageSize(mImagesUri);

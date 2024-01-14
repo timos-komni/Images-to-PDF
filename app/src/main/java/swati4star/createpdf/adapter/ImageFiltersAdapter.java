@@ -58,9 +58,9 @@ public class ImageFiltersAdapter extends RecyclerView.Adapter<ImageFiltersAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.filter_preview)
+        @BindView((R.id.filter_preview))
         ImageView img;
-        @BindView(R.id.filter_Name)
+        @BindView((R.id.filter_Name))
         TextView name;
 
         ViewHolder(View itemView) {

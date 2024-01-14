@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -43,9 +44,9 @@ public class BrushItemAdapter extends RecyclerView.Adapter<BrushItemAdapter.Brus
     public void onBindViewHolder(@NonNull BrushItemViewHolder holder, int position) {
         int color = mBrushItems.get(position).getColor();
         if (position == mBrushItems.size() - 1)
-            holder.doodleButton.setBackground(mContext.getResources().getDrawable(color));
+            holder.doodleButton.setBackground(ContextCompat.getDrawable(mContext, color));
         else
-            holder.doodleButton.setBackgroundColor(mContext.getResources().getColor(color));
+            holder.doodleButton.setBackgroundColor(ContextCompat.getColor(mContext, color));
     }
 
     @Override
@@ -55,7 +56,7 @@ public class BrushItemAdapter extends RecyclerView.Adapter<BrushItemAdapter.Brus
 
     public class BrushItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.doodle_color)
+        @BindView((R.id.doodle_color))
         Button doodleButton;
 
         BrushItemViewHolder(View itemView) {

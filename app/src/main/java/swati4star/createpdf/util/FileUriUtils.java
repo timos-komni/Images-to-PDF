@@ -9,11 +9,18 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class FileUriUtils {
 
+    /** @noinspection FieldCanBeLocal*/
     private final String mEXTERNALSTORAGEDOC = "com.android.externalstorage.documents";
+    /** @noinspection FieldCanBeLocal*/
     private final String mISDOWNLOADDOC = "com.android.providers.downloads.documents";
+    /** @noinspection FieldCanBeLocal*/
     private final String mISMEDIADOC = "com.android.providers.media.documents";
+    /** @noinspection FieldCanBeLocal*/
     private final String mISGOOGLEPHOTODOC = "com.google.android.apps.photos.content";
 
     private FileUriUtils() {
@@ -32,7 +39,7 @@ public class FileUriUtils {
         return "com.whatsapp.provider.media".equals(uriAuthority);
     }
 
-    private boolean checkURIAuthority(Uri uri, String toCheckWith) {
+    private boolean checkURIAuthority(@NonNull Uri uri, @NonNull String toCheckWith) {
         return toCheckWith.equals(uri.getAuthority());
     }
 
@@ -54,6 +61,7 @@ public class FileUriUtils {
         return ret;
     }
 
+    @Nullable
     private String getURIForMediaDoc(ContentResolver mContentResolver, Uri uri) {
         String documentId = DocumentsContract.getDocumentId(uri);
         String[] idArr = documentId.split(":");
@@ -65,18 +73,12 @@ public class FileUriUtils {
             String realDocId = idArr[1];
 
             // Get content uri by document type.
-            Uri mediaContentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-            switch (docType) {
-                case "image":
-                    mediaContentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                    break;
-                case "video":
-                    mediaContentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                    break;
-                case "audio":
-                    mediaContentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-                    break;
-            }
+            Uri mediaContentUri = switch (docType) {
+                case "image" -> MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                case "video" -> MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                case "audio" -> MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                default -> MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            };
             // Get where clause with real document id.
             String whereClause = MediaStore.Images.Media._ID + " = " + realDocId;
 
@@ -94,6 +96,7 @@ public class FileUriUtils {
         return getImageRealPath(mContentResolver, downloadUriAppendId, null);
     }
 
+    @Nullable
     private String getURIForExternalstorageDoc(Uri uri) {
         String documentId = DocumentsContract.getDocumentId(uri);
         String[] idArr = documentId.split(":");
@@ -107,6 +110,7 @@ public class FileUriUtils {
         return null;
     }
 
+    @Nullable
     private String getUriForDocumentUri(ContentResolver mContentResolver, Uri uri) {
         if (checkURIAuthority(uri, mISMEDIADOC)) {
             return getURIForMediaDoc(mContentResolver, uri);
@@ -154,8 +158,9 @@ public class FileUriUtils {
      * @param uri             - uri of image
      * @param whereClause     - add constraint on content resolver
      * @return true if google photo, else false
+     * @noinspection MismatchedJavadocCode
      */
-    private String getImageRealPath(ContentResolver contentResolver, Uri uri, String whereClause) {
+    private String getImageRealPath(@NonNull ContentResolver contentResolver, Uri uri, String whereClause) {
         String ret = "";
         // Query the uri with condition.
         Cursor cursor = contentResolver.query(uri, null, whereClause, null, null);
@@ -185,7 +190,7 @@ public class FileUriUtils {
      * @param uri - input uri
      * @return - path
      */
-    public String getFilePath(Uri uri) {
+    public String getFilePath(@NonNull Uri uri) {
         String path = uri.getPath();
         if (path == null)
             return null;

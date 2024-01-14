@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -65,19 +66,24 @@ public class FavouritesActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case android.R.id.home -> {
                 onBackPressed();
                 return true;
-            case R.id.fav_action_done:
+            }
+            case (R.id.fav_action_done) -> {
+                //noinspection deprecation
                 super.onBackPressed();
                 return true;
-            default:
+            }
+            default -> {
                 return super.onOptionsItemSelected(item);
+            }
         }
     }
 
+    /** @noinspection deprecation*/
     @Override
     public void onBackPressed() {
         onBackPressedState();

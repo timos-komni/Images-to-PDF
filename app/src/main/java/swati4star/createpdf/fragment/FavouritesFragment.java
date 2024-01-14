@@ -46,6 +46,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -126,7 +127,7 @@ public class FavouritesFragment extends Fragment
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.favourites_fragment, container, false);
         ButterKnife.bind(this, rootView);
@@ -182,7 +183,7 @@ public class FavouritesFragment extends Fragment
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
         menu.findItem(R.id.menu_favourites_item).setVisible(false);
         super.onPrepareOptionsMenu(menu);
     }
@@ -229,7 +230,7 @@ public class FavouritesFragment extends Fragment
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
     }
@@ -259,102 +260,77 @@ public class FavouritesFragment extends Fragment
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         Fragment fragment = null;
         FragmentManager fragmentManager = getFragmentManager();
         Bundle bundle = new Bundle();
         setTitleFragment(mFragmentPositionMap.get(v.getId()).getTitleString());
 
         switch (v.getId()) {
-            case R.id.images_to_pdf_fav:
-                fragment = new ImageToPdfFragment();
-                break;
-            case R.id.qr_barcode_to_pdf_fav:
-                fragment = new QrBarcodeScanFragment();
-                break;
-            case R.id.text_to_pdf_fav:
-                fragment = new TextToPdfFragment();
-                break;
-            case R.id.view_files_fav:
-                fragment = new ViewFilesFragment();
-                break;
-            case R.id.view_history_fav:
-                fragment = new HistoryFragment();
-                break;
-            case R.id.add_text_fav:
-                fragment = new AddTextFragment();
-                break;
-            case R.id.merge_pdf_fav:
-                fragment = new MergeFilesFragment();
-                break;
-            case R.id.split_pdf_fav:
-                fragment = new SplitFilesFragment();
-                break;
-            case R.id.compress_pdf_fav:
+            case R.id.images_to_pdf_fav -> fragment = new ImageToPdfFragment();
+            case R.id.qr_barcode_to_pdf_fav -> fragment = new QrBarcodeScanFragment();
+            case R.id.text_to_pdf_fav -> fragment = new TextToPdfFragment();
+            case R.id.view_files_fav -> fragment = new ViewFilesFragment();
+            case R.id.view_history_fav -> fragment = new HistoryFragment();
+            case R.id.add_text_fav -> fragment = new AddTextFragment();
+            case R.id.merge_pdf_fav -> fragment = new MergeFilesFragment();
+            case R.id.split_pdf_fav -> fragment = new SplitFilesFragment();
+            case R.id.compress_pdf_fav -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, COMPRESS_PDF);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.extract_images_fav:
+            }
+            case R.id.extract_images_fav -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, EXTRACT_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.pdf_to_images_fav:
+            }
+            case R.id.pdf_to_images_fav -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, PDF_TO_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.remove_pages_fav:
+            }
+            case R.id.remove_pages_fav -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.rearrange_pages_fav:
+            }
+            case R.id.rearrange_pages_fav -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REORDER_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.add_password_fav:
+            }
+            case R.id.add_password_fav -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_PWD);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.remove_password_fav:
+            }
+            case R.id.remove_password_fav -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PWd);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.rotate_pages_fav:
+            }
+            case R.id.rotate_pages_fav -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ROTATE_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.add_watermark_fav:
+            }
+            case R.id.add_watermark_fav -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ADD_WATERMARK);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.add_images_fav:
+            }
+            case R.id.add_images_fav -> {
                 fragment = new AddImagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.remove_duplicates_pages_pdf_fav:
-                fragment = new RemoveDuplicatePagesFragment();
-                break;
-            case R.id.invert_pdf_fav:
-                fragment = new InvertPdfFragment();
-                break;
-            case R.id.extract_text_fav:
-                fragment = new ExtractTextFragment();
-                break;
-            case R.id.excel_to_pdf_fav:
-                fragment = new ExceltoPdfFragment();
-                break;
-            case R.id.zip_to_pdf_fav:
-                fragment = new ZipToPdfFragment();
-                break;
+            }
+            case R.id.remove_duplicates_pages_pdf_fav ->
+                    fragment = new RemoveDuplicatePagesFragment();
+            case R.id.invert_pdf_fav -> fragment = new InvertPdfFragment();
+            case R.id.extract_text_fav -> fragment = new ExtractTextFragment();
+            case R.id.excel_to_pdf_fav -> fragment = new ExceltoPdfFragment();
+            case R.id.zip_to_pdf_fav -> fragment = new ZipToPdfFragment();
         }
         try {
             if (fragment != null && fragmentManager != null) {

@@ -2,6 +2,8 @@ package swati4star.createpdf.util;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import ja.burhanrashid52.photoeditor.PhotoFilter;
@@ -17,7 +19,7 @@ public class ImageFilterUtils {
         return ImageFilterUtils.SingletonHolder.INSTANCE;
     }
 
-    public ArrayList<FilterItem> getFiltersList(Context context) {
+    public ArrayList<FilterItem> getFiltersList(@NonNull Context context) {
 
         ArrayList<FilterItem> items = new ArrayList<>();
 

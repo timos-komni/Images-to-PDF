@@ -92,27 +92,25 @@ public class FragmentManagement implements IFragmentManagement {
         Fragment fragment = new HomeFragment();
         if (mContext.getIntent().getAction() != null) {
             switch (Objects.requireNonNull(mContext.getIntent().getAction())) {
-                case ACTION_SELECT_IMAGES:
+                case ACTION_SELECT_IMAGES -> {
                     fragment = new ImageToPdfFragment();
                     Bundle bundle = new Bundle();
                     bundle.putBoolean(OPEN_SELECT_IMAGES, true);
                     fragment.setArguments(bundle);
-                    break;
-                case ACTION_VIEW_FILES:
+                }
+                case ACTION_VIEW_FILES -> {
                     fragment = new ViewFilesFragment();
                     setNavigationViewSelection(R.id.nav_gallery);
-                    break;
-                case ACTION_TEXT_TO_PDF:
+                }
+                case ACTION_TEXT_TO_PDF -> {
                     fragment = new TextToPdfFragment();
                     setNavigationViewSelection(R.id.nav_text_to_pdf);
-                    break;
-                case ACTION_MERGE_PDF:
+                }
+                case ACTION_MERGE_PDF -> {
                     fragment = new MergeFilesFragment();
                     setNavigationViewSelection(R.id.nav_merge);
-                    break;
-                default:
-                    fragment = new HomeFragment(); // Set default fragment
-                    break;
+                }
+                default -> fragment = new HomeFragment(); // Set default fragment
             }
         }
         if (areImagesReceived())
@@ -142,118 +140,81 @@ public class FragmentManagement implements IFragmentManagement {
         Bundle bundle = new Bundle();
 
         switch (itemId) {
-            case R.id.nav_home:
-                fragment = new HomeFragment();
-                break;
-            case R.id.nav_camera:
-                fragment = new ImageToPdfFragment();
-                break;
-            case R.id.nav_qrcode:
-                fragment = new QrBarcodeScanFragment();
-                break;
-            case R.id.nav_gallery:
-                fragment = new ViewFilesFragment();
-                break;
-            case R.id.nav_merge:
-                fragment = new MergeFilesFragment();
-                break;
-            case R.id.nav_split:
-                fragment = new SplitFilesFragment();
-                break;
-            case R.id.nav_text_to_pdf:
-                fragment = new TextToPdfFragment();
-                break;
-            case R.id.nav_history:
-                fragment = new HistoryFragment();
-                break;
-            case R.id.nav_add_text:
-                fragment = new AddTextFragment();
-                break;
-            case R.id.nav_add_password:
+            case (R.id.nav_home) -> fragment = new HomeFragment();
+            case (R.id.nav_camera) -> fragment = new ImageToPdfFragment();
+            case (R.id.nav_qrcode) -> fragment = new QrBarcodeScanFragment();
+            case (R.id.nav_gallery) -> fragment = new ViewFilesFragment();
+            case (R.id.nav_merge) -> fragment = new MergeFilesFragment();
+            case (R.id.nav_split) -> fragment = new SplitFilesFragment();
+            case (R.id.nav_text_to_pdf) -> fragment = new TextToPdfFragment();
+            case (R.id.nav_history) -> fragment = new HistoryFragment();
+            case (R.id.nav_add_text) -> fragment = new AddTextFragment();
+            case (R.id.nav_add_password) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_PWD);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_remove_password:
+            }
+            case (R.id.nav_remove_password) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PWd);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_share:
-                mFeedbackUtils.shareApplication();
-                break;
-            case R.id.nav_about:
-                fragment = new AboutUsFragment();
-                break;
-            case R.id.nav_settings:
-                fragment = new SettingsFragment();
-                break;
-            case R.id.nav_extract_images:
+            }
+            case (R.id.nav_share) -> mFeedbackUtils.shareApplication();
+            case (R.id.nav_about) -> fragment = new AboutUsFragment();
+            case (R.id.nav_settings) -> fragment = new SettingsFragment();
+            case (R.id.nav_extract_images) -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, EXTRACT_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_pdf_to_images:
+            }
+            case (R.id.nav_pdf_to_images) -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, PDF_TO_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_excel_to_pdf:
-                fragment = new ExceltoPdfFragment();
-                break;
-            case R.id.nav_remove_pages:
+            }
+            case (R.id.nav_excel_to_pdf) -> fragment = new ExceltoPdfFragment();
+            case (R.id.nav_remove_pages) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_rearrange_pages:
+            }
+            case (R.id.nav_rearrange_pages) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REORDER_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_compress_pdf:
+            }
+            case (R.id.nav_compress_pdf) -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, COMPRESS_PDF);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_add_images:
+            }
+            case (R.id.nav_add_images) -> {
                 fragment = new AddImagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_help:
+            }
+            case (R.id.nav_help) -> {
                 Intent intent = new Intent(mContext, WelcomeActivity.class);
                 intent.putExtra(SHOW_WELCOME_ACT, true);
                 mContext.startActivity(intent);
-                break;
-            case R.id.nav_remove_duplicate_pages:
-                fragment = new RemoveDuplicatePagesFragment();
-                break;
-            case R.id.nav_invert_pdf:
-                fragment = new InvertPdfFragment();
-                break;
-            case R.id.nav_add_watermark:
+            }
+            case (R.id.nav_remove_duplicate_pages) -> fragment = new RemoveDuplicatePagesFragment();
+            case (R.id.nav_invert_pdf) -> fragment = new InvertPdfFragment();
+            case (R.id.nav_add_watermark) -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ADD_WATERMARK);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_zip_to_pdf:
-                fragment = new ZipToPdfFragment();
-                break;
-            case R.id.nav_rateus:
-                mFeedbackUtils.openWebPage("https://play.google.com/store/apps/details?id=swati4star.createpdf");
-                break;
-            case R.id.nav_rotate_pages:
+            }
+            case (R.id.nav_zip_to_pdf) -> fragment = new ZipToPdfFragment();
+            case (R.id.nav_rateus) ->
+                    mFeedbackUtils.openWebPage("https://play.google.com/store/apps/details?id=swati4star.createpdf");
+            case (R.id.nav_rotate_pages) -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ROTATE_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.nav_text_extract:
-                fragment = new ExtractTextFragment();
-                break;
-            case R.id.nav_faq:
-                fragment = new FAQFragment();
-                break;
+            }
+            case (R.id.nav_text_extract) -> fragment = new ExtractTextFragment();
+            case (R.id.nav_faq) -> fragment = new FAQFragment();
         }
 
         try {

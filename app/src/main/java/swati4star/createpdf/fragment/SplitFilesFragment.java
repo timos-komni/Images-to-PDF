@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,27 +56,27 @@ public class SplitFilesFragment extends Fragment implements MergeFilesAdapter.On
         FilesListAdapter.OnFileItemClickedListener, BottomSheetPopulate, OnBackPressedInterface {
 
     private static final int INTENT_REQUEST_PICKFILE_CODE = 10;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton selectFileButton;
-    @BindView(R.id.splitFiles)
+    @BindView((R.id.splitFiles))
     MorphingButton splitFilesButton;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.splitted_files)
+    @BindView((R.id.splitted_files))
     RecyclerView mSplittedFiles;
-    @BindView(R.id.splitfiles_text)
+    @BindView((R.id.splitfiles_text))
     TextView splitFilesSuccessText;
-    @BindView(R.id.split_config)
+    @BindView((R.id.split_config))
     EditText mSplitConfitEditText;
     private Activity mActivity;
     private String mPath;
@@ -100,7 +101,8 @@ public class SplitFilesFragment extends Fragment implements MergeFilesAdapter.On
         return rootview;
     }
 
-    @OnClick(R.id.viewFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick(View view) {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
@@ -108,7 +110,7 @@ public class SplitFilesFragment extends Fragment implements MergeFilesAdapter.On
     /**
      * Displays file chooser intent
      */
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void showFileChooser() {
         startActivityForResult(mFileUtils.getFileChooser(),
                 INTENT_REQUEST_PICKFILE_CODE);
@@ -124,7 +126,7 @@ public class SplitFilesFragment extends Fragment implements MergeFilesAdapter.On
         }
     }
 
-    @OnClick(R.id.splitFiles)
+    @OnClick((R.id.splitFiles))
     public void parse() {
         StringUtils.getInstance().hideKeyboard(mActivity);
 
@@ -154,7 +156,7 @@ public class SplitFilesFragment extends Fragment implements MergeFilesAdapter.On
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mMorphButtonUtility = new MorphButtonUtility(mActivity);
@@ -189,6 +191,7 @@ public class SplitFilesFragment extends Fragment implements MergeFilesAdapter.On
      * default format for single page pdfs
      * (1,2,3,4,5,)
      */
+    @Nullable
     private String getDefaultSplitConfig(String mPath) {
         StringBuilder splitConfig = new StringBuilder();
         ParcelFileDescriptor fileDescriptor = null;

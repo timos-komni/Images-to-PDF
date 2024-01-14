@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,12 +25,13 @@ import swati4star.createpdf.model.FAQItem;
 
 public class FAQFragment extends Fragment implements OnItemClickListener {
 
-    @BindView(R.id.recycler_view_faq)
+    @BindView((R.id.recycler_view_faq))
     RecyclerView mFAQRecyclerView;
     private FAQAdapter mFaqAdapter;
     private List<FAQItem> mFaqs;
     private List<FAQItem> mFaqsCopy;
     private Context mContext;
+    /** @noinspection FieldCanBeLocal*/
     private SearchView mSearchView;
 
     public FAQFragment() {
@@ -37,7 +39,7 @@ public class FAQFragment extends Fragment implements OnItemClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_faq, container, false);
@@ -70,7 +72,7 @@ public class FAQFragment extends Fragment implements OnItemClickListener {
      * @param text - This is the search text entered in the search box.
      *             Simply filtering out the questions that contains the given search query.
      */
-    public void filterFaq(String text) {
+    public void filterFaq(@NonNull String text) {
         mFaqs.clear();
         if (text.isEmpty())
             mFaqs.addAll(mFaqsCopy);

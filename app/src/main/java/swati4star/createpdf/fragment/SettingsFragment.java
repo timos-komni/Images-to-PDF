@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,9 +49,9 @@ import swati4star.createpdf.util.ThemeUtils;
 
 public class SettingsFragment extends Fragment implements OnItemClickListener {
 
-    @BindView(R.id.settings_list)
+    @BindView((R.id.settings_list))
     RecyclerView mEnhancementOptionsRecycleView;
-    @BindView(R.id.storagelocation)
+    @BindView((R.id.storagelocation))
     TextView storageLocation;
 
     private Activity mActivity;
@@ -61,7 +61,7 @@ public class SettingsFragment extends Fragment implements OnItemClickListener {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
     }
@@ -78,12 +78,6 @@ public class SettingsFragment extends Fragment implements OnItemClickListener {
         showSettingsOptions();
         return root;
     }
-
-//    @OnClick(R.id.storagelocation)
-//    void modifyStorageLocation() {
-////        Intent intent = new Intent(mActivity, FolderPicker.class);
-////        startActivityForResult(intent, MODIFY_STORAGE_LOCATION_CODE);
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -111,29 +105,14 @@ public class SettingsFragment extends Fragment implements OnItemClickListener {
     @Override
     public void onItemClick(int position) {
         switch (position) {
-            case 0:
-                changeCompressImage();
-                break;
-            case 1:
-                setPageSize();
-                break;
-            case 2:
-                editFontSize();
-                break;
-            case 3:
-                changeFontFamily();
-                break;
-            case 4:
-                setTheme();
-                break;
-            case 5:
-                ImageUtils.getInstance().showImageScaleTypeDialog(mActivity, true);
-                break;
-            case 6:
-                changeMasterPassword();
-                break;
-            case 7:
-                setShowPageNumber();
+            case 0 -> changeCompressImage();
+            case 1 -> setPageSize();
+            case 2 -> editFontSize();
+            case 3 -> changeFontFamily();
+            case 4 -> setTheme();
+            case 5 -> ImageUtils.getInstance().showImageScaleTypeDialog(mActivity, true);
+            case 6 -> changeMasterPassword();
+            case 7 -> setShowPageNumber();
         }
     }
 

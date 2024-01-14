@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.annotation.Nullable;
+
 import java.util.Date;
 
 public class DatabaseHelper {
@@ -26,6 +28,7 @@ public class DatabaseHelper {
     @SuppressLint("StaticFieldLeak")
     private class Insert extends AsyncTask<History, Void, Void> {
 
+        @Nullable
         @Override
         protected Void doInBackground(History... histories) {
             AppDatabase db = AppDatabase.getDatabase(mContext.getApplicationContext());

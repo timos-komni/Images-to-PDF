@@ -538,7 +538,7 @@
     <string name="split_range_alert">분할 범위를 입력하면 선택된 PDF 파일이 다시 생성됩니다!</string>
 
     <!--file name suffix-->
-    <string name="reordering_pages_dialog">페이지 재배열 중...</string>
+    <string name="reordering_pages_dialog">페이지 재배열 중…</string>
     <string name="delete_alert_singular">선택한 파일을 삭제하시겠습니까?</string>
     <string name="snackbar_files_deleted">파일이 삭제되었습니다.</string>
     <string name="lbl_recently_used">최근에 사용한 기능</string>

@@ -30,6 +30,7 @@ public class FAQItem {
         return mQuestion;
     }
 
+    /** @noinspection unused*/
     public void setQuestion(String question) {
         this.mQuestion = question;
     }
@@ -38,6 +39,7 @@ public class FAQItem {
         return mAnswer;
     }
 
+    /** @noinspection unused*/
     public void setAnswer(String answer) {
         this.mAnswer = answer;
     }

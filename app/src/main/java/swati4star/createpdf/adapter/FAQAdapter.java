@@ -65,11 +65,11 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQAdapter.FAQViewHolder> {
 
     public class FAQViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.question)
+        @BindView((R.id.question))
         TextView question;
-        @BindView(R.id.answer)
+        @BindView((R.id.answer))
         TextView answer;
-        @BindView(R.id.expandable_view)
+        @BindView((R.id.expandable_view))
         ConstraintLayout expandableView;
 
         /**

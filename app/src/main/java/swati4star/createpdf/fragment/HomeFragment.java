@@ -165,13 +165,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
 
         Fragment fragment = null;
         FragmentManager fragmentManager = getFragmentManager();
@@ -193,95 +193,69 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
 
         switch (v.getId()) {
-            case R.id.images_to_pdf:
-                fragment = new ImageToPdfFragment();
-                break;
-            case R.id.qr_barcode_to_pdf:
-                fragment = new QrBarcodeScanFragment();
-                break;
-            case R.id.text_to_pdf:
-                fragment = new TextToPdfFragment();
-                break;
-            case R.id.view_files:
-                fragment = new ViewFilesFragment();
-                break;
-            case R.id.view_history:
-                fragment = new HistoryFragment();
-                break;
-            case R.id.merge_pdf:
-                fragment = new MergeFilesFragment();
-                break;
-            case R.id.split_pdf:
-                fragment = new SplitFilesFragment();
-                break;
-            case R.id.compress_pdf:
+            case R.id.images_to_pdf -> fragment = new ImageToPdfFragment();
+            case R.id.qr_barcode_to_pdf -> fragment = new QrBarcodeScanFragment();
+            case R.id.text_to_pdf -> fragment = new TextToPdfFragment();
+            case R.id.view_files -> fragment = new ViewFilesFragment();
+            case R.id.view_history -> fragment = new HistoryFragment();
+            case R.id.merge_pdf -> fragment = new MergeFilesFragment();
+            case R.id.split_pdf -> fragment = new SplitFilesFragment();
+            case R.id.compress_pdf -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, COMPRESS_PDF);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.extract_images:
+            }
+            case R.id.extract_images -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, EXTRACT_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.pdf_to_images:
+            }
+            case R.id.pdf_to_images -> {
                 fragment = new PdfToImageFragment();
                 bundle.putString(BUNDLE_DATA, PDF_TO_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.remove_pages:
+            }
+            case R.id.remove_pages -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.rearrange_pages:
+            }
+            case R.id.rearrange_pages -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REORDER_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.add_password:
+            }
+            case R.id.add_password -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_PWD);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.remove_password:
+            }
+            case R.id.remove_password -> {
                 fragment = new RemovePagesFragment();
                 bundle.putString(BUNDLE_DATA, REMOVE_PWd);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.rotate_pages:
+            }
+            case R.id.rotate_pages -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ROTATE_PAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.add_watermark:
+            }
+            case R.id.add_watermark -> {
                 fragment = new ViewFilesFragment();
                 bundle.putInt(BUNDLE_DATA, ADD_WATERMARK);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.add_images:
+            }
+            case R.id.add_images -> {
                 fragment = new AddImagesFragment();
                 bundle.putString(BUNDLE_DATA, ADD_IMAGES);
                 fragment.setArguments(bundle);
-                break;
-            case R.id.remove_duplicates_pages_pdf:
-                fragment = new RemoveDuplicatePagesFragment();
-                break;
-            case R.id.invert_pdf:
-                fragment = new InvertPdfFragment();
-                break;
-            case R.id.zip_to_pdf:
-                fragment = new ZipToPdfFragment();
-                break;
-            case R.id.excel_to_pdf:
-                fragment = new ExceltoPdfFragment();
-                break;
-            case R.id.extract_text:
-                fragment = new ExtractTextFragment();
-                break;
-            case R.id.add_text:
-                fragment = new AddTextFragment();
-                break;
+            }
+            case R.id.remove_duplicates_pages_pdf -> fragment = new RemoveDuplicatePagesFragment();
+            case R.id.invert_pdf -> fragment = new InvertPdfFragment();
+            case R.id.zip_to_pdf -> fragment = new ZipToPdfFragment();
+            case R.id.excel_to_pdf -> fragment = new ExceltoPdfFragment();
+            case R.id.extract_text -> fragment = new ExtractTextFragment();
+            case R.id.add_text -> fragment = new AddTextFragment();
         }
 
         try {

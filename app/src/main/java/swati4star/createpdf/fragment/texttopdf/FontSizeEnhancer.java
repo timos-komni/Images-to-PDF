@@ -5,6 +5,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -24,7 +25,7 @@ public class FontSizeEnhancer implements Enhancer {
     private final TextToPdfContract.View mView;
     private final TextToPdfPreferences mPreferences;
     private final TextToPDFOptions.Builder mBuilder;
-    private EnhancementOptionsEntity mEnhancementOptionsEntity;
+    private final EnhancementOptionsEntity mEnhancementOptionsEntity;
 
     FontSizeEnhancer(@NonNull final Activity activity,
                      @NonNull final TextToPdfContract.View view,
@@ -36,7 +37,7 @@ public class FontSizeEnhancer implements Enhancer {
                 String.format(mActivity.getString(R.string.edit_font_size),
                         mPreferences.getFontSize()));
         mEnhancementOptionsEntity = new EnhancementOptionsEntity(
-                mActivity.getResources().getDrawable(R.drawable.ic_font_black_24dp),
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_font_black_24dp),
                 mBuilder.getFontSizeTitle());
         mView = view;
     }

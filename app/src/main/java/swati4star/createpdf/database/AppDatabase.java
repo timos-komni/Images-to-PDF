@@ -14,6 +14,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public static AppDatabase getDatabase(final Context context) {
+        //noinspection DoubleCheckedLocking
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {

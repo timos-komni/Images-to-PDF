@@ -44,7 +44,6 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.OutputStream;
@@ -78,25 +77,25 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
     private static final int INTENT_REQUEST_PICK_TEXT_FILE_CODE = 0;
     private static String mPdfpath;
     private static String mTextPath;
-    @BindView(R.id.select_pdf_file)
+    @BindView((R.id.select_pdf_file))
     MorphingButton mSelectPDF;
-    @BindView(R.id.select_text_file)
+    @BindView((R.id.select_text_file))
     MorphingButton mSelectText;
-    @BindView(R.id.create_pdf_added_text)
+    @BindView((R.id.create_pdf_added_text))
     MorphingButton mCreateTextPDF;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.enhancement_options_recycle_view_text)
+    @BindView((R.id.enhancement_options_recycle_view_text))
     RecyclerView mTextEnhancementOptionsRecycleView;
     private Activity mActivity;
     private String mFontTitle;
@@ -104,6 +103,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
     private MorphButtonUtility mMorphButtonUtility;
     private BottomSheetUtils mBottomSheetUtils;
     private SharedPreferences mSharedPreferences;
+    /** @noinspection unused*/
     private boolean mPermissionGranted;
     private int mFontSize = 0;
     private BottomSheetBehavior mSheetBehavior;
@@ -112,7 +112,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
     private Font.FontFamily mFontFamily;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_add_text, container, false);
@@ -145,7 +145,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mMorphButtonUtility = new MorphButtonUtility(mActivity);
@@ -153,7 +153,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
         mBottomSheetUtils = new BottomSheetUtils(mActivity);
     }
 
-    @OnClick(R.id.select_pdf_file)
+    @OnClick((R.id.select_pdf_file))
     public void showPdfFileChooser() {
         try {
             startActivityForResult(mFileUtils.getFileChooser(),
@@ -163,7 +163,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
         }
     }
 
-    @OnClick(R.id.select_text_file)
+    @OnClick((R.id.select_text_file))
     public void showTextFileChooser() {
         Uri uri = Uri.parse(Environment.getRootDirectory() + "/");
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -181,7 +181,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
         }
     }
 
-    @OnClick(R.id.create_pdf_added_text)
+    @OnClick((R.id.create_pdf_added_text))
     public void openPdfNameDialog() {
         PermissionsUtils.getInstance().checkStoragePermissionAndProceed(getContext(), this::openPdfNameDialog_);
     }
@@ -235,7 +235,8 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
                 mSelectText, mCreateTextPDF);
     }
 
-    @OnClick(R.id.viewFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick(View view) {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
@@ -275,7 +276,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
             }
             br.close();
 
-            OutputStream fos = new FileOutputStream(new File(mPath));
+            OutputStream fos = new FileOutputStream(mPath);
 
             PdfReader pdfReader = new PdfReader(mPdfpath);
 
@@ -307,6 +308,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
         }
     }
 
+    /** @noinspection unused*/
     private void getRuntimePermissions() {
         PermissionsUtils.getInstance().requestRuntimePermissions(this,
                 WRITE_PERMISSIONS,
@@ -346,12 +348,8 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
     @Override
     public void onItemClick(int position) {
         switch (position) {
-            case 0:
-                editFontSize();
-                break;
-            case 1:
-                changeFontFamily();
-                break;
+            case 0 -> editFontSize();
+            case 1 -> changeFontFamily();
         }
 
     }

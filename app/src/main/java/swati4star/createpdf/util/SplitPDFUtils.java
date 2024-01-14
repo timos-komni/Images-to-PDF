@@ -5,8 +5,10 @@ import static swati4star.createpdf.util.Constants.pdfExtension;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -33,8 +35,7 @@ public class SplitPDFUtils {
 
     public SplitPDFUtils(Activity context) {
         this.mContext = context;
-        mSharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(mContext);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
     /**
@@ -57,7 +58,7 @@ public class SplitPDFUtils {
      * ERROR_PAGE_RANGE     if range is invalid like 9-4
      * ERROR_INVALID_INPUT  if input is invalid like -3 or 3--4 or 3,,4
      */
-    public static int checkRangeValidity(int numOfPages, String[] ranges) {
+    public static int checkRangeValidity(int numOfPages, @NonNull String[] ranges) {
         int startPage, endPage;
         int returnValue = NO_ERROR;
 
@@ -106,7 +107,7 @@ public class SplitPDFUtils {
      * @param splitDetail string that contains split configuration
      * @return output splitted string array
      */
-    public ArrayList<String> splitPDFByConfig(String path, String splitDetail) {
+    public ArrayList<String> splitPDFByConfig(String path, @NonNull String splitDetail) {
         String splitConfig = splitDetail.replaceAll("\\s+", "");
         ArrayList<String> outputPaths = new ArrayList<>();
         String delims = "[,]";
@@ -195,17 +196,15 @@ public class SplitPDFUtils {
             int numOfPages = reader.getNumberOfPages();
             int result = checkRangeValidity(numOfPages, ranges);
             switch (result) {
-                case ERROR_PAGE_NUMBER:
-                    StringUtils.getInstance().showSnackbar(mContext, R.string.error_page_number);
-                    break;
-                case ERROR_PAGE_RANGE:
-                    StringUtils.getInstance().showSnackbar(mContext, R.string.error_page_range);
-                    break;
-                case ERROR_INVALID_INPUT:
-                    StringUtils.getInstance().showSnackbar(mContext, R.string.error_invalid_input);
-                    break;
-                default:
+                case ERROR_PAGE_NUMBER ->
+                        StringUtils.getInstance().showSnackbar(mContext, R.string.error_page_number);
+                case ERROR_PAGE_RANGE ->
+                        StringUtils.getInstance().showSnackbar(mContext, R.string.error_page_range);
+                case ERROR_INVALID_INPUT ->
+                        StringUtils.getInstance().showSnackbar(mContext, R.string.error_invalid_input);
+                default -> {
                     return true;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

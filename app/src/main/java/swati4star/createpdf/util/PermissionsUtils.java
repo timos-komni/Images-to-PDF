@@ -21,6 +21,7 @@ import swati4star.createpdf.interfaces.GenericCallback;
  * permission arrays are defined in Constants.java file. we have two types of permissions:
  * READ_WRITE_PERMISSIONS and READ_WRITE_CAMERA_PERMISSIONS
  * use these constants in project whenever required.
+ * @noinspection JavadocDeclaration
  */
 public class PermissionsUtils {
 
@@ -36,14 +37,12 @@ public class PermissionsUtils {
      * @param permissions string array of permissions
      * @return true if all permissions are granted, otherwise false
      */
-    public boolean checkRuntimePermissions(Object context, String[] permissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (String permission : permissions) {
-                if ((ContextCompat.checkSelfPermission(retrieveContext(context),
-                        permission)
-                        != PackageManager.PERMISSION_GRANTED)) {
-                    return false;
-                }
+    public boolean checkRuntimePermissions(Object context, @NonNull String[] permissions) {
+        for (String permission : permissions) {
+            if ((ContextCompat.checkSelfPermission(retrieveContext(context),
+                    permission)
+                    != PackageManager.PERMISSION_GRANTED)) {
+                return false;
             }
         }
         return true;
@@ -90,6 +89,7 @@ public class PermissionsUtils {
      * @param requestCode
      * @param expectedRequest
      * @param whenSuccessful  the Runnable to call when permission is granted
+     * @noinspection unused
      */
     public void handleRequestPermissionsResult(Activity context, @NonNull int[] grantResults,
                                                int requestCode, int expectedRequest, @NonNull Runnable whenSuccessful) {

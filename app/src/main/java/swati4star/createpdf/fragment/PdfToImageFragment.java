@@ -60,25 +60,25 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
         ExtractImagesListener, ExtractImagesAdapter.OnFileItemClickedListener, OnBackPressedInterface {
 
     private static final int INTENT_REQUEST_PICK_FILE_CODE = 10;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout mLayoutBottomSheet;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton mSelectFileButton;
-    @BindView(R.id.createImages)
+    @BindView((R.id.createImages))
     MorphingButton mCreateImagesButton;
-    @BindView(R.id.created_images)
+    @BindView((R.id.created_images))
     RecyclerView mCreatedImages;
-    @BindView(R.id.pdfToImagesText)
+    @BindView((R.id.pdfToImagesText))
     TextView mCreateImagesSuccessText;
-    @BindView(R.id.options)
+    @BindView((R.id.options))
     LinearLayout options;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
     private Activity mActivity;
     private String mPath;
@@ -117,7 +117,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
         return rootView;
     }
 
-    @OnClick(R.id.viewImagesInGallery)
+    @OnClick((R.id.viewImagesInGallery))
     void onImagesInGalleryClick() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -130,7 +130,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
     /**
      * called when user chooses to share generated images
      */
-    @OnClick(R.id.shareImages)
+    @OnClick((R.id.shareImages))
     void onShareFilesClick() {
         if (mOutputFilePaths != null) {
             ArrayList<File> fileArrayList = new ArrayList<>();
@@ -144,7 +144,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
     /**
      * called on click of bottom sheet
      */
-    @OnClick(R.id.viewFiles)
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick() {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
@@ -152,7 +152,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
     /**
      * called when user chooses to view generated images
      */
-    @OnClick(R.id.viewImages)
+    @OnClick((R.id.viewImages))
     void onViewImagesClicked() {
         mActivity.startActivity(ImagesPreviewActivity.getStartIntent(mActivity, mOutputFilePaths));
     }
@@ -161,7 +161,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
      * invoked when user chooses to select a pdf file
      * initiates an intent to pick a pdf file
      */
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void showFileChooser() {
         startActivityForResult(mFileUtils.getFileChooser(),
                 INTENT_REQUEST_PICK_FILE_CODE);
@@ -186,7 +186,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
      * invokes generation of images for pdf pages in the background by checking
      * for encryption first.
      */
-    @OnClick(R.id.createImages)
+    @OnClick((R.id.createImages))
     public void parse() {
         if (mPDFUtils.isPDFEncrypted(mPath)) {
             mInputPassword = new String[1];
@@ -224,7 +224,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mMorphButtonUtility = new MorphButtonUtility(mActivity);

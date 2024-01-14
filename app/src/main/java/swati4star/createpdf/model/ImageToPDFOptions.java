@@ -21,6 +21,7 @@ public class ImageToPDFOptions extends PDFOptions {
         setBorderWidth(0);
     }
 
+    /** @noinspection unused*/
     public ImageToPDFOptions(String mFileName, String mPageSize, boolean mPasswordProtected,
                              String mPassword, String mQualityString, int mBorderWidth,
                              String masterPwd, ArrayList<String> mImagesUri,

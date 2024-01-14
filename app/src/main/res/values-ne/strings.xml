@@ -103,14 +103,14 @@
     <string name="excel_to_pdf">पीडीएफमा एक्सेल</string>
     <string name="excel_tv_view_text">एक्सेल फाइल चयन गरियो:</string>
     <string name="select_excel_file">एक्सेल फाइल चयन गर्नुहोस्</string>
-    <string name="share_chooser">सन्देश पठाउनको लागि एप चयन गर्नुहोस्...</string>
+    <string name="share_chooser">सन्देश पठाउनको लागि एप चयन गर्नुहोस्…</string>
     <string name="rate_us_text">नमस्ते! मैले भर्खरै प्लेस्टोरमा यो एप जाँच गरें। यसलाई प्रयास गर्नुहोस्: https://play.google.com/store/apps/details?id=swati4star.createpdf । यसले छविहरूलाई पीडीएफमा सजिलै रूपान्तरण गर्दछ। :)</string>
     <string name="snackbar_no_share_app">साझेदारी गर्न कुनै अनुप्रयोग छैन।</string>
     <string name="images_selected">%1$d छवि(हरू) चयन गरियो।</string>
     <string name="feedback_subject">पीडीएफ कन्भर्टरमा छविहरूको लागि सुझावहरू</string>
     <string name="feedback_text">कृपया आफ्नो बहुमूल्य प्रतिक्रिया लेख्नुहोस्, वा नमस्ते छोड्नुहोस्! :)</string>
     <string name="snackbar_no_email_clients">त्यहाँ कुनै इमेल क्लाइन्टहरू स्थापित छैनन्।</string>
-    <string name="feedback_chooser">"मेल पठाउनुहोस्..."</string>
+    <string name="feedback_chooser">"मेल पठाउनुहोस्…"</string>
     <string name="no_pdf">ददेखाउनको लागि कुनै पीडीएफ छैन</string>
     <string name="get_started">अब सुरु गर्नुहोस्</string>
     <string name="view_files_text">तपाईंका सबै रूपान्तरित फाइलहरू यहाँ हेर्नुहोस्!</string>
@@ -131,7 +131,7 @@
     <string name="decrypted_file">_unencrypted.pdf</string>
     <string name="decrypt_message">जारी राख्न पासवर्ड प्रविष्ट गर्नुहोस्</string>
     <string name="snackbar_txtselected">पाठ फाइल चयन गरियो!</string>
-    <string name="decrypt_protected_file">चयन गरिएको पीडीएफ पासवर्ड सुरक्षित छ। जारी राख्न पासवर्ड प्रविष्ट गर्नुहोस्...</string>
+    <string name="decrypt_protected_file">चयन गरिएको पीडीएफ पासवर्ड सुरक्षित छ। जारी राख्न पासवर्ड प्रविष्ट गर्नुहोस्…</string>
     <string name="not_encrypted">पीडीएफ इन्क्रिप्ट गरिएको छैन</string>
     <string name="save_current">बचत गर्नुहोस्</string>
     <string name="save">बचत गर्नुहोस्</string>
@@ -371,7 +371,7 @@
     <string name="favourites_text">आफ्नो मनपर्ने सुविधाहरू थप्न + आइकन चयन गर्नुहोस्!</string>
     <string name="no_excel_file">कुनै एक्सेल फाइल चयन गरिएको छैन</string>
     <string name="split_range_alert">प्रविष्ट गरिएको विभाजन दायराले पुन: चयन गरिएको पीडीएफ सिर्जना गर्नेछ!</string>
-    <string name="reordering_pages_dialog">तपाईंको पृष्ठहरू पुन: क्रमबद्ध गर्दै...</string>
+    <string name="reordering_pages_dialog">तपाईंको पृष्ठहरू पुन: क्रमबद्ध गर्दै…</string>
     <string name="delete_alert_singular">के तपाइँ चयन गरिएको फाइल मेटाउन चाहनुहुन्छ?</string>
     <string name="snackbar_files_deleted">फाइलहरू मेटाइयो</string>
     <string name="lbl_recently_used">भर्खरै प्रयोग गरिएका सुविधाहरू</string>

@@ -22,11 +22,12 @@ import swati4star.createpdf.database.History;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHistoryHolder> {
 
     private final List<History> mHistoryList;
+    /** @noinspection FieldCanBeLocal, unused */
     private final Activity mActivity;
     private final OnClickListener mOnClickListener;
     private final HashMap<String, Integer> mIconsOperationList;
 
-    public HistoryAdapter(Activity mActivity, List<History> mHistoryList, OnClickListener mOnClickListener) {
+    public HistoryAdapter(@NonNull Activity mActivity, List<History> mHistoryList, OnClickListener mOnClickListener) {
         this.mHistoryList = mHistoryList;
         this.mActivity = mActivity;
         this.mOnClickListener = mOnClickListener;
@@ -93,13 +94,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHist
 
     public class ViewHistoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.fileName)
+        @BindView((R.id.fileName))
         TextView mFilename;
-        @BindView(R.id.operationDate)
+        @BindView((R.id.operationDate))
         TextView mOperationDate;
-        @BindView(R.id.operationType)
+        @BindView((R.id.operationType))
         TextView mOperationType;
-        @BindView(R.id.operationImage)
+        @BindView((R.id.operationImage))
         ImageView mOperationImage;
 
         ViewHistoryHolder(View itemView) {

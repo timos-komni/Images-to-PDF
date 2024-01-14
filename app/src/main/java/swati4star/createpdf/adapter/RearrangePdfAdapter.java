@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import swati4star.createpdf.R;
 
 public class RearrangePdfAdapter extends RecyclerView.Adapter<RearrangePdfAdapter.ViewHolder> {
+    /** @noinspection FieldCanBeLocal, unused */
     private final Context mContext;
     private final OnClickListener mOnClickListener;
     private ArrayList<Bitmap> mBitmaps;
@@ -75,15 +76,15 @@ public class RearrangePdfAdapter extends RecyclerView.Adapter<RearrangePdfAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.image)
+        @BindView((R.id.image))
         ImageView imageView;
-        @BindView(R.id.buttonUp)
+        @BindView((R.id.buttonUp))
         ImageButton buttonUp;
-        @BindView(R.id.buttonDown)
+        @BindView((R.id.buttonDown))
         ImageButton buttonDown;
-        @BindView(R.id.pageNumber)
+        @BindView((R.id.pageNumber))
         TextView pageNumber;
-        @BindView(R.id.removeImage)
+        @BindView((R.id.removeImage))
         ImageButton mRemoveImage;
 
         ViewHolder(View itemView) {
@@ -95,16 +96,11 @@ public class RearrangePdfAdapter extends RecyclerView.Adapter<RearrangePdfAdapte
         }
 
         @Override
-        public void onClick(View view) {
+        public void onClick(@NonNull View view) {
             switch (view.getId()) {
-                case R.id.buttonUp:
-                    mOnClickListener.onUpClick(getAdapterPosition());
-                    break;
-                case R.id.buttonDown:
-                    mOnClickListener.onDownClick(getAdapterPosition());
-                    break;
-                case R.id.removeImage:
-                    mOnClickListener.onRemoveClick(getAdapterPosition());
+                case (R.id.buttonUp) -> mOnClickListener.onUpClick(getAdapterPosition());
+                case (R.id.buttonDown) -> mOnClickListener.onDownClick(getAdapterPosition());
+                case (R.id.removeImage) -> mOnClickListener.onRemoveClick(getAdapterPosition());
             }
         }
     }

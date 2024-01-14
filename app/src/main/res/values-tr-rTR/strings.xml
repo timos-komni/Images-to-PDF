@@ -151,7 +151,7 @@
     <string name="select_excel_file">Excel dosyasını seç</string>
 
     <!-- Share strings -->
-    <string name="share_chooser">Mesaj göndermek için uygulama seçin...</string>
+    <string name="share_chooser">Mesaj göndermek için uygulama seçin…</string>
 
     <!-- Rate us strings -->
     <string name="rate_us_text">Merhaba, bu uygulamayı PlayStore\'dan indirdim. Denemek için : https://play.google.com/store/apps/details?id=swati4star.createpdf Resimleri kolay bir şekilde PDF dosyasına çevirebiliyor üstelik açık kaynak kodlu :)</string>
@@ -164,7 +164,7 @@
     <string name="feedback_subject">PDF Converter için Öneriler</string>
     <string name="feedback_text">Değerli geri bildirimlerinizi bize yazın ya  da bir Merhaba diyin! :)</string>
     <string name="snackbar_no_email_clients">Yüklü e-posta istemcisi yok.</string>
-    <string name="feedback_chooser">Mail yolla...</string>
+    <string name="feedback_chooser">Mail yolla…</string>
     <string name="no_pdf">Gösterilecek PDF yok</string>
     <string name="get_started">Şimdi Başla</string>
     <string name="view_files_text">Dönüştürülen tüm dosyalarınızı burada görüntüleyin!</string>
@@ -191,7 +191,7 @@
     <string name="decrypt_message">Devam etmek için parola giriniz</string>
 
     <string name="snackbar_txtselected">Metin Dosyası seçildi!</string>
-    <string name="decrypt_protected_file">Parola korumalı bir pdf seçildi. Devam etmek için parola giriniz...</string>
+    <string name="decrypt_protected_file">Parola korumalı bir pdf seçildi. Devam etmek için parola giriniz…</string>
     <string name="not_encrypted">PDF Şifrelenmemiş</string>
     <string name="save_current">Kaydet</string>
     <string name="save">Kaydet</string>
@@ -493,7 +493,7 @@
 
     <!--file name suffix-->
     <string name="split_range_alert">Bölünmüş aralığa girildiğinde tekrar Seçili PDF oluşturulur!</string>
-    <string name="reordering_pages_dialog">Sayfalarınız yeniden sıralanıyor...</string>
+    <string name="reordering_pages_dialog">Sayfalarınız yeniden sıralanıyor…</string>
     <string name="delete_alert_singular">Seçili dosyayı silmek istediğinizden emin misiniz?</string>
     <string name="snackbar_files_deleted">Dosyalar Silindi</string>
     <string name="lbl_recently_used">Son Kullanılan Özellikler</string>

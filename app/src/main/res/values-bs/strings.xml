@@ -538,7 +538,7 @@
     <string name="split_range_alert">Unešeni raspon za dijeljenje će izraditi odabrani PDF ponovo!</string>
 
     <!--file name suffix-->
-    <string name="reordering_pages_dialog">Preuređujem stranice...</string>
+    <string name="reordering_pages_dialog">Preuređujem stranice…</string>
     <string name="delete_alert_singular">Da li želite izbrisati odabrane datoteke?</string>
     <string name="snackbar_files_deleted">Datoteke Izbrisane</string>
     <string name="lbl_recently_used">Nedavno Korištene Funkcije</string>

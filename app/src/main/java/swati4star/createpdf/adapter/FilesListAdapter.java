@@ -20,6 +20,7 @@ import swati4star.createpdf.util.FileUtils;
 public class FilesListAdapter extends RecyclerView.Adapter<FilesListAdapter.ViewMergeFilesHolder> {
 
     private final ArrayList<String> mFilePaths;
+    /** @noinspection FieldCanBeLocal, unused */
     private final Activity mContext;
     private final OnFileItemClickedListener mOnClickListener;
 
@@ -54,9 +55,9 @@ public class FilesListAdapter extends RecyclerView.Adapter<FilesListAdapter.View
     }
 
     public class ViewMergeFilesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.fileName)
+        @BindView((R.id.fileName))
         TextView mFileName;
-        @BindView(R.id.encryptionImage)
+        @BindView((R.id.encryptionImage))
         ImageView mEncryptionImage;
 
         ViewMergeFilesHolder(View itemView) {

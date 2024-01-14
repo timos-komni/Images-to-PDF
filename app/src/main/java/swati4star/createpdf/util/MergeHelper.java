@@ -7,7 +7,8 @@ import static swati4star.createpdf.util.Constants.appName;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 

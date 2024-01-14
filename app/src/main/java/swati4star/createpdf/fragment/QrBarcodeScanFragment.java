@@ -18,9 +18,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -63,10 +62,11 @@ import swati4star.createpdf.util.TextToPDFUtils;
 public class QrBarcodeScanFragment extends Fragment implements View.OnClickListener, OnPDFCreatedInterface {
     private static final int REQUEST_CODE_FOR_QR_CODE = 1;
     private static final int REQUEST_CODE_FOR_BARCODE = 2;
+    /** @noinspection FieldCanBeLocal*/
     private final String mTempFileName = "scan_result_temp.txt";
-    @BindView(R.id.scan_qrcode)
+    @BindView((R.id.scan_qrcode))
     MyCardView scanQrcode;
-    @BindView(R.id.scan_barcode)
+    @BindView((R.id.scan_barcode))
     MyCardView scanBarcode;
     private SharedPreferences mSharedPreferences;
     private Activity mActivity;
@@ -120,34 +120,30 @@ public class QrBarcodeScanFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         switch (v.getId()) {
-            case R.id.scan_qrcode:
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (isCameraPermissionGranted()) {
-                        if (PermissionsUtils.getInstance().checkRuntimePermissions(this, WRITE_PERMISSIONS)) {
-                            openScanner(IntentIntegrator.QR_CODE_TYPES, R.string.scan_qrcode);
-                        } else {
-                            getRuntimePermissions();
-                        }
+            case (R.id.scan_qrcode) -> {
+                if (isCameraPermissionGranted()) {
+                    if (PermissionsUtils.getInstance().checkRuntimePermissions(this, WRITE_PERMISSIONS)) {
+                        openScanner(IntentIntegrator.QR_CODE_TYPES, R.string.scan_qrcode);
                     } else {
-                        requestCameraPermissionForQrCodeScan();
+                        getRuntimePermissions();
                     }
+                } else {
+                    requestCameraPermissionForQrCodeScan();
                 }
-                break;
-            case R.id.scan_barcode:
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (isCameraPermissionGranted()) {
-                        if (PermissionsUtils.getInstance().checkRuntimePermissions(this, WRITE_PERMISSIONS)) {
-                            openScanner(IntentIntegrator.ONE_D_CODE_TYPES, R.string.scan_barcode);
-                        } else {
-                            getRuntimePermissions();
-                        }
+            }
+            case (R.id.scan_barcode) -> {
+                if (isCameraPermissionGranted()) {
+                    if (PermissionsUtils.getInstance().checkRuntimePermissions(this, WRITE_PERMISSIONS)) {
+                        openScanner(IntentIntegrator.ONE_D_CODE_TYPES, R.string.scan_barcode);
                     } else {
-                        requestCameraPermissionForBarCodeScan();
+                        getRuntimePermissions();
                     }
+                } else {
+                    requestCameraPermissionForBarCodeScan();
                 }
-                break;
+            }
         }
     }
 
@@ -202,7 +198,7 @@ public class QrBarcodeScanFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mFileUtils = new FileUtils(mActivity);
@@ -249,7 +245,7 @@ public class QrBarcodeScanFragment extends Fragment implements View.OnClickListe
      ***/
 
     private boolean isCameraPermissionGranted() {
-        return ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestCameraPermissionForQrCodeScan() {
@@ -308,7 +304,7 @@ public class QrBarcodeScanFragment extends Fragment implements View.OnClickListe
             permissionType = "unknown";
         }
         if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-            new AlertDialog.Builder(getContext())
+            new AlertDialog.Builder(requireContext())
                     .setTitle("Permission Denied")
                     .setMessage(permissionType + " permission is needed to scan " + scanType)
                     .setPositiveButton("Re-try", (dialog, which) -> {
@@ -321,16 +317,14 @@ public class QrBarcodeScanFragment extends Fragment implements View.OnClickListe
                         }
                         dialog.dismiss();
                     })
-                    .setNegativeButton("Cancel", (dialog, which) -> {
-                        dialog.dismiss();
-                    }).show();
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss()).show();
         } else if (!shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-            new AlertDialog.Builder(getContext())
+            new AlertDialog.Builder(requireContext())
                     .setTitle("Permission Denied")
                     .setMessage("You have chosen to never ask the permission again, but " + permissionType + " permission is needed to scan " + scanType)
                     .setPositiveButton("Enable from settings", (dialog, which) -> {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+                        Uri uri = Uri.fromParts("package", requireActivity().getPackageName(), null);
                         intent.setData(uri);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -338,9 +332,7 @@ public class QrBarcodeScanFragment extends Fragment implements View.OnClickListe
                         startActivity(intent);
                         dialog.dismiss();
                     })
-                    .setNegativeButton("Cancel", (dialog, which) -> {
-                        dialog.dismiss();
-                    }).show();
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss()).show();
         }
     }
 }

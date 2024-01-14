@@ -13,12 +13,13 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.provider.MediaStore;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
+import androidx.preference.PreferenceManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -77,7 +78,8 @@ public class FileUtils {
      * @param path absolute path of the file
      * @return absolute path of file directory
      */
-    public static String getFileDirectoryPath(String path) {
+    @NonNull
+    public static String getFileDirectoryPath(@NonNull String path) {
         return path.substring(0, path.lastIndexOf(PATH_SEPERATOR) + 1);
     }
 
@@ -115,7 +117,7 @@ public class FileUtils {
      *
      * @param files - the list of files to be shared
      */
-    public void shareMultipleFiles(List<File> files) {
+    public void shareMultipleFiles(@NonNull List<File> files) {
         ArrayList<Uri> uris = new ArrayList<>();
         for (File file : files) {
             Uri uri = FileProvider.getUriForFile(mContext, AUTHORITY_APP, file);
@@ -212,6 +214,7 @@ public class FileUtils {
      * Check if file already exists in pdf_dir
      * @param mFileName - Name of the file
      * @return true if file exists else false
+     * @noinspection BooleanMethodIsAlwaysInverted
      */
 
     public boolean isFileExist(String mFileName) {
@@ -228,7 +231,7 @@ public class FileUtils {
      * @param uri - file uri
      * @return - extracted filename
      */
-    public String getFileName(Uri uri) {
+    public String getFileName(@NonNull Uri uri) {
         String fileName = null;
         String scheme = uri.getScheme();
 
@@ -259,7 +262,7 @@ public class FileUtils {
      * @param filesPath - ArrayList of image paths
      * @return fileName with _pdf suffix
      */
-    public String getLastFileName(ArrayList<String> filesPath) {
+    public String getLastFileName(@NonNull ArrayList<String> filesPath) {
         if (filesPath.size() == 0)
             return "";
 

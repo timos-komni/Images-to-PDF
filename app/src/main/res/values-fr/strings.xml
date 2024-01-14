@@ -402,7 +402,7 @@
 \n2. Sélectionnez « Ajouter un filigrane ».
 \n3. Saisissez l\'information requise. Appuyez sur OK. 
 \n4. Un nouveau PDF marqué d\'un filigrane sera créé.</string>
-    <string name="reordering_pages_dialog">Réorganisation de vos pages...</string>
+    <string name="reordering_pages_dialog">Réorganisation de vos pages…</string>
     <string name="delete_alert_singular">Désirez-vous supprimer le fichier sélectionné \?</string>
     <string name="snackbar_files_deleted">Fichiers supprimés</string>
     <string name="lbl_recently_used">Fonction récemment utilisée</string>

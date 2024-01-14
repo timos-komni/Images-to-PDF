@@ -23,11 +23,11 @@ import swati4star.createpdf.util.ThemeUtils;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    @BindView(R.id.view_pager)
+    @BindView((R.id.view_pager))
     public ViewPager mViewPager;
-    @BindView(R.id.layoutDots)
+    @BindView((R.id.layoutDots))
     public LinearLayout mDotsLayout;
-    @BindView(R.id.btn_skip)
+    @BindView((R.id.btn_skip))
     public Button mBtnSkip;
 
     private int[] mLayouts;
@@ -50,6 +50,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     };
 
+    /** @noinspection DanglingJavadoc*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ThemeUtils.getInstance().setThemeApp(this);
@@ -85,7 +86,7 @@ public class WelcomeActivity extends AppCompatActivity {
         mViewPager.setOffscreenPageLimit(3);
     }
 
-    @OnClick(R.id.btn_skip)
+    @OnClick((R.id.btn_skip))
     public void openMainActivity() {
         finish();
     }

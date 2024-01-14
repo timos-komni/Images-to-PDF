@@ -2,6 +2,9 @@ package swati4star.createpdf.util;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
 import com.itextpdf.text.Font;
 
 import java.util.ArrayList;
@@ -19,13 +22,13 @@ public class AddTextEnhancementOptionsUtils {
         return SingletonHolder.INSTANCE;
     }
 
-    public ArrayList<EnhancementOptionsEntity> getEnhancementOptions(Context context,
+    public ArrayList<EnhancementOptionsEntity> getEnhancementOptions(@NonNull Context context,
                                                                      String fontTitle,
-                                                                     Font.FontFamily fontFamily) {
+                                                                     @NonNull Font.FontFamily fontFamily) {
         ArrayList<EnhancementOptionsEntity> options = new ArrayList<>();
 
         options.add(new EnhancementOptionsEntity(
-                context.getResources().getDrawable(R.drawable.ic_font_black_24dp),
+                ContextCompat.getDrawable(context, R.drawable.ic_font_black_24dp),
                 fontTitle));
         options.add(new EnhancementOptionsEntity(
                 context, R.drawable.ic_font_family_24dp,

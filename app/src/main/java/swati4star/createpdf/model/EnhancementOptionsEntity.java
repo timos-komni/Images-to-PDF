@@ -3,6 +3,9 @@ package swati4star.createpdf.model;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
 public class EnhancementOptionsEntity {
     private Drawable mImage;
     private String mName;
@@ -12,13 +15,13 @@ public class EnhancementOptionsEntity {
         this.mName = name;
     }
 
-    public EnhancementOptionsEntity(Context context, int imageId, String name) {
-        this.mImage = context.getResources().getDrawable(imageId);
+    public EnhancementOptionsEntity(@NonNull Context context, int imageId, String name) {
+        this.mImage = ContextCompat.getDrawable(context, imageId);
         this.mName = name;
     }
 
-    public EnhancementOptionsEntity(Context context, int resourceId, int stringId) {
-        this.mImage = context.getResources().getDrawable(resourceId);
+    public EnhancementOptionsEntity(@NonNull Context context, int resourceId, int stringId) {
+        this.mImage = ContextCompat.getDrawable(context, resourceId);
         this.mName = context.getString(stringId);
     }
 

@@ -69,29 +69,29 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
 
     private static final int INTENT_REQUEST_PICKFILE_CODE = 10;
     private static final int INTENT_REQUEST_REARRANGE_PDF = 11;
-    @BindView(R.id.lottie_progress)
+    @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton selectFileButton;
-    @BindView(R.id.pdfCreate)
+    @BindView((R.id.pdfCreate))
     MorphingButton createPdf;
-    @BindView(R.id.bottom_sheet)
+    @BindView((R.id.bottom_sheet))
     LinearLayout layoutBottomSheet;
-    @BindView(R.id.upArrow)
+    @BindView((R.id.upArrow))
     ImageView mUpArrow;
-    @BindView(R.id.downArrow)
+    @BindView((R.id.downArrow))
     ImageView mDownArrow;
-    @BindView(R.id.layout)
+    @BindView((R.id.layout))
     RelativeLayout mLayout;
-    @BindView(R.id.pages)
+    @BindView((R.id.pages))
     EditText pagesInput;
-    @BindView(R.id.recyclerViewFiles)
+    @BindView((R.id.recyclerViewFiles))
     RecyclerView mRecyclerViewFiles;
-    @BindView(R.id.infoText)
+    @BindView((R.id.infoText))
     TextView mInfoText;
-    @BindView(R.id.compressionInfoText)
+    @BindView((R.id.compressionInfoText))
     TextView mCompressionInfoText;
-    @BindView(R.id.view_pdf)
+    @BindView((R.id.view_pdf))
     Button mViewPdf;
     private Activity mActivity;
     private String mPath;
@@ -120,7 +120,8 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
         return rootview;
     }
 
-    @OnClick(R.id.viewFiles)
+    /** @noinspection unused*/
+    @OnClick((R.id.viewFiles))
     void onViewFilesClick(View view) {
         mBottomSheetUtils.showHideSheet(mSheetBehavior);
     }
@@ -128,7 +129,7 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
     /**
      * Displays file chooser intent
      */
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void showFileChooser() {
         startActivityForResult(mFileUtils.getFileChooser(),
                 INTENT_REQUEST_PICKFILE_CODE);
@@ -173,7 +174,8 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
      * @param pages The pages String that contains page numbers
      * @return Returns the new pdf name
      */
-    private String setPath(String pages) {
+    @NonNull
+    private String setPath(@NonNull String pages) {
         String outputPath;
         if (pages.length() > 50) {
             outputPath = mPath.replace(mActivity.getString(R.string.pdf_ext),
@@ -186,7 +188,7 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
         return outputPath;
     }
 
-    @OnClick(R.id.pdfCreate)
+    @OnClick((R.id.pdfCreate))
     public void parse() {
         StringUtils.getInstance().hideKeyboard(mActivity);
         if (mOperation.equals(COMPRESS_PDF)) {
@@ -238,21 +240,16 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
         pagesInput.setText(null);
         mMorphButtonUtility.initializeButton(selectFileButton, createPdf);
         switch (mOperation) {
-            case REORDER_PAGES:
-            case REMOVE_PAGES:
-            case ADD_PWD:
-            case REMOVE_PWd:
+            case REORDER_PAGES, REMOVE_PAGES, ADD_PWD, REMOVE_PWd -> {
                 mInfoText.setVisibility(View.GONE);
                 pagesInput.setVisibility(View.GONE);
-                break;
-            case COMPRESS_PDF:
-                mInfoText.setText(R.string.compress_pdf_prompt);
-                break;
+            }
+            case COMPRESS_PDF -> mInfoText.setText(R.string.compress_pdf_prompt);
         }
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mMorphButtonUtility = new MorphButtonUtility(mActivity);

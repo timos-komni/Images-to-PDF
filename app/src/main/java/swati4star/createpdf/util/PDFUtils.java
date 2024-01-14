@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -35,6 +36,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import swati4star.createpdf.R;
@@ -42,6 +44,7 @@ import swati4star.createpdf.database.DatabaseHelper;
 import swati4star.createpdf.interfaces.OnPDFCompressedInterface;
 import swati4star.createpdf.interfaces.OnPdfReorderedInterface;
 
+/** @noinspection JavadocDeclaration*/
 public class PDFUtils {
 
     private final Activity mContext;
@@ -57,7 +60,7 @@ public class PDFUtils {
      *
      * @param file - file name
      */
-    public void showDetails(File file) {
+    public void showDetails(@NonNull File file) {
         String name = file.getName();
         String path = file.getPath();
         String size = FileInfoUtils.getFormattedSize(file);
@@ -71,7 +74,7 @@ public class PDFUtils {
         title.setText(R.string.details);
         title.setPadding(20, 10, 10, 10);
         title.setTextSize(30);
-        title.setTextColor(mContext.getResources().getColor(R.color.black));
+        title.setTextColor(ContextCompat.getColor(mContext, R.color.black));
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         final AlertDialog dialog = builder.create();
         builder.setView(message);
@@ -116,6 +119,7 @@ public class PDFUtils {
      * @param output    - path of output PDF
      * @param imagesUri - list of images to add
      * @return true, if succeeded, otherwise false
+     * @noinspection UnusedReturnValue
      */
     public boolean addImagesToPdf(String inputPath, String output, ArrayList<String> imagesUri) {
         try {
@@ -147,7 +151,7 @@ public class PDFUtils {
      * @param document
      * @param writer
      */
-    private void initDoc(PdfReader reader, Document document, PdfWriter writer) {
+    private void initDoc(@NonNull PdfReader reader, Document document, @NonNull PdfWriter writer) {
         int numOfPages = reader.getNumberOfPages();
         PdfContentByte cb = writer.getDirectContent();
         PdfImportedPage importedPage;
@@ -166,7 +170,7 @@ public class PDFUtils {
      * @throws DocumentException
      * @throws IOException
      */
-    private void appendImages(Document document, ArrayList<String> imagesUri) throws DocumentException, IOException {
+    private void appendImages(@NonNull Document document, @NonNull ArrayList<String> imagesUri) throws DocumentException, IOException {
         Rectangle documentRect = document.getPageSize();
         for (int i = 0; i < imagesUri.size(); i++) {
             document.newPage();
@@ -261,7 +265,7 @@ public class PDFUtils {
          * @param reader - PdfReader to have objects compressed
          * @throws IOException
          */
-        private void compressReader(PdfReader reader) throws IOException {
+        private void compressReader(@NonNull PdfReader reader) throws IOException {
             int n = reader.getXrefSize();
             PdfObject object;
             PRStream stream;
@@ -283,7 +287,7 @@ public class PDFUtils {
          * @param stream - Steam to be compressed
          * @throws IOException
          */
-        private void compressStream(PRStream stream) throws IOException {
+        private void compressStream(@NonNull PRStream stream) throws IOException {
             PdfObject pdfSubType = stream.get(PdfName.SUBTYPE);
             System.out.println(stream.type());
             if (pdfSubType != null && pdfSubType.toString().equals(PdfName.IMAGE.toString())) {
@@ -334,12 +338,13 @@ public class PDFUtils {
         }
     }
 
-    private class ReorderPdfPagesAsync extends AsyncTask<String, String, ArrayList<Bitmap>> {
+    /** @noinspection deprecation*/
+    private static class ReorderPdfPagesAsync extends AsyncTask<String, String, ArrayList<Bitmap>> {
 
         private final Uri mUri;
         private final String mPath;
         private final OnPdfReorderedInterface mOnPdfReorderedInterface;
-        private final Activity mActivity;
+        private final WeakReference<Activity> mActivity;
 
         /**
          * @param uri                     Uri of the pdf
@@ -355,7 +360,7 @@ public class PDFUtils {
             this.mUri = uri;
             this.mPath = path;
             this.mOnPdfReorderedInterface = onPdfReorderedInterface;
-            this.mActivity = activity;
+            this.mActivity = new WeakReference<>(activity);
         }
 
         @Override
@@ -370,7 +375,7 @@ public class PDFUtils {
             ParcelFileDescriptor fileDescriptor = null;
             try {
                 if (mUri != null)
-                    fileDescriptor = mActivity.getContentResolver().openFileDescriptor(mUri, "r");
+                    fileDescriptor = getActivity().getContentResolver().openFileDescriptor(mUri, "r");
                 else if (mPath != null)
                     fileDescriptor = ParcelFileDescriptor.open(new File(mPath), MODE_READ_ONLY);
                 if (fileDescriptor != null) {
@@ -392,7 +397,8 @@ public class PDFUtils {
          * @param renderer
          * @return
          */
-        private ArrayList<Bitmap> getBitmaps(PdfRenderer renderer) {
+        @NonNull
+        private ArrayList<Bitmap> getBitmaps(@NonNull PdfRenderer renderer) {
             ArrayList<Bitmap> bitmaps = new ArrayList<>();
             final int pageCount = renderer.getPageCount();
             for (int i = 0; i < pageCount; i++) {
@@ -419,6 +425,16 @@ public class PDFUtils {
                 mOnPdfReorderedInterface.onPdfReorderFailed();
             }
         }
+
+        /** @noinspection unused*/
+        protected WeakReference<Activity> getActivityRef() {
+            return mActivity;
+        }
+
+        public Activity getActivity() {
+            return mActivity.get();
+        }
+
     }
 
 }

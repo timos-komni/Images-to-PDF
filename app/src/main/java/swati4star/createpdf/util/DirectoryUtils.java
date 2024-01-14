@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.NonNull;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +46,7 @@ public class DirectoryUtils {
         if (result && folder.isDirectory()) {
             String[] children = folder.list();
             for (String child : children) {
+                //noinspection ResultOfMethodCallIgnored
                 new File(folder, child).delete();
             }
         }
@@ -134,7 +137,7 @@ public class DirectoryUtils {
      * @param file - input file
      * @return tru - if condition satisfies, else false
      */
-    private boolean isPDFAndNotDirectory(File file) {
+    private boolean isPDFAndNotDirectory(@NonNull File file) {
         return !file.isDirectory() &&
                 file.getName().endsWith(mContext.getString(R.string.pdf_ext));
     }
@@ -146,6 +149,7 @@ public class DirectoryUtils {
         File folder = new File(mSharedPreferences.getString(STORAGE_LOCATION,
                 StringUtils.getInstance().getDefaultStorageLocation()));
         if (!folder.exists())
+            //noinspection ResultOfMethodCallIgnored
             folder.mkdir();
         return folder;
     }

@@ -23,6 +23,7 @@ import swati4star.createpdf.util.ImageUtils;
 public class ExtractImagesAdapter extends RecyclerView.Adapter<ExtractImagesAdapter.ViewMergeFilesHolder> {
 
     private final ArrayList<String> mFilePaths;
+    /** @noinspection FieldCanBeLocal, unused */
     private final Activity mContext;
     private final OnFileItemClickedListener mOnClickListener;
 
@@ -59,9 +60,9 @@ public class ExtractImagesAdapter extends RecyclerView.Adapter<ExtractImagesAdap
     }
 
     public class ViewMergeFilesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.fileName)
+        @BindView((R.id.fileName))
         TextView mFileName;
-        @BindView(R.id.imagePreview)
+        @BindView((R.id.imagePreview))
         ImageView mImagePreview;
 
         ViewMergeFilesHolder(View itemView) {

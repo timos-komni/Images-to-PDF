@@ -42,7 +42,7 @@ public class AboutUsFragment extends Fragment {
         return rootView;
     }
 
-    @OnClick(R.id.layout_email)
+    @OnClick((R.id.layout_email))
     public void sendmail() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
@@ -52,45 +52,45 @@ public class AboutUsFragment extends Fragment {
         mFeedbackUtils.openMailIntent(intent);
     }
 
-    @OnClick(R.id.layout_website)
+    @OnClick((R.id.layout_website))
     void openWeb() {
         mFeedbackUtils.openWebPage("http://swati4star.github.io/Images-to-PDF/");
     }
 
-    @OnClick(R.id.layout_slack)
+    @OnClick((R.id.layout_slack))
     void joinSlack() {
         mFeedbackUtils.openWebPage("https://join.slack.com/t/imagestopdf/shared_invite/" +
                 "enQtNDA2ODk1NDE3Mzk3LTUwNjllYzY5YWZkZDliY2FmNDhkNmM1NjIwZTc1Y" +
                 "jU4NTgxNWI0ZDczMWQxMTEyZjA0M2Y5N2RlN2NiMWRjZGI");
     }
 
-    @OnClick(R.id.layout_github)
+    @OnClick((R.id.layout_github))
     void githubRepo() {
         mFeedbackUtils.openWebPage("https://github.com/Swati4star/Images-to-PDF");
     }
 
-    @OnClick(R.id.layout_contri)
+    @OnClick((R.id.layout_contri))
     void contributorsList() {
         mFeedbackUtils.openWebPage("https://github.com/Swati4star/Images-to-PDF/graphs/contributors");
     }
 
-    @OnClick(R.id.layout_playstore)
+    @OnClick((R.id.layout_playstore))
     void openPlaystore() {
         mFeedbackUtils.openWebPage("https://play.google.com/store/apps/details?id=swati4star.createpdf");
     }
 
-    @OnClick(R.id.layout_privacy)
+    @OnClick((R.id.layout_privacy))
     void privacyPolicy() {
         mFeedbackUtils.openWebPage("https://sites.google.com/view/privacy-policy-image-to-pdf/home");
     }
 
-    @OnClick(R.id.layout_license)
+    @OnClick((R.id.layout_license))
     void license() {
         mFeedbackUtils.openWebPage("https://github.com/Swati4star/Images-to-PDF/blob/master/LICENSE.md");
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
     }

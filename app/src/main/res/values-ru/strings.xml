@@ -459,7 +459,7 @@
     <string name="split_one_page_pdf_alert">Выбранный PDF не может быть разделен, потому что он имеет только 1 страницу!</string>
     <string name="no_excel_file">Файл Excel не выбран</string>
     <string name="split_range_alert">Введённый диапазон разделения создаст выбранный PDF ещё раз!</string>
-    <string name="reordering_pages_dialog">Изменение порядка страниц...</string>
+    <string name="reordering_pages_dialog">Изменение порядка страниц…</string>
     <string name="delete_alert_singular">Вы хотите удалить выбранный файл?</string>
     <string name="snackbar_files_deleted">Файлы удалены</string>
     <string name="lbl_recently_used">Недавно использованная особенность</string>

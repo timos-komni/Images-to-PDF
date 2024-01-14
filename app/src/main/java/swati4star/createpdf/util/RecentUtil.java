@@ -4,6 +4,8 @@ import static swati4star.createpdf.util.Constants.RECENT_PREF;
 
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,7 +27,7 @@ public class RecentUtil {
      * @return LinkedHashMap consisting of string as a key holding the feature view Id when it was
      * clicked and map of drawable Id and title string res Id.
      */
-    public LinkedHashMap<String, Map<String, String>> getList(SharedPreferences preferences)
+    public LinkedHashMap<String, Map<String, String>> getList(@NonNull SharedPreferences preferences)
             throws JSONException {
 
         //creating the empty list.

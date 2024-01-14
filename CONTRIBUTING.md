@@ -39,7 +39,6 @@ There should be no errors while running the following commands:
 
 ```sh
 ./gradlew assemble
-./gradlew checkstyle
 ```
 
 Your patch should follow the same conventions & pass the same code quality

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -25,7 +26,7 @@ public class PasswordEnhancer implements Enhancer {
     private final Activity mActivity;
     private final EnhancementOptionsEntity mEnhancementOptionsEntity;
     private final TextToPDFOptions.Builder mBuilder;
-    private TextToPdfContract.View mView;
+    private final TextToPdfContract.View mView;
 
     PasswordEnhancer(@NonNull final Activity activity,
                      @NonNull final TextToPdfContract.View view,
@@ -90,13 +91,13 @@ public class PasswordEnhancer implements Enhancer {
 
     private void onPasswordAdded() {
         mEnhancementOptionsEntity
-                .setImage(mActivity.getResources().getDrawable(R.drawable.baseline_done_24));
+                .setImage(ContextCompat.getDrawable(mActivity, R.drawable.baseline_done_24));
         mView.updateView();
     }
 
     private void onPasswordRemoved() {
         mEnhancementOptionsEntity
-                .setImage(mActivity.getResources().getDrawable(R.drawable.baseline_enhanced_encryption_24));
+                .setImage(ContextCompat.getDrawable(mActivity, R.drawable.baseline_enhanced_encryption_24));
         mView.updateView();
     }
 }

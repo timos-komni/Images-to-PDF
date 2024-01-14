@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -27,6 +28,7 @@ public class ImagesPreviewActivity extends AppCompatActivity {
      * @param uris    - extra images uri
      * @return - start intent
      */
+    @NonNull
     public static Intent getStartIntent(Context context, ArrayList<String> uris) {
         Intent intent = new Intent(context, ImagesPreviewActivity.class);
         intent.putExtra(PREVIEW_IMAGES, uris);

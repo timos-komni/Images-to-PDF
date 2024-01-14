@@ -8,12 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,13 +35,14 @@ import swati4star.createpdf.util.ThemeUtils;
 
 public class RearrangeImages extends AppCompatActivity implements RearrangeImagesAdapter.OnClickListener {
 
-    @BindView(R.id.recyclerView)
+    @BindView((R.id.recyclerView))
     RecyclerView mRecyclerView;
 
     private ArrayList<String> mImages;
     private RearrangeImagesAdapter mRearrangeImagesAdapter;
     private SharedPreferences mSharedPreferences;
 
+    @NonNull
     public static Intent getStartIntent(Context context, ArrayList<String> uris) {
         Intent intent = new Intent(context, RearrangeImages.class);
         intent.putExtra(PREVIEW_IMAGES, uris);
@@ -115,6 +117,7 @@ public class RearrangeImages extends AppCompatActivity implements RearrangeImage
         finish();
     }
 
+    /** @noinspection deprecation*/
     @Override
     public void onBackPressed() {
         passUris();
@@ -122,7 +125,7 @@ public class RearrangeImages extends AppCompatActivity implements RearrangeImage
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             passUris();
             return true;
@@ -142,7 +145,7 @@ public class RearrangeImages extends AppCompatActivity implements RearrangeImage
                 .show();
     }
 
-    @OnClick(R.id.sort)
+    @OnClick((R.id.sort))
     void sortImg() {
         sortImages();
     }

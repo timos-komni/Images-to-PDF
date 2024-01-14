@@ -567,7 +567,7 @@
 
     <!--file name suffix-->
     <string name="pdf_suffix" translatable="false">_pdf</string>
-    <string name="reordering_pages_dialog">Reordering your pages...</string>
+    <string name="reordering_pages_dialog">Reordering your pages…</string>
     <string name="delete_alert_singular">Do you want to delete selected file?</string>
     <string name="snackbar_files_deleted">Files Deleted</string>
     <string name="lbl_recently_used">Recently Used Features</string>

@@ -90,6 +90,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -177,7 +178,7 @@ public class CommonCodeUtils {
     /**
      * Checks whether the bottom sheet is expanded or collapsed
      */
-    public boolean checkSheetBehaviourUtil(BottomSheetBehavior sheetBehavior) {
+    public boolean checkSheetBehaviourUtil(@NonNull BottomSheetBehavior sheetBehavior) {
         return sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED;
     }
 

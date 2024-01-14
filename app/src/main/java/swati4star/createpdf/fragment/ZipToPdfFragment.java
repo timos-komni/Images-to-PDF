@@ -31,14 +31,15 @@ import swati4star.createpdf.util.ZipToPdf;
 
 public class ZipToPdfFragment extends Fragment {
     private static final int INTENT_REQUEST_PICK_FILE_CODE = 10;
-    @BindView(R.id.selectFile)
+    @BindView((R.id.selectFile))
     MorphingButton selectFileButton;
-    @BindView(R.id.zip_to_pdf)
+    @BindView((R.id.zip_to_pdf))
     MorphingButton convertButton;
-    @BindView(R.id.progressBar)
+    @BindView((R.id.progressBar))
     ProgressBar extractionProgress;
     private String mPath;
     private Activity mActivity;
+    /** @noinspection unused, FieldMayBeFinal */
     private boolean mPermissionGranted = false;
 
     @Nullable
@@ -51,7 +52,7 @@ public class ZipToPdfFragment extends Fragment {
         return rootView;
     }
 
-    @OnClick(R.id.selectFile)
+    @OnClick((R.id.selectFile))
     public void showFileChooser() {
         PermissionsUtils.getInstance().checkStoragePermissionAndProceed(getContext(), this::chooseFile);
     }
@@ -80,7 +81,7 @@ public class ZipToPdfFragment extends Fragment {
         }
     }
 
-    @OnClick(R.id.zip_to_pdf)
+    @OnClick((R.id.zip_to_pdf))
     public void convertZipToPdf() {
 
         // Pre conversion tasks
@@ -97,6 +98,7 @@ public class ZipToPdfFragment extends Fragment {
         convertButton.unblockTouch();
     }
 
+    /** @noinspection unused*/
     private void getRuntimePermissions() {
         PermissionsUtils.getInstance().requestRuntimePermissions(this,
                 WRITE_PERMISSIONS,

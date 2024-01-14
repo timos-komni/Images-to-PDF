@@ -8,8 +8,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.itextpdf.text.Rectangle;
+
+import org.jetbrains.annotations.Contract;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,20 +61,16 @@ public class PageSizeUtils {
     private String getPageSize(int selectionId, String spinnerAValue, String spinnerBValue) {
         String stringPageSize;
         switch (selectionId) {
-            case R.id.page_size_a0_a10:
+            case (R.id.page_size_a0_a10) -> {
                 stringPageSize = spinnerAValue;
                 mPageSize = stringPageSize.substring(0, stringPageSize.indexOf(" "));
-                break;
-            case R.id.page_size_b0_b10:
+            }
+            case (R.id.page_size_b0_b10) -> {
                 stringPageSize = spinnerBValue;
                 mPageSize = stringPageSize.substring(0, stringPageSize.indexOf(" "));
-                break;
-            case R.id.page_size_fit_size:
-                mPageSize = PAGE_SIZE_FIT_SIZE;
-                break;
-            default:
-                mPageSize = mActivity.getString(mPageSizeToString.get(selectionId));
-
+            }
+            case (R.id.page_size_fit_size) -> mPageSize = PAGE_SIZE_FIT_SIZE;
+            default -> mPageSize = mActivity.getString(mPageSizeToString.get(selectionId));
         }
         return mPageSize;
     }
@@ -119,7 +120,9 @@ public class PageSizeUtils {
      * @return common size of input images as Rectangle.
      * @see com.itextpdf.text.Rectangle
      */
-    public static Rectangle calculateCommonPageSize(List<String> imagesUri) {
+    @NonNull
+    @Contract("_ -> new")
+    public static Rectangle calculateCommonPageSize(@NonNull List<String> imagesUri) {
         float maxWidth = 0; float maxHeight = 0;
         for (String imageUri : imagesUri) {
             Rectangle imageSize = ImageUtils.getImageSize(imageUri);
@@ -162,7 +165,8 @@ public class PageSizeUtils {
      * @param value - the value for which we want the key
      * @return - key value
      */
-    private Integer getKey(HashMap<Integer, Integer> map, String value) {
+    @Nullable
+    private Integer getKey(@NonNull HashMap<Integer, Integer> map, String value) {
         for (HashMap.Entry<Integer, Integer> entry : map.entrySet()) {
             if (value.equals(mActivity.getString(entry.getValue()))) {
                 return entry.getKey();

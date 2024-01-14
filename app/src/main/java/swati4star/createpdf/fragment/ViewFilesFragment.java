@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +28,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -59,15 +59,15 @@ public class ViewFilesFragment extends Fragment
         ItemSelectedListener {
 
 
-    @BindView(R.id.getStarted)
+    @BindView((R.id.getStarted))
     public Button getStarted;
-    @BindView(R.id.filesRecyclerView)
+    @BindView((R.id.filesRecyclerView))
     RecyclerView mViewFilesListRecyclerView;
-    @BindView(R.id.swipe)
+    @BindView((R.id.swipe))
     SwipeRefreshLayout mSwipeView;
-    @BindView(R.id.emptyStatusView)
+    @BindView((R.id.emptyStatusView))
     ConstraintLayout emptyView;
-    @BindView(R.id.no_permissions_view)
+    @BindView((R.id.no_permissions_view))
     RelativeLayout noPermissionsLayout;
 
     private Activity mActivity;
@@ -115,7 +115,7 @@ public class ViewFilesFragment extends Fragment
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         MenuItem menuItem;
         if (!mIsMergeRequired) {
@@ -163,24 +163,22 @@ public class ViewFilesFragment extends Fragment
     }
 
     @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.item_sort:
-                displaySortDialog();
-                break;
-            case R.id.item_delete:
+            case (R.id.item_sort) -> displaySortDialog();
+            case (R.id.item_delete) -> {
                 if (mViewFilesAdapter.areItemsSelected())
                     deleteFiles();
                 else
                     StringUtils.getInstance().showSnackbar(mActivity, R.string.snackbar_no_pdfs_selected);
-                break;
-            case R.id.item_share:
+            }
+            case (R.id.item_share) -> {
                 if (mViewFilesAdapter.areItemsSelected())
                     mViewFilesAdapter.shareFiles();
                 else
                     StringUtils.getInstance().showSnackbar(mActivity, R.string.snackbar_no_pdfs_selected);
-                break;
-            case R.id.select_all:
+            }
+            case (R.id.select_all) -> {
                 if (mViewFilesAdapter.getItemCount() > 0) {
                     if (mIsAllFilesSelected) {
                         mViewFilesAdapter.unCheckAll();
@@ -190,12 +188,12 @@ public class ViewFilesFragment extends Fragment
                 } else {
                     StringUtils.getInstance().showSnackbar(mActivity, R.string.snackbar_no_pdfs_selected);
                 }
-                break;
-            case R.id.item_merge:
+            }
+            case (R.id.item_merge) -> {
                 if (mViewFilesAdapter.getItemCount() > 1) {
                     mMergeHelper.mergeFiles();
                 }
-                break;
+            }
         }
         return true;
     }
@@ -291,10 +289,10 @@ public class ViewFilesFragment extends Fragment
     }
 
     //When the "GET STARTED" button is clicked, the user is taken to home
-    @OnClick(R.id.getStarted)
+    @OnClick((R.id.getStarted))
     public void loadHome() {
         Fragment fragment = new HomeFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content, fragment).commit();
         mActivity.setTitle(appName);
         //Set default item selected
@@ -303,7 +301,7 @@ public class ViewFilesFragment extends Fragment
         }
     }
 
-    @OnClick(R.id.provide_permissions)
+    @OnClick((R.id.provide_permissions))
     public void providePermissions() {
         if (!PermissionsUtils.getInstance().checkRuntimePermissions(this, WRITE_PERMISSIONS)) {
             getRuntimePermissions();
@@ -332,7 +330,7 @@ public class ViewFilesFragment extends Fragment
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
         mDirectoryUtils = new DirectoryUtils(mActivity);
@@ -345,7 +343,7 @@ public class ViewFilesFragment extends Fragment
     }
 
     @Override
-    public void isSelected(Boolean isSelected, int countFiles) {
+    public void isSelected(boolean isSelected, int countFiles) {
         mCountFiles = countFiles;
         updateToolbar();
     }

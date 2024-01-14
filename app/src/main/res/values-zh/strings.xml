@@ -534,7 +534,7 @@
 
     <!-- 文件名后缀 -->
     <string name="pdf_suffix" translatable="false">_pdf</string>
-    <string name="reordering_pages_dialog">正在重新排序您的页面...</string>
+    <string name="reordering_pages_dialog">正在重新排序您的页面…</string>
     <string name="delete_alert_singular">您是否要删除所选文件？</string>
     <string name="snackbar_files_deleted">文件已删除</string>
     <string name="lbl_recently_used">最近使用的功能</string>

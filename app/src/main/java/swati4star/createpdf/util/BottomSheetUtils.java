@@ -2,6 +2,8 @@ package swati4star.createpdf.util;
 
 import android.app.Activity;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import swati4star.createpdf.interfaces.BottomSheetPopulate;
@@ -14,7 +16,7 @@ public class BottomSheetUtils {
         this.mContext = context;
     }
 
-    public void showHideSheet(BottomSheetBehavior sheetBehavior) {
+    public void showHideSheet(@NonNull BottomSheetBehavior sheetBehavior) {
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {

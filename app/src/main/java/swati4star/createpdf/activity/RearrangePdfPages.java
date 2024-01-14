@@ -10,18 +10,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+
+import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -37,14 +40,16 @@ import swati4star.createpdf.util.ThemeUtils;
 public class RearrangePdfPages extends AppCompatActivity implements RearrangePdfAdapter.OnClickListener {
 
     public static ArrayList<Bitmap> mImages;
-    @BindView(R.id.recyclerView)
+    @BindView((R.id.recyclerView))
     RecyclerView mRecyclerView;
-    @BindView(R.id.sort)
+    @BindView((R.id.sort))
     Button sortButton;
     private RearrangePdfAdapter mRearrangeImagesAdapter;
     private SharedPreferences mSharedPreferences;
     private ArrayList<Integer> mSequence, mInitialSequence;
 
+    @NonNull
+    @Contract("_ -> new")
     public static Intent getStartIntent(Context context) {
         return new Intent(context, RearrangePdfPages.class);
     }
@@ -148,6 +153,7 @@ public class RearrangePdfPages extends AppCompatActivity implements RearrangePdf
         finish();
     }
 
+    /** @noinspection deprecation*/
     @Override
     public void onBackPressed() {
         passUris();
@@ -155,7 +161,7 @@ public class RearrangePdfPages extends AppCompatActivity implements RearrangePdf
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             passUris();
             return true;

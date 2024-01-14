@@ -13,6 +13,7 @@ public class PreviewImageOptionItem {
         return mOptionImageId;
     }
 
+    /** @noinspection unused*/
     public void setOptionImageId(int mOptionImageId) {
         this.mOptionImageId = mOptionImageId;
     }
@@ -21,6 +22,7 @@ public class PreviewImageOptionItem {
         return mOptionName;
     }
 
+    /** @noinspection unused*/
     public void setOptionName(String mOptionName) {
         this.mOptionName = mOptionName;
     }

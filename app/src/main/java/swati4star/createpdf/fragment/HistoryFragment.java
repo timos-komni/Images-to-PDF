@@ -48,9 +48,9 @@ import swati4star.createpdf.util.ViewFilesDividerItemDecoration;
 
 public class HistoryFragment extends Fragment implements HistoryAdapter.OnClickListener {
 
-    @BindView(R.id.emptyStatusView)
+    @BindView((R.id.emptyStatusView))
     ConstraintLayout mEmptyStatusLayout;
-    @BindView(R.id.historyRecyclerView)
+    @BindView((R.id.historyRecyclerView))
     RecyclerView mHistoryRecyclerView;
     private Activity mActivity;
     private List<History> mHistoryList;
@@ -58,7 +58,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnClickL
     private boolean[] mFilterOptionState;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
     }
@@ -85,19 +85,15 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnClickL
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_history_fragment, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.actionDeleteHistory:
-                deleteHistory();
-                break;
-            case R.id.actionFilterHistory:
-                openFilterDialog();
-                break;
+            case (R.id.actionDeleteHistory) -> deleteHistory();
+            case (R.id.actionFilterHistory) -> openFilterDialog();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -136,7 +132,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnClickL
                 .show();
     }
 
-    @OnClick(R.id.getStarted)
+    @OnClick((R.id.getStarted))
     public void loadHome() {
         Fragment fragment = new HomeFragment();
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -175,8 +171,9 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnClickL
             this.mContext = mContext;
         }
 
+        @Nullable
         @Override
-        protected Void doInBackground(String[]... args) {
+        protected Void doInBackground(@NonNull String[]... args) {
             AppDatabase db = AppDatabase.getDatabase(mActivity.getApplicationContext());
             if (args[0].length == 0) {
                 mHistoryList = db.historyDao().getAllHistory();
@@ -206,6 +203,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnClickL
     @SuppressLint("StaticFieldLeak")
     private class DeleteHistory extends AsyncTask<Void, Void, Void> {
 
+        @Nullable
         @Override
         protected Void doInBackground(Void... voids) {
             AppDatabase db = AppDatabase.getDatabase(mActivity.getApplicationContext());

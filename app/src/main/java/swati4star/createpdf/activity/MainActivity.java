@@ -4,18 +4,15 @@ import static swati4star.createpdf.util.Constants.IS_WELCOME_ACTIVITY_SHOWN;
 import static swati4star.createpdf.util.Constants.LAUNCH_COUNT;
 import static swati4star.createpdf.util.Constants.THEME_BLACK;
 import static swati4star.createpdf.util.Constants.THEME_DARK;
-import static swati4star.createpdf.util.Constants.THEME_SYSTEM;
 import static swati4star.createpdf.util.Constants.THEME_WHITE;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.SparseIntArray;
 import android.view.Menu;
@@ -30,9 +27,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
@@ -133,9 +132,10 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        if (actionBar != null)
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.show();
+        }
     }
 
     @Override
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_favourites_item) {
             setTitle(R.string.favourites);
             mFragmentManagement.favouritesFragmentOption();
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
      * @param intent   - intent containing image uris
      * @param fragment - instance of homeFragment
      */
-    private void handleSendImage(Intent intent, Fragment fragment) {
+    private void handleSendImage(@NonNull Intent intent, @NonNull Fragment fragment) {
         Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
         ArrayList<Uri> imageUris = new ArrayList<>();
         imageUris.add(uri);
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity
      * @param intent   - intent containing image uris
      * @param fragment - instance of homeFragment
      */
-    private void handleSendMultipleImages(Intent intent, Fragment fragment) {
+    private void handleSendMultipleImages(@NonNull Intent intent, Fragment fragment) {
         ArrayList<Uri> imageUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         if (imageUris != null) {
             Bundle bundle = new Bundle();
@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /** @noinspection deprecation*/
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -431,41 +432,41 @@ public class MainActivity extends AppCompatActivity
         String themeName = mSharedPreferences.getString(Constants.DEFAULT_THEME_TEXT,
                 Constants.DEFAULT_THEME);
         switch (themeName) {
-            case THEME_WHITE:
+            case THEME_WHITE -> {
                 toolbarBackgroundLayout.setBackgroundResource(R.drawable.toolbar_bg);
-                content.setCardBackgroundColor(getResources().getColor(R.color.lighter_gray));
+                content.setCardBackgroundColor(ContextCompat.getColor(this, R.color.lighter_gray));
                 mNavigationView.setBackgroundResource(R.color.white);
-                break;
-            case THEME_BLACK:
+            }
+            case THEME_BLACK -> {
                 toolbarBackgroundLayout.setBackgroundResource(R.color.black);
-                content.setCardBackgroundColor(getResources().getColor(R.color.black));
+                content.setCardBackgroundColor(ContextCompat.getColor(this, R.color.black));
                 mNavigationView.setBackgroundResource(R.color.black);
-                mNavigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)));
-                mNavigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                mNavigationView.setItemTextColor(ContextCompat.getColorStateList(this, R.color.white));
+                mNavigationView.setItemIconTintList(ContextCompat.getColorStateList(this, R.color.white));
                 mNavigationView.setItemBackgroundResource(R.drawable.navigation_item_selected_bg_selector_dark);
-                break;
-            case THEME_DARK:
+            }
+            case THEME_DARK -> {
                 toolbarBackgroundLayout.setBackgroundResource(R.color.colorBlackAltLight);
-                content.setCardBackgroundColor(getResources().getColor(R.color.colorBlackAlt));
+                content.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorBlackAlt));
                 mNavigationView.setBackgroundResource(R.color.colorBlackAlt);
-                mNavigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)));
-                mNavigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                mNavigationView.setItemTextColor(ContextCompat.getColorStateList(this, R.color.white));
+                mNavigationView.setItemIconTintList(ContextCompat.getColorStateList(this, R.color.white));
                 mNavigationView.setItemBackgroundResource(R.drawable.navigation_item_selected_bg_selector_dark);
-                break;
-            case THEME_SYSTEM:
-            default:
+            }
+            default -> {
                 if ((this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
                     toolbarBackgroundLayout.setBackgroundResource(R.color.colorBlackAltLight);
-                    content.setCardBackgroundColor(getResources().getColor(R.color.colorBlackAlt));
+                    content.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorBlackAlt));
                     mNavigationView.setBackgroundResource(R.color.colorBlackAlt);
-                    mNavigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)));
-                    mNavigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                    mNavigationView.setItemTextColor(ContextCompat.getColorStateList(this, R.color.white));
+                    mNavigationView.setItemIconTintList(ContextCompat.getColorStateList(this, R.color.white));
                     mNavigationView.setItemBackgroundResource(R.drawable.navigation_item_selected_bg_selector_dark);
                 } else {
                     toolbarBackgroundLayout.setBackgroundResource(R.drawable.toolbar_bg);
-                    content.setCardBackgroundColor(getResources().getColor(R.color.lighter_gray));
+                    content.setCardBackgroundColor(ContextCompat.getColor(this, R.color.lighter_gray));
                     mNavigationView.setBackgroundResource(R.color.white);
                 }
+            }
         }
     }
 }

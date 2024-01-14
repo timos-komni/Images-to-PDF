@@ -21,7 +21,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/search_background"
             android:iconifiedByDefault="false"
-            android:queryHint="@string/faqSearch"></SearchView>
+            android:queryHint="@string/faqSearch" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_faq"

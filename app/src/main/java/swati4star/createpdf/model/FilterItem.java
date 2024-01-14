@@ -24,6 +24,7 @@ public class FilterItem {
         return mImageId;
     }
 
+    /** @noinspection unused*/
     public void setImageId(int imageId) {
         this.mImageId = imageId;
     }

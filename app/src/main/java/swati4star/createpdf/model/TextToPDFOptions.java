@@ -39,6 +39,7 @@ public class TextToPDFOptions extends PDFOptions {
         return mFontColor;
     }
 
+    /** @noinspection UnusedReturnValue*/
     public static class Builder {
 
         private String mFileName;
@@ -80,6 +81,7 @@ public class TextToPDFOptions extends PDFOptions {
             return this;
         }
 
+        /** @noinspection unused*/
         public boolean isPasswordProtected() {
             return mPasswordProtected;
         }
@@ -107,6 +109,7 @@ public class TextToPDFOptions extends PDFOptions {
             return this;
         }
 
+        /** @noinspection unused*/
         public Uri getInFileUri() {
             return mInFileUri;
         }

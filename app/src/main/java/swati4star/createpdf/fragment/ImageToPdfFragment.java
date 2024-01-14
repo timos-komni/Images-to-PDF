@@ -30,7 +30,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +45,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -103,13 +103,13 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
     private static final int INTENT_REQUEST_GET_IMAGES = 13;
     private static final ArrayList<String> mUnarrangedImagesUri = new ArrayList<>();
     public static ArrayList<String> mImagesUri = new ArrayList<>();
-    @BindView(R.id.pdfCreate)
+    @BindView((R.id.pdfCreate))
     MorphingButton mCreatePdf;
-    @BindView(R.id.pdfOpen)
+    @BindView((R.id.pdfOpen))
     MorphingButton mOpenPdf;
-    @BindView(R.id.enhancement_options_recycle_view)
+    @BindView((R.id.enhancement_options_recycle_view))
     RecyclerView mEnhancementOptionsRecycleView;
-    @BindView(R.id.tvNoOfImages)
+    @BindView((R.id.tvNoOfImages))
     TextView mNoOfImages;
     private MorphButtonUtility mMorphButtonUtility;
     private Activity mActivity;
@@ -132,7 +132,7 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
     private boolean mShouldCropImages = false;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
     }
@@ -213,7 +213,7 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
     /**
      * Adding Images to PDF
      */
-    @OnClick(R.id.addImages)
+    @OnClick((R.id.addImages))
     void startAddingImages() {
         if (!mIsButtonAlreadyClicked) {
             PermissionsUtils.getInstance().checkStoragePermissionAndProceed(getContext(), () -> {
@@ -226,7 +226,7 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
     /**
      * Create Pdf of selected images
      */
-    @OnClick(R.id.pdfCreate)
+    @OnClick((R.id.pdfCreate))
     void pdfCreateClicked() {
         createPdf(false);
     }
@@ -259,7 +259,7 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
         new CreatePdf(mPdfOptions, mHomePath, ImageToPdfFragment.this).execute();
     }
 
-    @OnClick(R.id.pdfOpen)
+    @OnClick((R.id.pdfOpen))
     void openPdf() {
         mFileUtils.openFile(mPath, FileUtils.FileType.e_PDF);
     }
@@ -295,15 +295,14 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
             return;
 
         switch (requestCode) {
-            case INTENT_REQUEST_APPLY_FILTER:
+            case INTENT_REQUEST_APPLY_FILTER -> {
                 mImagesUri.clear();
                 ArrayList<String> mFilterUris = data.getStringArrayListExtra(RESULT);
                 int size = mFilterUris.size() - 1;
                 for (int k = 0; k <= size; k++)
                     mImagesUri.add(mFilterUris.get(k));
-                break;
-
-            case INTENT_REQUEST_PREVIEW_IMAGE:
+            }
+            case INTENT_REQUEST_PREVIEW_IMAGE -> {
                 mImagesUri = data.getStringArrayListExtra(RESULT);
                 if (mImagesUri.size() > 0) {
                     mNoOfImages.setText(String.format(mActivity.getResources()
@@ -313,9 +312,8 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
                     mMorphButtonUtility.morphToGrey(mCreatePdf, mMorphButtonUtility.integer());
                     mCreatePdf.setEnabled(false);
                 }
-                break;
-
-            case INTENT_REQUEST_REARRANGE_IMAGE:
+            }
+            case INTENT_REQUEST_REARRANGE_IMAGE -> {
                 mImagesUri = data.getStringArrayListExtra(RESULT);
                 if (!mUnarrangedImagesUri.equals(mImagesUri) && mImagesUri.size() > 0) {
                     mNoOfImages.setText(String.format(mActivity.getResources()
@@ -329,9 +327,8 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
                     mMorphButtonUtility.morphToGrey(mCreatePdf, mMorphButtonUtility.integer());
                     mCreatePdf.setEnabled(false);
                 }
-                break;
-
-            case INTENT_REQUEST_GET_IMAGES:
+            }
+            case INTENT_REQUEST_GET_IMAGES -> {
                 mImagesUri.clear();
                 mUnarrangedImagesUri.clear();
                 mImagesUri.addAll(Matisse.obtainPathResult(data));
@@ -362,9 +359,8 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
                             })
                             .show();
                 }
-                break;
-
-            case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
+            }
+            case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 if (resultCode == Activity.RESULT_OK && mShouldCropImages) {
                     Uri resultUri = result.getUri();
@@ -378,9 +374,10 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
                         mImageCounter = 0;
                     }
                 } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    //noinspection unused
                     Exception error = result.getError();
                 }
-                break;
+            }
         }
     }
 
@@ -392,51 +389,23 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
             return;
         }
         switch (position) {
-            case 0:
-                passwordProtectPDF();
-                break;
-            case 1:
-                cropImage(Uri.parse(mImagesUri.get(0)));
-                break;
-            case 2:
-                compressImage();
-                break;
-            case 3:
-                startActivityForResult(ImageEditor.getStartIntent(mActivity, mImagesUri),
-                        INTENT_REQUEST_APPLY_FILTER);
-                break;
-            case 4:
-                mPageSizeUtils.showPageSizeDialog(false);
-                break;
-            case 5:
-                ImageUtils.getInstance().showImageScaleTypeDialog(mActivity, false);
-                break;
-            case 6:
-                startActivityForResult(PreviewActivity.getStartIntent(mActivity, mImagesUri),
-                        INTENT_REQUEST_PREVIEW_IMAGE);
-                break;
-            case 7:
-                addBorder();
-                break;
-            case 8:
-                startActivityForResult(RearrangeImages.getStartIntent(mActivity, mImagesUri),
-                        INTENT_REQUEST_REARRANGE_IMAGE);
-                break;
-            case 9:
-                createPdf(true);
-                break;
-            case 10:
-                addMargins();
-                break;
-            case 11:
-                addPageNumbers();
-                break;
-            case 12:
-                addWatermark();
-                break;
-            case 13:
-                setPageColor();
-                break;
+            case 0 -> passwordProtectPDF();
+            case 1 -> cropImage(Uri.parse(mImagesUri.get(0)));
+            case 2 -> compressImage();
+            case 3 -> startActivityForResult(ImageEditor.getStartIntent(mActivity, mImagesUri),
+                    INTENT_REQUEST_APPLY_FILTER);
+            case 4 -> mPageSizeUtils.showPageSizeDialog(false);
+            case 5 -> ImageUtils.getInstance().showImageScaleTypeDialog(mActivity, false);
+            case 6 -> startActivityForResult(PreviewActivity.getStartIntent(mActivity, mImagesUri),
+                    INTENT_REQUEST_PREVIEW_IMAGE);
+            case 7 -> addBorder();
+            case 8 -> startActivityForResult(RearrangeImages.getStartIntent(mActivity, mImagesUri),
+                    INTENT_REQUEST_REARRANGE_IMAGE);
+            case 9 -> createPdf(true);
+            case 10 -> addMargins();
+            case 11 -> addPageNumbers();
+            case 12 -> addWatermark();
+            case 13 -> setPageColor();
         }
     }
 
@@ -449,6 +418,7 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
         try {
             File sdCard = Environment.getExternalStorageDirectory();
             File dir = new File(sdCard.getAbsolutePath() + "/PDFfilter");
+            //noinspection ResultOfMethodCallIgnored
             dir.mkdirs();
 
             int size = mImagesUri.size();
@@ -462,6 +432,7 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
                 Bitmap bitmap = BitmapFactory.decodeStream(fis);
                 Bitmap grayScaleBitmap = ImageUtils.getInstance().toGrayscale(bitmap);
 
+                //noinspection ResultOfMethodCallIgnored
                 outFile.createNewFile();
                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outFile), 1024 * 8);
                 grayScaleBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
@@ -722,11 +693,10 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
     }
 
     private void cropImage(Uri imageUri) {
-        //Intent intent = new Intent(mActivity, CropImageActivity.class);
-        //startActivityForResult(intent, CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
-        CropImage.activity(imageUri).start(getContext(), this);
+        CropImage.activity(imageUri).start(requireContext(), this);
     }
 
+    /** @noinspection unused*/
     private void getRuntimePermissions() {
         PermissionsUtils.getInstance().requestRuntimePermissions(this,
                 WRITE_PERMISSIONS,

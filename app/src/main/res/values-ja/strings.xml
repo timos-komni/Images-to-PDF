@@ -415,7 +415,7 @@
     <string name="split_one_page_pdf_alert">選択したPDFは1ページしかないため分割できません。</string>
     <string name="no_excel_file">Excelファイルが選択されていません</string>
     <string name="split_range_alert">Entered split range will create Selected PDF again!</string>
-    <string name="reordering_pages_dialog">ページの並べ替え...</string>
+    <string name="reordering_pages_dialog">ページの並べ替え…</string>
     <string name="delete_alert_singular">選択したファイルを削除しますか？</string>
     <string name="snackbar_files_deleted">削除されたファイル</string>
     <string name="lbl_recently_used">最近使用した機能</string>
