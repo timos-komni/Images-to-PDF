@@ -1,57 +1,47 @@
-package swati4star.createpdf.activity;
+package swati4star.createpdf.activity
 
-import static swati4star.createpdf.util.Constants.PREVIEW_IMAGES;
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import butterknife.ButterKnife
+import com.eftimoff.viewpagertransformers.DepthPageTransformer
+import swati4star.createpdf.R
+import swati4star.createpdf.adapter.PreviewAdapter
+import swati4star.createpdf.util.Constants
+import swati4star.createpdf.util.ThemeUtils
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
+class ImagesPreviewActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        ThemeUtils.getInstance().setThemeApp(this)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_preview_images)
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+        ButterKnife.bind(this)
+        // Extract imagesArrayList uri array from the intent
+        val imagesArrayList = intent.getStringArrayListExtra(Constants.PREVIEW_IMAGES)
 
-import com.eftimoff.viewpagertransformers.DepthPageTransformer;
-
-import java.util.ArrayList;
-
-import butterknife.ButterKnife;
-import swati4star.createpdf.R;
-import swati4star.createpdf.adapter.PreviewAdapter;
-import swati4star.createpdf.util.ThemeUtils;
-
-public class ImagesPreviewActivity extends AppCompatActivity {
-
-    /**
-     * get start intent for this activity
-     *
-     * @param context - context to start activity from
-     * @param uris    - extra images uri
-     * @return - start intent
-     */
-    @NonNull
-    public static Intent getStartIntent(Context context, ArrayList<String> uris) {
-        Intent intent = new Intent(context, ImagesPreviewActivity.class);
-        intent.putExtra(PREVIEW_IMAGES, uris);
-        return intent;
+        val viewPager = findViewById<ViewPager>(R.id.viewpager)
+        val previewAdapter = PreviewAdapter(this, imagesArrayList)
+        viewPager.adapter = previewAdapter
+        viewPager.setPageTransformer(true, DepthPageTransformer())
+        supportActionBar?.hide()
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        ThemeUtils.getInstance().setThemeApp(this);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preview_images);
-
-        ButterKnife.bind(this);
-        // Extract mImagesArrayList uri array from the intent
-        Intent intent = getIntent();
-        ArrayList<String> mImagesArrayList = intent.getStringArrayListExtra(PREVIEW_IMAGES);
-
-        ViewPager mViewPager = findViewById(R.id.viewpager);
-        PreviewAdapter mPreviewAdapter = new PreviewAdapter(this, mImagesArrayList);
-        mViewPager.setAdapter(mPreviewAdapter);
-        mViewPager.setPageTransformer(true, new DepthPageTransformer());
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
+    companion object {
+        /**
+         * get start intent for this activity
+         *
+         * @param context context to start activity from
+         * @param uris    extra images uri
+         * @return start intent
+         */
+        @JvmStatic
+        fun getStartIntent(context: Context, uris: ArrayList<String?>?): Intent {
+            val intent = Intent(context, ImagesPreviewActivity::class.java)
+            intent.putExtra(Constants.PREVIEW_IMAGES, uris)
+            return intent
         }
     }
 }

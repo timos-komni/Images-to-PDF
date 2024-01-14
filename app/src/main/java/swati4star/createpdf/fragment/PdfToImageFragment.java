@@ -129,6 +129,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
 
     /**
      * called when user chooses to share generated images
+     * @noinspection unused
      */
     @OnClick((R.id.shareImages))
     void onShareFilesClick() {

@@ -183,7 +183,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Map<String, String> feature = new HashMap<>();
         feature.put(
                 String.valueOf(mFragmentPositionMap.get(v.getId()).getTitleString()),
-                String.valueOf(mFragmentPositionMap.get(v.getId()).getmDrawableId()));
+                String.valueOf(mFragmentPositionMap.get(v.getId()).getDrawableId()));
 
         try {
             RecentUtil.getInstance().addFeatureInRecentList(PreferenceManager

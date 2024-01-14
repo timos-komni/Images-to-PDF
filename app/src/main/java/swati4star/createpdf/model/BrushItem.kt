@@ -1,28 +1,15 @@
-package swati4star.createpdf.model;
+package swati4star.createpdf.model
 
-import java.util.Objects;
+import java.util.Objects
 
-public class BrushItem {
-    private final int mColor;
+class BrushItem(val color: Int) {
 
-    public BrushItem(int color) {
-        this.mColor = color;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
+        val brushItem = other as BrushItem
+        return color == brushItem.color
     }
 
-    public int getColor() {
-        return mColor;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BrushItem brushItem = (BrushItem) o;
-        return mColor == brushItem.mColor;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mColor);
-    }
+    override fun hashCode(): Int = Objects.hash(color)
 }
