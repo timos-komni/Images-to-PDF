@@ -10,7 +10,7 @@ android {
         multiDexEnabled true
         targetSdkVersion 34
         versionCode 110
-        versionName "9.0.1-tk.4"
+        versionName "9.0.1-tk.5"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {

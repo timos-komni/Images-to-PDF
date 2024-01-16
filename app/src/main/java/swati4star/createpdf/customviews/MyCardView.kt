@@ -1,83 +1,73 @@
-package swati4star.createpdf.customviews;
+package swati4star.createpdf.customviews
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.util.AttributeSet;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import swati4star.createpdf.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class MyCardView : LinearLayout {
 
-import swati4star.createpdf.R;
-
-public class MyCardView extends LinearLayout {
-
-    ImageView icon;
-    TextView text;
+    var icon: ImageView? = null
+    var text: TextView? = null
 
     /**
      * Initiates custom card view
      *
-     * @param context - context
+     * @param context context
      */
-    public MyCardView(@NonNull Context context) {
-        super(context);
-        init();
+    constructor(context: Context) : super(context) {
+        init()
     }
 
     /**
      * Initiates custom card view with attributes
      *
-     * @param context - context
-     * @param attrs   - attributes set
+     * @param context context
+     * @param attrs   attributes set
      */
-    public MyCardView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init(attrs);
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        init(attrs)
     }
 
     /**
      * Initiates custom card view with attributes set
      *
-     * @param context      - context
-     * @param attrs        - attributes set
-     * @param defStyleAttr - attribute style
+     * @param context      context
+     * @param attrs        attributes set
+     * @param defStyleAttr attribute style
      */
-    public MyCardView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(attrs);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init(attrs)
     }
 
     /**
      * Initialize card view with no attribute sets
      */
-    private void init() {
-        inflate(getContext(), R.layout.item_view_enhancement_option, this);
-        this.text = findViewById(R.id.option_name);
-        this.icon = findViewById(R.id.option_image);
+    private fun init() {
+        inflate(context, R.layout.item_view_enhancement_option, this)
+        text = findViewById(R.id.option_name)
+        icon = findViewById(R.id.option_image)
     }
 
     /**
      * Initialize card view with attributes received
      *
-     * @param attrs - attribute set
+     * @param attrs attribute set
      */
-    private void init(AttributeSet attrs) {
-        inflate(getContext(), R.layout.item_view_enhancement_option, this);
+    private fun init(attrs: AttributeSet?) {
+        inflate(context, R.layout.item_view_enhancement_option, this)
 
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.MyCardView);
+        val a = context.obtainStyledAttributes(attrs, R.styleable.MyCardView)
 
-        this.text = findViewById(R.id.option_name);
-        this.icon = findViewById(R.id.option_image);
+        text = findViewById(R.id.option_name)
+        icon = findViewById(R.id.option_image)
 
-        this.text.setText(a.getString(R.styleable.MyCardView_option_text));
-        Drawable drawable = a.getDrawable(R.styleable.MyCardView_option_icon);
-        this.icon.setImageDrawable(drawable);
+        text?.text = a.getString(R.styleable.MyCardView_option_text)
+        val drawable = a.getDrawable(R.styleable.MyCardView_option_icon)
+        icon?.setImageDrawable(drawable)
 
-        a.recycle();
+        a.recycle()
     }
 }

@@ -27,6 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public ViewPager mViewPager;
     @BindView((R.id.layoutDots))
     public LinearLayout mDotsLayout;
+    /** @noinspection unused*/
     @BindView((R.id.btn_skip))
     public Button mBtnSkip;
 
