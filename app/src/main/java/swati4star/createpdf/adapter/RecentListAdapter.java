@@ -75,7 +75,7 @@ public class RecentListAdapter extends RecyclerView.Adapter<RecentListAdapter.Re
         @BindView((R.id.option_name))
         TextView name;
 
-        MaterialCardView cardView;
+        final MaterialCardView cardView;
 
         private RecentItemViewHolder(@NonNull final View itemView) {
             super(itemView);

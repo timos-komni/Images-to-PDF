@@ -10,7 +10,7 @@ android {
         multiDexEnabled true
         targetSdkVersion 34
         versionCode 110
-        versionName "9.0.1-tk.5"
+        versionName "9.0.1-tk.6"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
@@ -86,7 +86,7 @@ dependencies {
     implementation 'com.balysv:material-ripple:1.0.2'
     implementation 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'com.airbnb.android:lottie:2.5.5'
+    implementation 'com.airbnb.android:lottie:4.2.2'
 
     // libraries for reading from doc and docx files
     implementation group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '2.4.0'
@@ -119,8 +119,8 @@ dependencies {
     // color picker
     implementation 'com.github.danielnilsson9:color-picker-view:1.4.0@aar'
 
-    implementation 'org.bouncycastle:bcpkix-jdk15to18:1.68'
-    implementation 'org.bouncycastle:bcprov-jdk15to18:1.68'
+    implementation 'org.bouncycastle:bcpkix-lts8on:2.73.3'
+    implementation 'org.bouncycastle:bcprov-lts8on:2.73.3'
 
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

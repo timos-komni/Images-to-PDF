@@ -4,7 +4,6 @@ interface DialogCallbacks {
     fun onPositiveButtonClick()
     fun onNegativeButtonClick()
 
-    /** @noinspection unused
-     */
+    @Suppress("EmptyMethod")
     fun onNeutralButtonClick()
 }

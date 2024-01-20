@@ -32,7 +32,6 @@ import swati4star.createpdf.fragment.texttopdf.TextToPdfFragment
 import swati4star.createpdf.util.Constants
 import swati4star.createpdf.util.FeedbackUtils
 import swati4star.createpdf.util.FragmentUtils
-import java.util.Objects
 
 /**
  * This is a fragment service that manages the fragments

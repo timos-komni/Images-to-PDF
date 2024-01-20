@@ -374,7 +374,7 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
                         mImageCounter = 0;
                     }
                 } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    //noinspection unused
+                    //noinspection unused,ThrowableNotThrown
                     Exception error = result.getError();
                 }
             }

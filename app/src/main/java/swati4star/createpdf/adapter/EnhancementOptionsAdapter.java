@@ -57,7 +57,7 @@ public class EnhancementOptionsAdapter
         @BindView((R.id.option_name))
         TextView optionName;
 
-        MaterialCardView cardView;
+        final MaterialCardView cardView;
 
         EnhancementOptionsViewHolder(View itemView) {
             super(itemView);
