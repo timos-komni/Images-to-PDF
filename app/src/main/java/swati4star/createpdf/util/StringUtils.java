@@ -31,11 +31,11 @@ public class StringUtils {
     }
 
     public boolean isEmpty(CharSequence s) {
-        return s == null || s.toString().trim().equals("");
+        return s == null || s.toString().trim().isEmpty();
     }
 
     public boolean isNotEmpty(CharSequence s) {
-        return s != null && !s.toString().trim().equals("");
+        return s != null && !s.toString().trim().isEmpty();
     }
 
     public void showSnackbar(Activity context, int resID) {

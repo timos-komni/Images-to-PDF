@@ -41,7 +41,7 @@ public class WhatsNewAdapter extends RecyclerView.Adapter<WhatsNewAdapter.WhatsN
     public void onBindViewHolder(@NonNull WhatsNewViewHolder holder, int position) {
         holder.tvDescription.setText(mWhatsNewsList.get(position).getDescription());
         holder.tvHeading.setText(mWhatsNewsList.get(position).getTitle());
-        if (!mWhatsNewsList.get(position).getIcon().equals("")) {
+        if (!mWhatsNewsList.get(position).getIcon().isEmpty()) {
             Resources resources = mContext.getResources();
             final int resourceId = resources.getIdentifier(mWhatsNewsList.get(position).getIcon(),
                     "drawable", mContext.getPackageName());
