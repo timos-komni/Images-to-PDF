@@ -1,5 +1,15 @@
 # Images To PDF
 
+---
+
+**This is a hobby-fork of the original [Images-to-PDF](https://github.com/Swati4star/Images-to-PDF) app**
+
+Continuous maintainability cannot be guaranteed!
+
+_Haven't decided yet if it should be uploaded on Google Play Store as a seperate app with fixes/new features_
+
+---
+
 ### Badges
 
 [![Build Status](https://travis-ci.org/Swati4star/Images-to-PDF.svg?branch=master)](https://travis-ci.org/Swati4star/Images-to-PDF)
