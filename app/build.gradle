@@ -33,7 +33,7 @@ android {
     }
     packagingOptions {
         resources {
-            excludes += ['META-INF/DEPENDENCIES', 'META-INF/NOTICE', 'META-INF/LICENSE', 'META-INF/NOTICE.txt', 'META-INF/LICENSE.txt']
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/NOTICE', 'META-INF/LICENSE', 'META-INF/NOTICE.txt', 'META-INF/LICENSE.txt', 'META-INF/versions/9/OSGI-INF/MANIFEST.MF']
         }
     }
     testOptions {
@@ -122,8 +122,8 @@ dependencies {
     // color picker
     implementation 'com.github.danielnilsson9:color-picker-view:master'
 
-    implementation 'org.bouncycastle:bcpkix-jdk18on:1.76'
-    implementation 'org.bouncycastle:bcprov-jdk18on:1.76'
+    implementation 'org.bouncycastle:bcpkix-jdk18on:1.79'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.79'
 
     implementation 'androidx.core:core-ktx:1.15.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
