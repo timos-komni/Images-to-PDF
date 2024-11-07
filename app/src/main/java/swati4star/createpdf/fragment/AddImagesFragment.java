@@ -81,7 +81,7 @@ public class AddImagesFragment extends Fragment implements BottomSheetPopulate,
     private BottomSheetUtils mBottomSheetUtils;
     private PDFUtils mPDFUtils;
     private String mOperation;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

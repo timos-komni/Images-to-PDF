@@ -18,8 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+import com.canhub.cropper.CropImage;
+import com.canhub.cropper.CropImageView;
 
 import java.io.File;
 import java.util.ArrayList;

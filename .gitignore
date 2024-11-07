@@ -12,3 +12,4 @@
 app/release/
 app/build/
 java_pid*.hprof
+/.kotlin/

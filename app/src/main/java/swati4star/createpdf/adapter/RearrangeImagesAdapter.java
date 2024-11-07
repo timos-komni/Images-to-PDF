@@ -22,15 +22,12 @@ import butterknife.ButterKnife;
 import swati4star.createpdf.R;
 
 public class RearrangeImagesAdapter extends RecyclerView.Adapter<RearrangeImagesAdapter.ViewHolder> {
-    private final Context mContext;
     private final OnClickListener mOnClickListener;
     private ArrayList<String> mImagesUri;
 
-    public RearrangeImagesAdapter(OnClickListener onClickListener,
-                                  ArrayList<String> uris, Context context) {
+    public RearrangeImagesAdapter(OnClickListener onClickListener, ArrayList<String> uris) {
         mOnClickListener = onClickListener;
         mImagesUri = uris;
-        mContext = context;
     }
 
     @NonNull
@@ -55,7 +52,7 @@ public class RearrangeImagesAdapter extends RecyclerView.Adapter<RearrangeImages
         } else {
             holder.buttonDown.setVisibility(View.VISIBLE);
         }
-        Picasso.with(mContext).load(imageFile).into(holder.imageView);
+        Picasso.get().load(imageFile).into(holder.imageView);
         holder.pageNumber.setText(String.valueOf(position + 1));
     }
 

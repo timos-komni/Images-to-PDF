@@ -53,7 +53,7 @@ public class RemoveDuplicatePagesFragment extends Fragment
         BottomSheetPopulate, OnPDFCreatedInterface, OnBackPressedInterface {
 
     private static final int INTENT_REQUEST_PICKFILE_CODE = 10;
-    BottomSheetBehavior mSheetBehavior;
+    BottomSheetBehavior<? extends View> mSheetBehavior;
     @BindView((R.id.lottie_progress))
     LottieAnimationView mLottieProgress;
     @BindView((R.id.selectFile))

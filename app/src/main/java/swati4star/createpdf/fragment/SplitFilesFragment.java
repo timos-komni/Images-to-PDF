@@ -84,7 +84,7 @@ public class SplitFilesFragment extends Fragment implements MergeFilesAdapter.On
     private FileUtils mFileUtils;
     private SplitPDFUtils mSplitPDFUtils;
     private BottomSheetUtils mBottomSheetUtils;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

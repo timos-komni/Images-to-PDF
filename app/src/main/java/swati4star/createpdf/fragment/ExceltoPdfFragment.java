@@ -91,7 +91,7 @@ public class ExceltoPdfFragment extends Fragment implements MergeFilesAdapter.On
     private Uri mExcelFileUri;
     private String mRealPath;
     private String mPath;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
     private StringUtils mStringUtils;
     private SharedPreferences mSharedPreferences;
     private MorphButtonUtility mMorphButtonUtility;

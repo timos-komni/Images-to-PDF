@@ -106,7 +106,7 @@ public class AddTextFragment extends Fragment implements MergeFilesAdapter.OnCli
     /** @noinspection unused*/
     private boolean mPermissionGranted;
     private int mFontSize = 0;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
     private ArrayList<EnhancementOptionsEntity> mTextEnhancementOptionsEntityArrayList;
     private EnhancementOptionsAdapter mTextEnhancementOptionsAdapter;
     private Font.FontFamily mFontFamily;

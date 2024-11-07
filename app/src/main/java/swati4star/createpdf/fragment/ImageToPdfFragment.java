@@ -55,7 +55,7 @@ import com.dd.morphingbutton.MorphingButton;
 import com.github.danielnilsson9.colorpickerview.view.ColorPickerView;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.canhub.cropper.CropImage;
 import com.zhihu.matisse.Matisse;
 
 import java.io.BufferedOutputStream;

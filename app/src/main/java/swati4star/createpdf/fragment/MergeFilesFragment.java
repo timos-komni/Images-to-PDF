@@ -105,7 +105,7 @@ public class MergeFilesFragment extends Fragment implements MergeFilesAdapter.On
     private boolean mPasswordProtected = false;
     private String mPassword;
     private SharedPreferences mSharedPrefs;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
 
     public MergeFilesFragment() {
     }

@@ -170,7 +170,7 @@ public class CommonCodeUtils {
      * Closes the bottom sheet if it is expanded
      */
 
-    public void closeBottomSheetUtil(BottomSheetBehavior sheetBehavior) {
+    public <V extends View> void closeBottomSheetUtil(BottomSheetBehavior<V> sheetBehavior) {
         if (checkSheetBehaviourUtil(sheetBehavior))
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
@@ -178,7 +178,7 @@ public class CommonCodeUtils {
     /**
      * Checks whether the bottom sheet is expanded or collapsed
      */
-    public boolean checkSheetBehaviourUtil(@NonNull BottomSheetBehavior sheetBehavior) {
+    public <V extends View> boolean checkSheetBehaviourUtil(@NonNull BottomSheetBehavior<V> sheetBehavior) {
         return sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED;
     }
 

@@ -76,7 +76,7 @@ public class InvertPdfFragment extends Fragment implements MergeFilesAdapter.OnC
     private FileUtils mFileUtils;
     private BottomSheetUtils mBottomSheetUtils;
     private MaterialDialog mMaterialDialog;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

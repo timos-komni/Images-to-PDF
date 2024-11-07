@@ -70,7 +70,7 @@ public class RearrangeImages extends AppCompatActivity implements RearrangeImage
                 LinearLayoutManager.VERTICAL, false);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(layoutManager);
-        mRearrangeImagesAdapter = new RearrangeImagesAdapter(this, images, this);
+        mRearrangeImagesAdapter = new RearrangeImagesAdapter(this, images);
         recyclerView.setAdapter(mRearrangeImagesAdapter);
     }
 

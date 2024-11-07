@@ -4,6 +4,7 @@ import static swati4star.createpdf.util.Constants.LAUNCH_COUNT;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -80,7 +81,11 @@ public class FeedbackUtils {
     public void openWebPage(String url) {
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        if (intent.resolveActivity(mContext.getPackageManager()) != null)
+        try {
             mContext.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
     }
 }

@@ -81,7 +81,7 @@ public class ExtractTextFragment extends Fragment implements MergeFilesAdapter.O
     private Uri mExcelFileUri;
     private String mRealPath;
     private BottomSheetUtils mBottomSheetUtils;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
     private SharedPreferences mSharedPreferences;
     private MorphButtonUtility mMorphButtonUtility;
     private boolean mButtonClicked = false;

@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:name="com.canhub.cropper.CropImageActivity"
             android:exported="true"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity

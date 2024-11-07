@@ -85,7 +85,7 @@ public class PdfToImageFragment extends Fragment implements BottomSheetPopulate,
     private Uri mUri;
     private MorphButtonUtility mMorphButtonUtility;
     private FileUtils mFileUtils;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
     private BottomSheetUtils mBottomSheetUtils;
     private ArrayList<String> mOutputFilePaths;
     private MaterialDialog mMaterialDialog;

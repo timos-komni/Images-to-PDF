@@ -101,7 +101,7 @@ public class RemovePagesFragment extends Fragment implements MergeFilesAdapter.O
     private PDFUtils mPDFUtils;
     private String mOperation;
     private MaterialDialog mMaterialDialog;
-    private BottomSheetBehavior mSheetBehavior;
+    private BottomSheetBehavior<? extends View> mSheetBehavior;
     private Uri mUri;
 
     @Override
