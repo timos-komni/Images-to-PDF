@@ -25,7 +25,7 @@ Here is an easy to use Android app to convert images to PDF file!
 
 <img src="./screenshots/image_to_pdf2.gif"  width="300px">
 
-### Support Us
+### Support Us (_...the original authors, [Swati Garg](https://github.com/Swati4star/) and contributors, they made a great app!_)
 
 <a href="https://www.buymeacoffee.com/qITGMWB" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
